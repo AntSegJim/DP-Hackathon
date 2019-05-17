@@ -1,0 +1,28 @@
+En este README.txt, vamos a recoger los pasos que hay que seguir para incorporar el protocolo HTTPS a los proyectos que despleguemos en preproduction:
+
+1. Primero debemos abrir el apartado "Símbolo del sistema" de nuestro ordenador.
+
+2. Para crear el certificado de SSL, ejecutamos el comando: keytool -genkey -alias tomcat -keyalg RSA -keystore "RUTA DONDE QUIERES GUARDAR EL ARCHIVO\NOMBRE DEL ARCHIVO.jsk"
+
+3. Al ejecutar este comando, nos pedirá una serie de datos que deberemos rellenar como la contraseña, nuestro nombre, el nombre de nuestra organización, etc, escribiendo "yes" al final para aceptar todos esos datos que hemos escrito 
+
+4. Con estos pasos previos ya habremos generado nuestro certificado.
+
+5. Ahora deberemos ir a la siguiente ruta "C:\Program Files\Apache Software Foundation\Tomcat 7.0\conf" y ahí abriremos con el bloc de notas por ejemplo, el archivo server.xml
+
+6. En este fichero, deberemos descomentar el siguiente apartado
+	<Connector port="8443" protocol="HTTP/1.1" SSLEnabled="true"
+               maxThreads="150" scheme="https" secure="true"
+               clientAuth="false" sslProtocol="TLS" />
+
+7. Y añadir los siguientes campos:
+	... keystoreFile="RUTA DONDE HAS GUARDADO EL CERTIFICADO\NOMBRE DEL ARCHIVO.jsk"
+	keystorePass="CONTRASEÑA QUE PUSIMOS EN EL PASO 3" />
+
+8. Ahora deberemos resetear el server de Tomcat. Para ello, abrimos una pestaña de "Simbolo del sistema" y ejecutamos el siguiente comando "services.msc".
+
+9. Esperamos a que se nos habra una ventana y ahi seleccionar Tomcat y le damos a "Restart"
+
+10. Para acceder a nuestro proyecto, abrimos una pestaña de firefox y escribimos: https://www.NOMBRE DE NUESTRA PÁGINA:8443.com
+
+11. Al pulsar al enter, nos saldra una pantalla intermedia donde nos dirá que nuestra conexión no es segura. Allí deberemos pulsar el boton "Add Exception..." y aceptar. Con ello ya tendremos acceso a nuestra página.
