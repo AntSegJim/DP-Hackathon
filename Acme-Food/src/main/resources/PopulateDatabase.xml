@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2019 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="administrator1" class="domain.Administrator">
+		<property name="name" value="Cristian"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES12345678S"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="cristian@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount1"/>
+		<property name="creditCard" ref="creditCard1"/>
+	
+	</bean>
+
+	
+	<!-- Other domain beans come here -->
+	
+	<!-- NOTIFICATION -->
+	
+	<bean id="notification1" class="domain.Notification">
+		<property name="subject" value="Actualización del sistema" />
+		<property name="body" value="Update" />
+	</bean>
+	
+	<bean id="notification2" class="domain.Notification">
+		<property name="subject" value="Actualización del sistema" />
+		<property name="body" value="Update2" />
+	</bean>
+	
+	<!-- CustomizableSystem -->
+
+	<bean id="customizableSystem1" class="domain.CustomizableSystem">
+
+		<property name="nameSystem" value="Acme Food" />
+		<property name="banner" value="https://www.downdays.eu/wp-content/uploads/2017/10/654366824_640.jpg" />
+		<property name="messageWelcomePage" value="Welcome to Acme Food! We're the favourite food app!" />
+		<property name="spanishMessageWelcomePage" value="¡Bienvenidos a Acme Food!  ¡Somos la app favorita de comida!" />
+		<property name="telephoneCode" value="+34" />
+		<property name="timeCache" value="1" />
+		<property name="maxResults" value="10" />
+		
+	</bean>
+	
+</beans>
