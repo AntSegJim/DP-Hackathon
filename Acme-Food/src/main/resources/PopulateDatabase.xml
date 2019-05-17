@@ -63,7 +63,7 @@
 	<bean id="customizableSystem1" class="domain.CustomizableSystem">
 
 		<property name="nameSystem" value="Acme Food" />
-		<property name="banner" value="https://www.downdays.eu/wp-content/uploads/2017/10/654366824_640.jpg" />
+		<property name="banner" value="https://www.tu-app.net/blog/wp-content/uploads/2016/09/APPS-restaurantes-1.jpg" />
 		<property name="messageWelcomePage" value="Welcome to Acme Food! We're the favourite food app!" />
 		<property name="spanishMessageWelcomePage" value="¡Bienvenidos a Acme Food!  ¡Somos la app favorita de comida!" />
 		<property name="telephoneCode" value="+34" />
