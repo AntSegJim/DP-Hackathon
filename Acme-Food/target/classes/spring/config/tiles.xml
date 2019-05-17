@@ -26,29 +26,10 @@
 		<value>/views/notification/tiles.xml</value>
 
 		<value>/views/customizable/tiles.xml</value>
-		<value>/views/position/tiles.xml</value>
-		<value>/views/company/tiles.xml</value>
-		<value>/views/finder/tiles.xml</value>
-		<value>/views/curricula/tiles.xml</value>
-		<value>/views/personalData/tiles.xml</value>
-		<value>/views/miscellaneousData/tiles.xml</value>
-		<value>/views/educationData/tiles.xml</value>
-		<value>/views/positionData/tiles.xml</value>
+		
 		<value>/views/administrator/tiles.xml</value>
 		<value>/views/termsAndConditions/tiles.xml</value>
-		
-		<value>/views/problem/tiles.xml</value>
-		<value>/views/application/tiles.xml</value>
-		<value>/views/profile/tiles.xml</value>
-		<value>/views/rookie/tiles.xml</value>
-		<value>/views/provider/tiles.xml</value>
-		
-		<value>/views/item/tiles.xml</value>
-		<value>/views/audit/tiles.xml</value>
-		<value>/views/auditor/tiles.xml</value>
-	
-		
-		
+			
 		
 	</util:list>
 
