@@ -21,7 +21,7 @@ import domain.CreditCard;
 
 @Component
 @Transactional
-public class StringToCreditCardrConverter implements Converter<String, CreditCard> {
+public class StringToCreditCardConverter implements Converter<String, CreditCard> {
 
 	@Autowired
 	CreditCardRepository	creditCardRepository;
