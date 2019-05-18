@@ -15,15 +15,48 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<security:authorize access="isAuthenticated()">
 
-<b><spring:message code="notification.subject" /> : </b> <jstl:out value="${notification.subject}"></jstl:out> <br/>
-<b><spring:message code="notification.body" /> : </b> <jstl:out value="${notification.body}"></jstl:out>
-
+<security:authorize access="hasRole('CUSTOMER')">
+<b><spring:message code="cashOrder.ticker" /> : </b> <jstl:out value="${cashOrder.ticker}"></jstl:out> <br/>
+<b><spring:message code="cashOrder.moment" /> : </b> <fmt:formatDate value="${cashOrder.moment }" pattern="yyyy-MM-dd HH:mm" /><br/>
+<b><spring:message code="cashOrder.SenderMoment" /> : </b> <fmt:formatDate value="${cashOrder.senderMoment }" pattern="yyyy-MM-dd HH:mm" /><br/>
+<b><spring:message code="cashOrder.status" /> : </b> 
+<jstl:choose>
+		<jstl:when test="${row.status eq 0}">
+			<spring:message code="cashOrder.pending" /> 
+		</jstl:when>
+		
+		<jstl:when test="${row.status eq 1}">
+			<spring:message code="cashOrder.rejected" />
+		</jstl:when>
+		
+		<jstl:when test="${row.status eq 2}">
+			<spring:message code="cashOrder.inProcess" />
+		</jstl:when>
+		
+		<jstl:when test="${row.status eq 3}">
+			<spring:message code="cashOrder.delivered" />
+		</jstl:when>
+		
+		<jstl:otherwise>
+			<spring:message code="cashOrder.acceptance" />
+		</jstl:otherwise>
+	</jstl:choose>
 <br/>
+<b><spring:message code="cashOrder.restaurant" /> : </b> <jstl:out value="${cashOrder.restaurant.comercialName}"></jstl:out>, <jstl:out value="${cashOrder.restaurant.speciality}"></jstl:out> <br/>
+<b><spring:message code="cashOrder.foodDishes" /> : </b> 
+<jstl:if test="${fn:length(cashOrder.foodDisheses) ne 0}">
+<jstl:forEach var="item" items="${cashOrder.foodDisheses}">
+-<jstl:out value="${item.name}"></jstl:out>
 <br/>
-<input type="button" name="cancel" value="<spring:message code="notification.cancel" />"
-			onclick="javascript: relativeRedir('notification/actor/list.do');" />
+</jstl:forEach>
+</jstl:if>
+<b><spring:message code="cashOrder.price" /> : </b> <jstl:out value="${cashOrder.totalPrice}"></jstl:out> <br/>
+<br/>
+<input type="button" name="cancel" value="<spring:message code="cashOrder.cancel" />"
+			onclick="javascript: relativeRedir('cashOrder/customer/list.do');" />
 
 </security:authorize>

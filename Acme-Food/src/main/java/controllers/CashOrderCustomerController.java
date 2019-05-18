@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
@@ -30,7 +31,8 @@ public class CashOrderCustomerController extends AbstractController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
-		final ModelAndView result;
+		ModelAndView result;
+
 		final Collection<CashOrder> cashOrders;
 
 		final UserAccount user = LoginService.getPrincipal();
@@ -41,6 +43,30 @@ public class CashOrderCustomerController extends AbstractController {
 
 		result = new ModelAndView("cashOrder/list");
 		result.addObject("cashOrders", cashOrders);
+
+		return result;
+
+	}
+
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public ModelAndView show(@RequestParam final Integer idCashOrder) {
+		ModelAndView result;
+		try {
+			final CashOrder cashOrder;
+
+			final UserAccount user = LoginService.getPrincipal();
+			final Actor a = this.actorService.getActorByUserAccount(user.getId());
+
+			cashOrder = this.cashOrderService.findOne(idCashOrder);
+			Assert.notNull(cashOrder);
+			Assert.isTrue(cashOrder.getCustomer().equals(a));
+
+			result = new ModelAndView("cashOrder/show");
+			result.addObject("cashOrder", cashOrder);
+
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:list.do");
+		}
 		return result;
 
 	}

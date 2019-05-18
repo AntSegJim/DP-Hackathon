@@ -20,6 +20,55 @@
 
 <display:table pagesize="5" name="cashOrders" id="row"
 requestURI="cashOrder/customer/list.do" >
+<display:column>
+	<a href="cashOrder/customer/show.do?idCashOrder=${row.id}"><spring:message code="cashOrder.moreDetails" /></a>
+</display:column>
+
+<display:column property="moment" titleKey="cashOrder.moment" format="{0,date,dd/MM/yyyy hh:mm}"  />
+
+<display:column titleKey="cashOrder.status" >
+
+	<jstl:choose>
+		<jstl:when test="${row.status eq 0}">
+			<spring:message code="cashOrder.pending" /> 
+		</jstl:when>
+		
+		<jstl:when test="${row.status eq 1}">
+			<spring:message code="cashOrder.rejected" />
+		</jstl:when>
+		
+		<jstl:when test="${row.status eq 2}">
+			<spring:message code="cashOrder.inProcess" />
+		</jstl:when>
+		
+		<jstl:when test="${row.status eq 3}">
+			<spring:message code="cashOrder.delivered" />
+		</jstl:when>
+		
+		<jstl:otherwise>
+			<spring:message code="cashOrder.acceptance" />
+		</jstl:otherwise>
+	</jstl:choose>
+	
+</display:column>
+<display:column titleKey="cashOrder.restaurant" >
+${row.restaurant.comercialName}, ${row.restaurant.speciality}
+</display:column>
+<display:column property="totalPrice" titleKey="cashOrder.price"  />
+
+<display:column titleKey="cashOrder.choice" >
+
+	<jstl:choose>
+		<jstl:when test="${row.status eq 0}">
+			<spring:message code="cashOrder.takeAway" /> 
+		</jstl:when>
+		
+		<jstl:otherwise>
+			<spring:message code="cashOrder.send" />
+		</jstl:otherwise>
+	</jstl:choose>
+	
+</display:column>
 
 </display:table>
 
