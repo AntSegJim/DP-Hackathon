@@ -32,6 +32,8 @@
 		<value>/views/termsAndConditions/messages</value>
 		
 		<value>/views/administrator/messages</value>
+		<value>/views/offer/messages</value>
+		<value>/views/socialProfile/messages</value>
 				
 	</util:list>
 

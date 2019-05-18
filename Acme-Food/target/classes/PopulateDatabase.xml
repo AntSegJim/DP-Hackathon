@@ -448,5 +448,28 @@
 	
 	</bean>
 	
+	<!-- Offer -->
+	<bean id="offer1" class="domain.Offer">
+		<property name="title" value="title1"/>
+		<property name="totalPrice" value="21"/>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	<bean id="offer2" class="domain.Offer">
+		<property name="title" value="title2"/>
+		<property name="totalPrice" value="19"/>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	<bean id="offer3" class="domain.Offer">
+		<property name="title" value="title3"/>
+		<property name="totalPrice" value="10"/>
+		<property name="restaurant" ref="restaurant2"/>
+	</bean>
+	<bean id="offer4" class="domain.Offer">
+		<property name="title" value="title4"/>
+		<property name="totalPrice" value="15"/>
+		<property name="restaurant" ref="restaurant2"/>
+	</bean>
+	
+	
 	
 </beans>
