@@ -410,45 +410,45 @@
   <!-- Finder-->
 	
 		<bean id="finder1" class="domain.Finder">
-		<property name="keyWord" value="Prueba1"/>
-		<property name="nameRestaurant" value="Nombre1"/>
-		<property name="speciality" value="Especialidad1"/>
-		<property name="moment" value="01/01/2019 12:12"/>
-		<property name="restaurants">
-			<list>
-				<ref bean="restaurant1" />
-				<ref bean="restaurant2" />
-			</list>
-		</property>
-	
-	</bean>
-	
-	
-		<bean id="finder2" class="domain.Finder">
-		<property name="keyWord" value="Prueba2"/>
-		<property name="nameRestaurant" value="Nombre2"/>
-		<property name="speciality" value="Especialidad2"/>
-		<property name="moment" value="01/01/2019 12:12"/>
+	<property name="keyWord" value="Prueba1" />
+	<property name="minScore" value="5" />
+	<property name="maxScore" value="10" />
+	<property name="moment" value="01/01/2019 12:12" />
+	<property name="restaurants">
+		<list>
+			<ref bean="restaurant1" />
+			<ref bean="restaurant2" />
+		</list>
+	</property>
+
+</bean>
+
+
+	<bean id="finder2" class="domain.Finder">
+		<property name="keyWord" value="Prueba2" />
+		<property name="minScore" value="5" />
+		<property name="maxScore" value="10" />
+		<property name="moment" value="01/01/2019 12:12" />
 		<property name="restaurants">
 			<list>
 				<ref bean="restaurant3" />
 			</list>
 		</property>
-	
+
 	</bean>
-	
-	
-		<bean id="finder3" class="domain.Finder">
-		<property name="keyWord" value="Prueba3"/>
-		<property name="nameRestaurant" value="Nombre3"/>
-		<property name="speciality" value="Especialidad3"/>
-		<property name="moment" value="01/01/2019 12:12"/>
+
+
+	<bean id="finder3" class="domain.Finder">
+		<property name="keyWord" value="Prueba3" />
+		<property name="minScore" value="5" />
+		<property name="maxScore" value="10" />
+		<property name="moment" value="01/01/2019 12:12" />
 		<property name="restaurants">
 			<list>
 				<ref bean="restaurant4" />
 			</list>
 		</property>
-	
+
 	</bean>
 	
 	<!-- FOOD DISHES -->

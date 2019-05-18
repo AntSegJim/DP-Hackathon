@@ -15,7 +15,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 	@Query("select m from Restaurant m where m.userAccount.id = ?1")
 	public Restaurant getRestaurantByUserAccount(int userAccountId);
 
-	@Query("select r from Restaurant r where (locate(?1, r.comercialName) != 0  or locate(?1, r.speciality) != 0 ) and locate(?2,r.comercialName) != 0  and locate(?3,r.speciality) != 0 ")
-	public Collection<Restaurant> filterRestaurants(String keyWord, String restaurantName, String speciality);
+	@Query("select r from Restaurant r where (locate(?1, r.comercialName) != 0  or locate(?1, r.speciality) != 0 ) and r.mediumScore between ?2 and ?3")
+	public Collection<Restaurant> filterRestaurants(String keyWord, Integer minScore, Integer maxScore);
 
 }

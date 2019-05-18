@@ -39,9 +39,9 @@ public class FinderService {
 	public Finder create() {
 		final Finder finder = new Finder();
 		finder.setKeyWord("");
-		finder.setNameRestaurant("");
+		finder.setMinScore(0);
 		finder.setRestaurants(new HashSet<Restaurant>());
-		finder.setSpeciality("");
+		finder.setMaxScore(10);
 		finder.setMoment(new Date());
 		return finder;
 	}
@@ -62,8 +62,8 @@ public class FinderService {
 			final Finder savedFinder = this.findOne();
 			savedFinder.setKeyWord(f.getKeyWord());
 			savedFinder.setRestaurants(f.getRestaurants());
-			savedFinder.setNameRestaurant(f.getNameRestaurant());
-			savedFinder.setSpeciality(f.getSpeciality());
+			savedFinder.setMinScore(f.getMinScore());
+			savedFinder.setMaxScore(f.getMaxScore());
 			savedFinder.setMoment(f.getMoment());
 			Assert.isTrue(f.getMoment() != null);
 			saved = this.finderRepository.save(savedFinder);
@@ -80,29 +80,29 @@ public class FinderService {
 		copy.setVersion(res.getVersion());
 		copy.setMoment(res.getMoment()); // OJO CAMBIAR MAS ABAJO Y QUITARLO DE AQUI
 		copy.setKeyWord(finder.getKeyWord());
-		copy.setNameRestaurant(finder.getNameRestaurant());
-		copy.setSpeciality(finder.getSpeciality());
+		copy.setMinScore(finder.getMinScore());
+		copy.setMaxScore(finder.getMaxScore());
 
 		if (finder.getKeyWord() == null)
 			copy.setKeyWord("");
 		if (res.getKeyWord() == null)
 			res.setKeyWord("");
-		if (finder.getNameRestaurant() == null)
-			copy.setNameRestaurant("");
-		if (res.getNameRestaurant() == null)
-			res.setNameRestaurant("");
-		if (finder.getSpeciality() == null)
-			copy.setSpeciality("");
-		if (res.getSpeciality() == null)
-			res.setSpeciality("");
+		if (finder.getMinScore() == null)
+			copy.setMinScore(0);
+		if (res.getMinScore() == null)
+			res.setMinScore(0);
+		if (finder.getMaxScore() == null)
+			copy.setMaxScore(10);
+		if (res.getMaxScore() == null)
+			res.setMaxScore(10);
 
-		final Boolean noHaCambiadoFinder = res.getNameRestaurant().equals(copy.getNameRestaurant()) && res.getSpeciality().equals(copy.getSpeciality()) && res.getKeyWord().equals(copy.getKeyWord());
+		final Boolean noHaCambiadoFinder = res.getMinScore().equals(copy.getMinScore()) && res.getMaxScore().equals(copy.getMaxScore()) && res.getKeyWord().equals(copy.getKeyWord());
 
 		final long a = (new Date().getTime() - res.getMoment().getTime()) / 3600000;
 		final long b = this.customizableSystemService.getTimeCache();
 
 		if (a > b || !noHaCambiadoFinder) {
-			final Collection<Restaurant> restaurants = this.restaurantRepository.filterRestaurants(copy.getKeyWord(), copy.getNameRestaurant(), copy.getSpeciality());
+			final Collection<Restaurant> restaurants = this.restaurantRepository.filterRestaurants(copy.getKeyWord(), copy.getMinScore(), copy.getMaxScore());
 			copy.setRestaurants(restaurants);
 			copy.setMoment(new Date());
 		} else
