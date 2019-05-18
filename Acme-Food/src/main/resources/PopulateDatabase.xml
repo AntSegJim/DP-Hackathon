@@ -103,6 +103,31 @@
 		</property>
 	</bean>
 	
+		<bean id="userAccount8" class="security.UserAccount">
+		<property name="username" value="restaurant3" />
+		<property name="password" value="719fa3c09631067e10f1c9e494b90d6d" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="RESTAURANT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="restaurant4" />
+		<property name="password" value="b38b79836bd3a497401a3a3e28683a9c" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="RESTAURANT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
 	<!-- ADMINISTRATOR -->
 	
 	<bean id="administrator1" class="domain.Administrator">
@@ -132,8 +157,142 @@
 	</bean>
 
 	<!-- RESTAURANT -->
-
+	<bean id="restaurant1" class="domain.Restaurant">
+		<property name="name" value="Manolo"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES87654321A"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="manolo@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount3"/>
+		<property name="creditCard" ref="creditCard6"/>
+			<property name="ratings">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="comercialName" value="NombreComerdial1"/>
+		<property name="speciality" value="Especialidad1"/>
+		<property name="isBanned" value="0"/>
+		<property name="mediumScore" value="5"/>
 		
+	
+	
+	</bean>
+	
+		<bean id="restaurant2" class="domain.Restaurant">
+		<property name="name" value="Araceli"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES87654321B"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="araceli@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount4"/>
+		<property name="creditCard" ref="creditCard7"/>
+		<property name="ratings">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="comercialName" value="NombreComerdial2"/>
+		<property name="speciality" value="Especialidad2"/>
+		<property name="isBanned" value="0"/>
+		<property name="mediumScore" value="6"/>
+		
+	
+	</bean>
+	
+			<bean id="restaurant3" class="domain.Restaurant">
+		<property name="name" value="Carlos"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES87654321C"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="carlos@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount8"/>
+		<property name="creditCard" ref="creditCard8"/>
+		<property name="ratings">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="comercialName" value="NombreComerdial3"/>
+		<property name="speciality" value="Especialidad3"/>
+		<property name="isBanned" value="0"/>
+		<property name="mediumScore" value="7"/>
+	
+	</bean>
+	
+			<bean id="restaurant4" class="domain.Restaurant">
+		<property name="name" value="Manuel"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES87654321D"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="manuel@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount9"/>
+		<property name="creditCard" ref="creditCard9"/>
+		<property name="ratings">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="comercialName" value="NombreComerdial4"/>
+		<property name="speciality" value="Especialidad4"/>
+		<property name="isBanned" value="0"/>
+		<property name="mediumScore" value="8"/>
+	
+	</bean>
+	
+	
+	
+		<!-- Customer -->
+
+<bean id="customer1" class="domain.Customer">
+		<property name="name" value="Pedro"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES12345679S"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="pedro@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount5"/>
+		<property name="creditCard" ref="creditCard3"/>
+		<property name="finder" ref="finder1"/>
+	
+	</bean>
+		
+		<bean id="customer2" class="domain.Customer">
+		<property name="name" value="Ana"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES12345678Z"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="ana@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount6"/>
+		<property name="creditCard" ref="creditCard4"/>
+		<property name="finder" ref="finder2"/>
+	
+	</bean>
+	
+		<bean id="customer3" class="domain.Customer">
+		<property name="name" value="Pablo"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES12345678X"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="pablo@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount7"/>
+		<property name="creditCard" ref="creditCard5"/>
+		<property name="finder" ref="finder3"/>
+	
+	</bean>
 	<!-- NOTIFICATION -->
 	
 	<bean id="notification1" class="domain.Notification">
@@ -187,6 +346,107 @@
   	<property name="expirationYear" value="2027" /> 
   	<property name="CW" value="784" /> 
   </bean>
+  
+    
+   <bean id="creditCard4" class="domain.CreditCard">
+  	<property name="holderName" value="nombre4" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5390389640123794" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="784" /> 
+  </bean>
+  
+    
+   <bean id="creditCard5" class="domain.CreditCard">
+  	<property name="holderName" value="nombre5" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5315450935154035" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="784" /> 
+  </bean>
+  
+    
+   <bean id="creditCard6" class="domain.CreditCard">
+  	<property name="holderName" value="nombre6" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5158721409256120" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="784" /> 
+  </bean>
+  
+    
+   <bean id="creditCard7" class="domain.CreditCard">
+  	<property name="holderName" value="nombre7" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5528797798964477" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="784" /> 
+  </bean>
+  
+  
+    <bean id="creditCard8" class="domain.CreditCard">
+  	<property name="holderName" value="nombre8" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5179497409957950" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="784" /> 
+  </bean>
+  
+  <bean id="creditCard9" class="domain.CreditCard">
+  	<property name="holderName" value="nombre9" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5123654819117073" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="784" /> 
+  </bean>
+  
+  
+  <!-- Finder-->
+	
+		<bean id="finder1" class="domain.Finder">
+		<property name="keyWord" value="Prueba1"/>
+		<property name="nameRestaurant" value="Nombre1"/>
+		<property name="speciality" value="Especialidad1"/>
+		<property name="restaurants">
+			<list>
+				<ref bean="restaurant1" />
+				<ref bean="restaurant2" />
+			</list>
+		</property>
+	
+	</bean>
+	
+	
+		<bean id="finder2" class="domain.Finder">
+		<property name="keyWord" value="Prueba2"/>
+		<property name="nameRestaurant" value="Nombre2"/>
+		<property name="speciality" value="Especialidad2"/>
+		<property name="restaurants">
+			<list>
+				<ref bean="restaurant3" />
+			</list>
+		</property>
+	
+	</bean>
+	
+	
+		<bean id="finder3" class="domain.Finder">
+		<property name="keyWord" value="Prueba3"/>
+		<property name="nameRestaurant" value="Nombre3"/>
+		<property name="speciality" value="Especialidad3"/>
+		<property name="restaurants">
+			<list>
+				<ref bean="restaurant4" />
+			</list>
+		</property>
+	
+	</bean>
 	
 	
 </beans>
