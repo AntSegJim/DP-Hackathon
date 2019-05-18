@@ -91,4 +91,8 @@ public class OfferService {
 		return res;
 	}
 
+	public Collection<Offer> getOffersByRestaurant(final int restaurantId) {
+		return this.offerRepository.getOffersByRestaurant(restaurantId);
+	}
+
 }

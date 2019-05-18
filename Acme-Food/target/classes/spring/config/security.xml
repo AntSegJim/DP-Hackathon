@@ -64,7 +64,7 @@
 		<security:intercept-url pattern="/foodDishes/restaurant/show.do" access="hasRole('RESTAURANT')" /> 
 		<security:intercept-url pattern="/foodDishes/restaurant/create.do" access="hasRole('RESTAURANT')" /> 
 		<security:intercept-url pattern="/foodDishes/restaurant/edit.do" access="hasRole('RESTAURANT')" /> 
-
+		<security:intercept-url pattern="/offer/restaurant/**" access="hasRole('RESTAURANT')" /> 
 	
 		<security:intercept-url pattern="/customizableSystem/administrator/edit.do" access="hasRole('ADMIN')" />
 		
