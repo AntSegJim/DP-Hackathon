@@ -92,4 +92,8 @@ public class SocialProfileService {
 		return res;
 	}
 
+	public Collection<SocialProfile> getSocialProfilesByRestaurant(final int restaurantId) {
+		return this.socialProfileRepository.getSocialProfilesByRestaurant(restaurantId);
+	}
+
 }
