@@ -50,17 +50,22 @@ public class FoodDishesRestaurantController {
 
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
 	public ModelAndView show(@RequestParam final Integer foodDishesId) {
-		final ModelAndView result;
-		final FoodDishes foodDishe;
+		ModelAndView result;
+		try {
+			final FoodDishes foodDish;
 
-		final UserAccount user = LoginService.getPrincipal();
-		final Restaurant r = (Restaurant) this.actorService.getActorByUserAccount(user.getId());
+			final UserAccount user = LoginService.getPrincipal();
+			final Restaurant r = (Restaurant) this.actorService.getActorByUserAccount(user.getId());
 
-		foodDishe = this.foodDishesService.findOne(foodDishesId);
-		Assert.notNull(foodDishe);
+			foodDish = this.foodDishesService.findOne(foodDishesId);
+			Assert.notNull(foodDish);
+			Assert.isTrue(foodDish.getRestaurant().equals(r));
 
-		result = new ModelAndView("foodDishes/show");
-		result.addObject("foodDishe", foodDishe);
+			result = new ModelAndView("foodDishes/show");
+			result.addObject("foodDishe", foodDish);
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:list.do");
+		}
 		return result;
 
 	}
@@ -81,14 +86,22 @@ public class FoodDishesRestaurantController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final Integer foodDishesId) {
-		final ModelAndView result;
-		final FoodDishes foodDishe;
+		ModelAndView result;
+		try {
 
-		foodDishe = this.foodDishesService.findOne(foodDishesId);
-		Assert.notNull(foodDishe);
+			final UserAccount user = LoginService.getPrincipal();
+			final Restaurant r = (Restaurant) this.actorService.getActorByUserAccount(user.getId());
+			final FoodDishes foodDishe;
 
-		result = new ModelAndView("foodDishes/edit");
-		result.addObject("foodDishe", foodDishe);
+			foodDishe = this.foodDishesService.findOne(foodDishesId);
+			Assert.notNull(foodDishe);
+			Assert.isTrue(foodDishe.getRestaurant().equals(r));
+
+			result = new ModelAndView("foodDishes/edit");
+			result.addObject("foodDishe", foodDishe);
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:list.do");
+		}
 		return result;
 
 	}
@@ -110,12 +123,11 @@ public class FoodDishesRestaurantController {
 		} catch (final ValidationException opps) {
 			result = new ModelAndView("foodDishes/edit");
 			result.addObject("foodDishe", foodDishe);
+		} catch (final Exception e) {
+			result = new ModelAndView("foodDishes/edit");
+			result.addObject("exception", e);
+			result.addObject("foodDishe", foodDishe);
 		}
-		//catch (final Exception e) {
-		//			result = new ModelAndView("foodDishes/edit");
-		//			result.addObject("exception", e);
-		//			result.addObject("foodDishe", foodDishe);
-		//		}
 
 		return result;
 	}
