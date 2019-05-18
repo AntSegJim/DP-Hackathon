@@ -12,7 +12,7 @@ import domain.Offer;
 
 @Component
 @Transactional
-public class StringToOfferController implements Converter<String, Offer> {
+public class StringToOfferConverter implements Converter<String, Offer> {
 
 	@Autowired
 	OfferRepository	offerRepository;
