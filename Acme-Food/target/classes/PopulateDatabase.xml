@@ -483,11 +483,28 @@
 			</list>
 		</property>
 		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	
+	
+	<bean id="foodDishes3" class="domain.FoodDishes">
+		<property name="name" value="Batido"/>
+		<property name="description" value="Batido de chocolate"/>
+		<property name="pictures" value="http://www.recetasdiarias.com/wp-content/uploads/2010/01/batido-de-chocolate.jpg"/>
+		<property name="price" value="3.0"/>
+		<property name="type" value="3"/>
+		<property name="ingredients">
+			<list>
+				<value>Nata</value>
+				<value>Chocolate</value>
+				<value>Leche</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
 		
 		
 	</bean>
 	
-	<bean id="foodDishes3" class="domain.FoodDishes">
+	<bean id="foodDishes4" class="domain.FoodDishes">
 		<property name="name" value="Tostada con aceite"/>
 		<property name="description" value="Pan tostado con aceite"/>
 		<property name="pictures" value="http://static.consumer.es/www/imgs/recetas/1/101099_g.jpg"/>
@@ -507,23 +524,14 @@
 	<!-- Offer -->
 	<bean id="offer1" class="domain.Offer">
 		<property name="title" value="title1"/>
-		<property name="totalPrice" value="21"/>
+		<property name="totalPrice" value="6"/>
 		<property name="restaurant" ref="restaurant1"/>
-	</bean>
-	<bean id="offer2" class="domain.Offer">
-		<property name="title" value="title2"/>
-		<property name="totalPrice" value="19"/>
-		<property name="restaurant" ref="restaurant1"/>
-	</bean>
-	<bean id="offer3" class="domain.Offer">
-		<property name="title" value="title3"/>
-		<property name="totalPrice" value="10"/>
-		<property name="restaurant" ref="restaurant2"/>
-	</bean>
-	<bean id="offer4" class="domain.Offer">
-		<property name="title" value="title4"/>
-		<property name="totalPrice" value="15"/>
-		<property name="restaurant" ref="restaurant2"/>
+		<property name="foodDisheses">
+			<list>
+				<ref bean="foodDishes1" />
+				<ref bean="foodDishes2" />
+			</list>
+		</property>
 	</bean>
 	
 	<!-- Social Profile -->

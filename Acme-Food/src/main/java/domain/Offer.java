@@ -1,9 +1,12 @@
 
 package domain;
 
+import java.util.Collection;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -16,10 +19,22 @@ import org.hibernate.validator.constraints.SafeHtml;
 @Access(AccessType.PROPERTY)
 public class Offer extends DomainEntity {
 
-	private String		title;
-	private int			totalPrice;
-	private Restaurant	restaurant;
+	private String					title;
+	private int						totalPrice;
+	private Restaurant				restaurant;
+	private Collection<FoodDishes>	foodDisheses;
 
+
+	@ManyToMany
+	@Valid
+	@NotNull
+	public Collection<FoodDishes> getFoodDisheses() {
+		return this.foodDisheses;
+	}
+
+	public void setFoodDisheses(final Collection<FoodDishes> foodDisheses) {
+		this.foodDisheses = foodDisheses;
+	}
 
 	@NotNull
 	@NotBlank

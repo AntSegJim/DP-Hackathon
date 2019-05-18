@@ -21,9 +21,9 @@
 		<put-attribute name="body" value="/views/offer/list.jsp" />
 	</definition>
 	
-	<definition name="offer/edit" extends="master.page">	
-		<put-attribute name="title" value="Editar oferta" />
-		<put-attribute name="body" value="/views/offer/edit.jsp" />
+	<definition name="offer/show" extends="master.page">	
+		<put-attribute name="title" value="Mostrar oferta" />
+		<put-attribute name="body" value="/views/offer/show.jsp" />
 	</definition>
 
 	

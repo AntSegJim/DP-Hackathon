@@ -37,6 +37,7 @@
 		
 		<security:authorize access="hasRole('RESTAURANT')">
 			<li><a href="foodDishes/restaurant/list.do"><spring:message code="master.page.restaurant.foodDishes" /></a></li>
+			<li><a href="offer/restaurant/list.do"><spring:message code="master.page.restaurant.offer" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">

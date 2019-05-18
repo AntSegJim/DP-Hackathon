@@ -16,20 +16,21 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ page import="java.util.ArrayList"%>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <security:authorize access="hasRole('RESTAURANT')">
+<b><spring:message code="offer.title" />:</b><jstl:out value="${offer.title}"></jstl:out><br/>
+<b><spring:message code="offer.totalPrice" />:</b><jstl:out value="${offer.totalPrice}"></jstl:out><br/>
 
-<display:table pagesize="5" name="foodDishes" id="row"
-requestURI="finder/rookie/show.do" >
+<display:table pagesize="5" name="foodDisheses" id="row"
+requestURI="foodDishes/restaurant/list.do" >
 
-<display:column property="ticker" titleKey="position.ticker" />
-<display:column property="title" titleKey="position.title" />
-<display:column property="deadLine" titleKey="position.deadline" />
-<display:column property="salary" titleKey="position.salary" />
-
+<display:column property="name" titleKey="offer.foodDishes.name" />
+<display:column property="description" titleKey="offer.foodDishes.description" />
+<display:column property="price" titleKey="offer.foodDishes.price" />
+<display:column titleKey="offer.foodDishes.picture"> <img src="${row.pictures}" width="130px" height="80px"></display:column>
 </display:table>
 
-	<input type="button" name="create" value="<spring:message code="finder.back" />"
-			onclick="javascript: relativeRedir('finder/rookie/edit.do');" />
+<acme:cancel url="offer/restaurant/list.do" code="cancel"/>
 
 </security:authorize>
