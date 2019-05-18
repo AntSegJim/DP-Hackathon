@@ -30,8 +30,8 @@
 <form:hidden path="version"/>
 
 <acme:textbox code="finder.keyWord" path="keyWord"/>
-<acme:textbox code="finder.deadLine" path="nameRestaurant"/>
-<acme:textbox code="finder.minSalary" path="speciality"/>
+<acme:textbox code="restaurant.nameRestaurant" path="nameRestaurant"/>
+<acme:textbox code="restaurant.speciality" path="speciality"/>
 
 <input type="submit" name="save" 
 	value="<spring:message code="notification.save" />" />

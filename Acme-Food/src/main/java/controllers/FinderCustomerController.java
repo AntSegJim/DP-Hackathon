@@ -28,7 +28,7 @@ public class FinderCustomerController {
 		final Finder finder = this.finderService.findOne();
 
 		result = new ModelAndView("finder/show");
-		result.addObject("positions", finder.getRestaurants());
+		result.addObject("restaurants", finder.getRestaurants());
 		result.addObject("ñapa", this.customizableSystemService.getMaxResults());
 		return result;
 

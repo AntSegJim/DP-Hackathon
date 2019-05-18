@@ -37,6 +37,8 @@
 
 		<value>/views/offer/messages</value>
 		<value>/views/socialProfile/messages</value>
+		
+		<value>/views/finder/messages</value>
 				
 	</util:list>
 
