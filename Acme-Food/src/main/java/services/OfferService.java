@@ -79,14 +79,14 @@ public class OfferService {
 			this.validator.validate(res, binding);
 		} else {
 			res = this.offerRepository.findOne(offer.getId());
-			final Offer a = new Offer();
-			a.setId(res.getId());
-			a.setVersion(res.getVersion());
-			a.setTitle(offer.getTitle());
-			a.setTotalPrice(offer.getTotalPrice());
-			a.setRestaurant(res.getRestaurant());
-			this.validator.validate(a, binding);
-			res = a;
+			final Offer o = new Offer();
+			o.setId(res.getId());
+			o.setVersion(res.getVersion());
+			o.setTitle(offer.getTitle());
+			o.setTotalPrice(offer.getTotalPrice());
+			o.setRestaurant(res.getRestaurant());
+			this.validator.validate(o, binding);
+			res = o;
 		}
 		return res;
 	}
