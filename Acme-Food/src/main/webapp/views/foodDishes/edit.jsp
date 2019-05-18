@@ -19,25 +19,36 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
-<security:authorize access="hasRole('ADMIN')">
-<form:form action="notification/administrator/edit.do" modelAttribute="notification">
+<security:authorize access="hasRole('RESTAURANT')">
+<form:form action="foodDishes/restaurant/edit.do" modelAttribute="foodDishe">
 
 <jstl:if test="${not empty exception}">
-		<p style="color:red"> <spring:message code="notification.error" /> </p>
+		<p style="color:red"> <spring:message code="foodDishes.error" /> </p>
 </jstl:if>
 
 <form:hidden path="id"/>
 <form:hidden path="version"/>
 
-<acme:textbox code="notification.subject" path="subject"/>
-<acme:textarea code="notification.body" path="body"/>
-
+<acme:textbox code="foodDishes.name" path="name"/>
+<acme:textarea code="foodDishes.description" path="description"/>
+<acme:textbox code="foodDishes.picture" path="pictures"/>
+<acme:textbox code="foodDishes.price" path="price"/>
+<form:label path="type"><spring:message code="foodDishes.type" />:</form:label>
+<form:select path="type">
+		<form:option value="0" label="Breakfast" />	
+		<form:option value="1" label="Lunch" />	
+		<form:option value="2" label="Dinner" />	
+		<form:option value="3" label="Dessert" />	
+	</form:select>
+	<form:errors path="type"/>
+<br/>
+<acme:textarea code="foodDishes.ingredients" path="ingredients"/>
 <br/>
 <input type="submit" name="save" 
-	value="<spring:message code="notification.save" />" />
+	value="<spring:message code="foodDishes.save" />" />
 	
-<input type="button" name="cancel" value="<spring:message code="notification.cancel" />"
-			onclick="javascript: relativeRedir('notification/actor/list.do');" />
+<input type="button" name="cancel" value="<spring:message code="foodDishes.cancel" />"
+			onclick="javascript: relativeRedir('foodDishes/restaurant/list.do');" />
 </form:form>
 
 </security:authorize>

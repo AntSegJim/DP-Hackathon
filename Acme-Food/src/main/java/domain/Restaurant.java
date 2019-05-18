@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.SafeHtml;
@@ -25,6 +26,7 @@ public class Restaurant extends Actor {
 	private Integer				mediumScore;
 
 
+	@Length(min = 4)
 	@NotBlank
 	@NotNull
 	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)

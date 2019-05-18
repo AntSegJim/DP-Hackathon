@@ -448,7 +448,6 @@
 	
 	</bean>
 	
-
 	<!-- FOOD DISHES -->
 	<bean id="foodDishes1" class="domain.FoodDishes">
 		<property name="name" value="Papas fritas"/>

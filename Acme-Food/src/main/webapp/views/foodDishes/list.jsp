@@ -84,11 +84,13 @@ requestURI="foodDishes/restaurant/list.do" >
 	</jstl:choose>
 	
 </display:column>
-		
-
-
-
+<display:column class="${css}">
+	<a href="foodDishes/restaurant/edit.do?foodDishesId=${row.id}"><spring:message code="foodDishes.edit" /></a>
+</display:column>		
 </display:table>
+
+<input type="button" name="create" value="<spring:message code="foodDishes.create" />"
+			onclick="javascript: relativeRedir('foodDishes/restaurant/create.do');" />
 
 </security:authorize>
 
