@@ -30,6 +30,44 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="admin1" />
+		<property name="password" value="e00cf25ad42683b3df678c61f42c6bda" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="restaurant" />
+		<property name="password" value="6d4b62960a6aa2b1fff43a9c1d95f7b2" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="RESTAURANT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="restaurant1" />
+		<property name="password" value="fe5cdff0df7935c31f7c51987bdb4d78" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="RESTAURANT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- ADMINISTRATOR -->
+	
 	<bean id="administrator1" class="domain.Administrator">
 		<property name="name" value="Cristian"/>
 		<property name="surnames" value="Lorca"/>
@@ -42,10 +80,37 @@
 		<property name="creditCard" ref="creditCard1"/>
 	
 	</bean>
+	
+	<bean id="administrator2" class="domain.Administrator">
+		<property name="name" value="Antonio"/>
+		<property name="surnames" value="Segura"/>
+		<property name="vatNumber" value="ES12345678T"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="antonio@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount2"/>
+		<property name="creditCard" ref="creditCard2"/>
+	
+	</bean>
 
+	<!-- RESTAURANT -->
+
+	<!--
+	<bean id="restaurant1" class="domain.Restaurant">
+		<property name="name" value="Antonio"/>
+		<property name="surnames" value="Segura"/>
+		<property name="vatNumber" value="ES12345678T"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="antonio@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount3"/>
+		<property name="creditCard" ref="creditCard3"/>
 	
-	<!-- Other domain beans come here -->
-	
+	</bean> 
+	-->
+		
 	<!-- NOTIFICATION -->
 	
 	<bean id="notification1" class="domain.Notification">
@@ -74,12 +139,31 @@
 	
 	
 	<bean id="creditCard1" class="domain.CreditCard">
-  <property name="holderName" value="nombre1" /> 
-  <property name="brandName" value="VISA" /> 
-  <property name="number" value="5325065299416578" /> 
-  <property name="expirationMonth" value="3" /> 
-  <property name="expirationYear" value="2019" /> 
-  <property name="CW" value="101" /> 
+  	<property name="holderName" value="nombre1" /> 
+  	<property name="brandName" value="VISA" /> 
+  	<property name="number" value="5325065299416578" /> 
+  	<property name="expirationMonth" value="3" /> 
+  	<property name="expirationYear" value="2019" /> 
+  	<property name="CW" value="101" /> 
   </bean>
+  
+  <bean id="creditCard2" class="domain.CreditCard">
+ 	<property name="holderName" value="nombre2" /> 
+ 	<property name="brandName" value="CARD" /> 
+  	<property name="number" value="5536973139301709" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="362" /> 
+  </bean>
+  
+   <bean id="creditCard3" class="domain.CreditCard">
+  	<property name="holderName" value="nombre3" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5141210625716091" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="784" /> 
+  </bean>
+	
 	
 </beans>
