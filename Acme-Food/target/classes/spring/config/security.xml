@@ -64,48 +64,14 @@
 		<security:intercept-url pattern="/notification/actor/show.do" access="isAuthenticated()" />
 		<security:intercept-url pattern="/notification/administrator/create.do" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/notification/administrator/edit.do" access="hasRole('ADMIN')" />
-			 
-		<security:intercept-url pattern="/position/company/list.do" access="hasRole('COMPANY')" />
-		<security:intercept-url pattern="/position/company/edit.do" access="hasRole('COMPANY')" />
-		<security:intercept-url pattern="/position/company/create.do" access="hasRole('COMPANY')" />
-		<security:intercept-url pattern="/position/company/show.do" access="hasRole('COMPANY')" />
-		<security:intercept-url pattern="/position/company/cancel.do" access="hasRole('COMPANY')" />
-		
-		
-		<security:intercept-url pattern="/problem/company/list.do" access="hasRole('COMPANY')" />
-		<security:intercept-url pattern="/problem/company/create.do" access="hasRole('COMPANY')" />
-		<security:intercept-url pattern="/problem/company/edit.do" access="hasRole('COMPANY')" />
-		<security:intercept-url pattern="/problem/company/show.do" access="hasRole('COMPANY')" />
-		
-		<security:intercept-url pattern="/application/rookie/list.do" access="hasRole('ROOKIE')" />
-		<security:intercept-url pattern="/application/rookie/edit.do" access="hasRole('ROOKIE')" />
-		<security:intercept-url pattern="/application/rookie/show.do" access="hasRole('ROOKIE')" />
-		<security:intercept-url pattern="/application/rookie/create.do" access="hasRole('ROOKIE')" />
-		
-		<security:intercept-url pattern="/application/company/list.do" access="hasRole('COMPANY')" />
-		<security:intercept-url pattern="/application/company/edit.do" access="hasRole('COMPANY')" />
-		<security:intercept-url pattern="/application/company/show.do" access="hasRole('COMPANY')" />
 		
 		<security:intercept-url pattern="/finder/rookie/clear.do" access="hasRole('ROOKIE')" />
 		<security:intercept-url pattern="/finder/rookie/edit.do" access="hasRole('ROOKIE')" />
 		<security:intercept-url pattern="/finder/rookie/show.do" access="hasRole('ROOKIE')" />
 		
-		<security:intercept-url pattern="/curricula/rookie/list.do" access="hasRole('ROOKIE')" />
-		<security:intercept-url pattern="/personalData/rookie/**" access="hasRole('ROOKIE')" />
-		<security:intercept-url pattern="/miscellaneousData/rookie/**" access="hasRole('ROOKIE')" />
-		<security:intercept-url pattern="/educationData/rookie/**" access="hasRole('ROOKIE')" />
-		<security:intercept-url pattern="/positionData/rookie/**" access="hasRole('ROOKIE')" />
 		
 		<security:intercept-url pattern="/audit/auditor/**" access="hasRole('AUDITOR')" />
 		<security:intercept-url pattern="/audit/company/**" access="hasRole('COMPANY')" />
-		
-		<security:intercept-url pattern="/item/provider/list.do" access="hasRole('PROVIDER')" />
-		<security:intercept-url pattern="/item/provider/edit.do" access="hasRole('PROVIDER')" />
-		<security:intercept-url pattern="/item/provider/show.do" access="hasRole('PROVIDER')" />
-		<security:intercept-url pattern="/item/provider/delete.do" access="hasRole('PROVIDER')" />
-		<security:intercept-url pattern="/item/list.do" access="isAnonymous()" />
-		<security:intercept-url pattern="/item/listProvider.do" access="isAnonymous()" />
-		<security:intercept-url pattern="/item/show.do" access="isAnonymous()" />
 		
 		<security:intercept-url pattern="/company/create.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/company/edit.do" access="isAnonymous()" />
@@ -113,12 +79,8 @@
 		<security:intercept-url pattern="/rookie/edit.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/provider/create.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/provider/edit.do" access="isAnonymous()" />
-		<security:intercept-url pattern="/provider/list.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/position/show.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/position/list.do" access="isAnonymous()" />
-		<security:intercept-url pattern="/company/list.do" access="isAnonymous()" />
-		<security:intercept-url pattern="/position/listAll.do" access="isAnonymous()" />
-		<security:intercept-url pattern="/position/search.do" access="isAnonymous()" />
 		 <security:intercept-url pattern="/position/company.do" access="isAnonymous()" />
 		 
 
