@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.SafeHtml;
 
 @Entity
@@ -18,8 +19,8 @@ import org.hibernate.validator.constraints.SafeHtml;
 public class Finder extends DomainEntity {
 
 	private String					keyWord;
-	private String					nameRestaurant;
-	private String					speciality;
+	private Integer					minScore;
+	private Integer					maxScore;
 	private Collection<Restaurant>	restaurants;
 	private Date					moment;
 
@@ -43,22 +44,22 @@ public class Finder extends DomainEntity {
 		this.keyWord = keyWord;
 	}
 
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-	public String getNameRestaurant() {
-		return this.nameRestaurant;
+	@Range(min = 0, max = 10)
+	public Integer getMinScore() {
+		return this.minScore;
 	}
 
-	public void setNameRestaurant(final String nameRestaurant) {
-		this.nameRestaurant = nameRestaurant;
+	public void setMinScore(final Integer minScore) {
+		this.minScore = minScore;
 	}
 
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-	public String getSpeciality() {
-		return this.speciality;
+	@Range(min = 0, max = 10)
+	public Integer getMaxScore() {
+		return this.maxScore;
 	}
 
-	public void setSpeciality(final String speciality) {
-		this.speciality = speciality;
+	public void setMaxScore(final Integer maxScore) {
+		this.maxScore = maxScore;
 	}
 
 	@NotNull
