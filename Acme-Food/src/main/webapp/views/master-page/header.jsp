@@ -35,9 +35,8 @@
 						
 		</security:authorize>
 		
-		<security:authorize access="hasRole('COMPANY')">
-			<li><a href="position/company/list.do"><spring:message code="master.page.position" /></a></li>
-			<li><a href="application/company/list.do"><spring:message code="master.page.application" /></a></li>
+		<security:authorize access="hasRole('RESTAURANT')">
+			<li><a href="foodDishes/restaurant/list.do"><spring:message code="master.page.restaurant.foodDishes" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('AUDITOR')">

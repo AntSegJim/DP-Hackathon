@@ -83,6 +83,8 @@
 		<security:intercept-url pattern="/position/list.do" access="isAnonymous()" />
 		 <security:intercept-url pattern="/position/company.do" access="isAnonymous()" />
 		 
+		<security:intercept-url pattern="/foodDishes/restaurant/list.do" access="hasRole('RESTAURANT')" /> 
+		<security:intercept-url pattern="/foodDishes/restaurant/show.do" access="hasRole('RESTAURANT')" /> 
 
 	
 		<security:intercept-url pattern="/customizableSystem/administrator/edit.do" access="hasRole('ADMIN')" />
