@@ -56,8 +56,8 @@
 		<security:intercept-url pattern="/notification/administrator/create.do" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/notification/administrator/edit.do" access="hasRole('ADMIN')" />
 		
-		<security:intercept-url pattern="/finder/customer/edit.do" access="hasRole('ROOKIE')" />
-		<security:intercept-url pattern="/finder/customer/show.do" access="hasRole('ROOKIE')" />
+		<security:intercept-url pattern="/finder/customer/edit.do" access="hasRole('CUSTOMER')" />
+		<security:intercept-url pattern="/finder/customer/show.do" access="hasRole('CUSTOMER')" />
 		
 		 
 		<security:intercept-url pattern="/foodDishes/restaurant/list.do" access="hasRole('RESTAURANT')" /> 
