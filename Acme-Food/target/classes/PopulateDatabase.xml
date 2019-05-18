@@ -448,5 +448,57 @@
 	
 	</bean>
 	
+	<!-- FOOD DISHES -->
+	<bean id="foodDishes1" class="domain.FoodDishes">
+		<property name="name" value="Papas fritas"/>
+		<property name="description" value="Papas fritas con huevo"/>
+		<property name="pictures" value="https://www.paulinacocina.net/wp-content/uploads/2017/10/frenchfries.jpg"/>
+		<property name="price" value="4.5"/>
+		<property name="type" value="1"/>
+		<property name="ingredients">
+			<list>
+				<value>Papas</value>
+				<value>Huevo</value>
+				<value>Sal</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
+	
+	</bean>
+	
+	<bean id="foodDishes2" class="domain.FoodDishes">
+		<property name="name" value="Copa de helado"/>
+		<property name="description" value="Copa de helado con nata y chocolate"/>
+		<property name="pictures" value="https://images.fibraclim.com/697-large_default/copa-helado-15-cl-veneto-3-151068-caja-2-uds.jpg"/>
+		<property name="price" value="3.5"/>
+		<property name="type" value="3"/>
+		<property name="ingredients">
+			<list>
+				<value>Helado</value>
+				<value>Nata</value>
+				<value>Chocolate</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
+		
+		
+	</bean>
+	
+	<bean id="foodDishes3" class="domain.FoodDishes">
+		<property name="name" value="Tostada con aceite"/>
+		<property name="description" value="Pan tostado con aceite"/>
+		<property name="pictures" value="http://static.consumer.es/www/imgs/recetas/1/101099_g.jpg"/>
+		<property name="price" value="1.5"/>
+		<property name="type" value="0"/>
+		<property name="ingredients">
+			<list>
+				<value>Pan</value>
+				<value>Aceite</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant2"/>
+		
+		
+	</bean>
 	
 </beans>
