@@ -23,7 +23,7 @@ import domain.Restaurant;
 
 @Controller
 @RequestMapping("/foodDishes/restaurant")
-public class FoodDishesRestaurantController {
+public class FoodDishesRestaurantController extends AbstractController {
 
 	@Autowired
 	private FoodDishesService	foodDishesService;
