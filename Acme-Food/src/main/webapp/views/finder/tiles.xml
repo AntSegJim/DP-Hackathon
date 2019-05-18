@@ -17,12 +17,12 @@
 <tiles-definitions>
 
 	<definition name="finder/edit" extends="master.page">	
-		<put-attribute name="title" value="Finder: Search positions" />
+		<put-attribute name="title" value="Finder: Search restaurants" />
 		<put-attribute name="body" value="/views/finder/edit.jsp" />
 	</definition>
 	
 	<definition name="finder/show" extends="master.page">	
-		<put-attribute name="title" value="Finder: Watch positions" />
+		<put-attribute name="title" value="Finder: Watch restaurants" />
 		<put-attribute name="body" value="/views/finder/show.jsp" />
 	</definition>
 	

@@ -19,8 +19,8 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
-<security:authorize access="hasRole('ROOKIE')">
-<form:form action="finder/rookie/edit.do" modelAttribute="finder">
+<security:authorize access="hasRole('CUSTOMER')">
+<form:form action="finder/customer/edit.do" modelAttribute="finder">
 
 <jstl:if test="${not empty exception}">
 		<p style="color:red"> <spring:message code="notification.error" /> </p>
@@ -30,10 +30,8 @@
 <form:hidden path="version"/>
 
 <acme:textbox code="finder.keyWord" path="keyWord"/>
-<acme:textbox code="finder.deadLine" path="deadLine"/>
-<acme:textbox code="finder.minSalary" path="minSalary"/>
-<acme:textbox code="finder.maxSalary" path="maxSalary"/>
-
+<acme:textbox code="finder.deadLine" path="nameRestaurant"/>
+<acme:textbox code="finder.minSalary" path="speciality"/>
 
 <input type="submit" name="save" 
 	value="<spring:message code="notification.save" />" />
@@ -42,22 +40,6 @@
 </form:form>
 
 <input type="button" name="cancel" value="<spring:message code="finder.show" />"
-			onclick="javascript: relativeRedir('finder/rookie/show.do');" />
+			onclick="javascript: relativeRedir('finder/customer/show.do');" />
 
-<input type="button" name="clear" value="<spring:message code="finder.clear.results" />"
-			onclick="javascript: relativeRedir('finder/rookie/clear.do');" />
-
-<!-- <button type="button" onclick="exportFunction()"><spring:message code="finder.clear.results" /></button>
-<p id="message"></p>
- <script type="text/javascript">
-	function exportFunction() {
-		$.ajax({
-			type:'GET',
-			url:'finder/rookie/clear.do',
-			success: function(res) {
-				document.getElementById("message").innerHTML = res;
-		    }
-		});
-	}
-</script> -->
 </security:authorize>

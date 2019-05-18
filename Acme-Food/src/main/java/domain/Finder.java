@@ -2,12 +2,14 @@
 package domain;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.SafeHtml;
 
@@ -19,6 +21,7 @@ public class Finder extends DomainEntity {
 	private String					nameRestaurant;
 	private String					speciality;
 	private Collection<Restaurant>	restaurants;
+	private Date					moment;
 
 
 	@ManyToMany
@@ -56,6 +59,15 @@ public class Finder extends DomainEntity {
 
 	public void setSpeciality(final String speciality) {
 		this.speciality = speciality;
+	}
+
+	@NotNull
+	public Date getMoment() {
+		return this.moment;
+	}
+
+	public void setMoment(final Date moment) {
+		this.moment = moment;
 	}
 
 }
