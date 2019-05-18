@@ -64,4 +64,11 @@ public class FoodDishesService {
 		return res;
 	}
 
+	public void delete(final FoodDishes fd) {
+		final UserAccount user = LoginService.getPrincipal();
+		final Restaurant r = (Restaurant) this.actorService.getActorByUserAccount(user.getId());
+		Assert.isTrue(fd.getRestaurant().equals(r));
+		this.foodDishesRepository.delete(fd);
+	}
+
 }
