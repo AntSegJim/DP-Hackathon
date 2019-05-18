@@ -42,6 +42,7 @@
 				<th><spring:message code="restaurant.nameRestaurant" /></th>
 				<th><spring:message code="restaurant.speciality" /></th>
 				<th><spring:message code="restaurant.mediumScore" /></th>
+				<th><spring:message code="restaurant.info" /></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -52,6 +53,7 @@
 						<td><jstl:out value="${r.comercialName}" /></td>
 						<td><jstl:out value="${r.speciality}" /></td>
 						<td><jstl:out value="${r.mediumScore}" /></td>
+						<td><a href="#"><spring:message code="restaurant.info" /></a></td>
 					</tr>
 				</jstl:if>
 				<jstl:if test="${loopCounter.count%2 != 0 }">
@@ -59,6 +61,7 @@
 						<td><jstl:out value="${r.comercialName}" /></td>
 						<td><jstl:out value="${r.speciality}" /></td>
 						<td><jstl:out value="${r.mediumScore}" /></td>
+						<td><a href="#"><spring:message code="restaurant.info" /></a></td>
 					</tr>
 				</jstl:if>
 			</jstl:forEach>
