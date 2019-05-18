@@ -127,6 +127,30 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccount10" class="security.UserAccount">
+		<property name="username" value="dealer1" />
+		<property name="password" value="edefb1af4daf6c5facb8aba92e13f4b0" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="DEALER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount11" class="security.UserAccount">
+		<property name="username" value="dealer2" />
+		<property name="password" value="4c7e001a4be55733348f9a828508c3fc" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="DEALER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	
 	<!-- ADMINISTRATOR -->
 	
@@ -154,6 +178,34 @@
 		<property name="userAccount" ref="userAccount2"/>
 		<property name="creditCard" ref="creditCard2"/>
 	
+	</bean>
+	
+	<!-- DEALER -->
+	<bean id="dealer1" class="domain.Dealer">
+		<property name="name" value="Antonio"/>
+		<property name="surnames" value="Segura"/>
+		<property name="vatNumber" value="ES12345678T"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="antonio2@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount10"/>
+		<property name="creditCard" ref="creditCard10"/>
+		<property name="isDealing" value="0"/>	
+		<property name="restaurant" ref="restaurant1"/>	
+	</bean>
+	<bean id="dealer2" class="domain.Dealer">
+		<property name="name" value="Antonio"/>
+		<property name="surnames" value="Segura"/>
+		<property name="vatNumber" value="ES12345678T"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="antonio3@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount11"/>
+		<property name="creditCard" ref="creditCard11"/>
+		<property name="isDealing" value="0"/>
+		<property name="restaurant" ref="restaurant1"/>
 	</bean>
 
 	<!-- RESTAURANT -->
@@ -404,6 +456,23 @@
   	<property name="expirationMonth" value="8" /> 
   	<property name="expirationYear" value="2027" /> 
   	<property name="CW" value="784" /> 
+  </bean>
+  
+  <bean id="creditCard10" class="domain.CreditCard">
+  	<property name="holderName" value="nombre10" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5555555555554444" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2097" /> 
+  	<property name="CW" value="781" /> 
+  </bean>
+  <bean id="creditCard11" class="domain.CreditCard">
+  	<property name="holderName" value="nombre11" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="3566002020360505" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2087" /> 
+  	<property name="CW" value="786" /> 
   </bean>
   
   
