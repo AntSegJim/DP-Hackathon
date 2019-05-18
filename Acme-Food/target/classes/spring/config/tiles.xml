@@ -31,6 +31,8 @@
 		<value>/views/termsAndConditions/tiles.xml</value>
 		
 		<value>/views/foodDishes/tiles.xml</value>
+		<value>/views/offer/tiles.xml</value>
+		<value>/views/socialProfile/tiles.xml</value>
 			
 		
 	</util:list>

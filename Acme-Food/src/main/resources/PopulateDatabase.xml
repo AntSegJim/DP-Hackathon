@@ -500,5 +500,55 @@
 		
 		
 	</bean>
+
+	<!-- Offer -->
+	<bean id="offer1" class="domain.Offer">
+		<property name="title" value="title1"/>
+		<property name="totalPrice" value="21"/>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	<bean id="offer2" class="domain.Offer">
+		<property name="title" value="title2"/>
+		<property name="totalPrice" value="19"/>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	<bean id="offer3" class="domain.Offer">
+		<property name="title" value="title3"/>
+		<property name="totalPrice" value="10"/>
+		<property name="restaurant" ref="restaurant2"/>
+	</bean>
+	<bean id="offer4" class="domain.Offer">
+		<property name="title" value="title4"/>
+		<property name="totalPrice" value="15"/>
+		<property name="restaurant" ref="restaurant2"/>
+	</bean>
+	
+	<!-- Social Profile -->
+	<bean id="socialProfile1" class="domain.SocialProfile">
+		<property name="nickName" value="nickName1"/>
+		<property name="nameSocialNetwork" value="nameSocialNetwork1"/>
+		<property name="url" value="http://prueba1.com"/>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	<bean id="socialProfile2" class="domain.SocialProfile">
+		<property name="nickName" value="nickName2"/>
+		<property name="nameSocialNetwork" value="nameSocialNetwork2"/>
+		<property name="url" value="http://prueba2.com"/>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	<bean id="socialProfile3" class="domain.SocialProfile">
+		<property name="nickName" value="nickName3"/>
+		<property name="nameSocialNetwork" value="nameSocialNetwork3"/>
+		<property name="url" value="http://prueba3.com"/>
+		<property name="restaurant" ref="restaurant2"/>
+	</bean>
+	<bean id="socialProfile4" class="domain.SocialProfile">
+		<property name="nickName" value="nickName4"/>
+		<property name="nameSocialNetwork" value="nameSocialNetwork4"/>
+		<property name="url" value="http://prueba4.com"/>
+		<property name="restaurant" ref="restaurant2"/>
+	</bean>
+	
+	
 	
 </beans>

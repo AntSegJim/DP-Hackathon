@@ -34,6 +34,9 @@
 		<value>/views/administrator/messages</value>
 		<value>/views/foodDishes/messages</value>
 		
+
+		<value>/views/offer/messages</value>
+		<value>/views/socialProfile/messages</value>
 				
 	</util:list>
 
