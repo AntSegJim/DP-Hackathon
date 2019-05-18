@@ -10,44 +10,52 @@
 
 package forms;
 
+import java.util.Collection;
 import java.util.HashSet;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.SafeHtml;
 
 import security.Authority;
 import security.UserAccount;
 import domain.Actor;
 import domain.CreditCard;
+import domain.Rating;
 
-public class RegistrationFormProviderAndCreditCard extends Actor {
+public class RegistrationFormRestaurantAndCreditCard extends Actor {
 
 	// Constructors -----------------------------------------------------------
 
-	public RegistrationFormProviderAndCreditCard() {
+	public RegistrationFormRestaurantAndCreditCard() {
 		super();
 	}
 
 
 	// Properties -------------------------------------------------------------
 
-	private String	password;
+	private String				password;
 
-	private Boolean	check;
+	private Boolean				check;
 
-	private Boolean	patternPhone;
+	private Boolean				patternPhone;
 
-	private String	make;
+	private String				holderName;
+	private String				brandName;
+	private String				number;
+	private int					expirationMonth;
+	private int					expirationYear;
+	private int					CW;
 
-	private String	holderName;
-	private String	brandName;
-	private String	number;
-	private int		expirationMonth;
-	private int		expirationYear;
-	private int		CW;
+	private Collection<Rating>	ratings;
+	private String				comercialName;
+	private String				speciality;
+	private int					isBanned;
+	private Integer				mediumScore;
 
 
 	// Business methods -------------------------------------------------------
@@ -105,13 +113,53 @@ public class RegistrationFormProviderAndCreditCard extends Actor {
 		this.CW = cW;
 	}
 
+	@Length(min = 4)
 	@NotBlank
-	public String getMake() {
-		return this.make;
+	@NotNull
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+	public String getComercialName() {
+		return this.comercialName;
 	}
 
-	public void setMake(final String make) {
-		this.make = make;
+	public void setComercialName(final String comercialName) {
+		this.comercialName = comercialName;
+	}
+
+	@NotBlank
+	@NotNull
+	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+	public String getSpeciality() {
+		return this.speciality;
+	}
+
+	public void setSpeciality(final String speciality) {
+		this.speciality = speciality;
+	}
+
+	@Range(min = 0, max = 1)
+	public int getIsBanned() {
+		return this.isBanned;
+	}
+
+	public void setIsBanned(final int isBanned) {
+		this.isBanned = isBanned;
+	}
+
+	@NotNull
+	public Integer getMediumScore() {
+		return this.mediumScore;
+	}
+
+	public void setMediumScore(final Integer mediumScore) {
+		this.mediumScore = mediumScore;
+	}
+
+	public Collection<Rating> getRatings() {
+		return this.ratings;
+	}
+
+	public void setRatings(final Collection<Rating> ratings) {
+		this.ratings = ratings;
 	}
 
 	public Boolean getPatternPhone() {
@@ -141,10 +189,9 @@ public class RegistrationFormProviderAndCreditCard extends Actor {
 
 	// Business methods -------------------------------------------------------
 
-	public RegistrationFormProviderAndCreditCard createToProviderAndCreditCard() {
+	public RegistrationFormRestaurantAndCreditCard createToCompanyAndCreditCard() {
 
-		final RegistrationFormProviderAndCreditCard registrationForm = new RegistrationFormProviderAndCreditCard();
-		registrationForm.setMake("");
+		final RegistrationFormRestaurantAndCreditCard registrationForm = new RegistrationFormRestaurantAndCreditCard();
 		registrationForm.setCheck(false);
 		registrationForm.setPatternPhone(false);
 		registrationForm.setAddress("");
@@ -162,12 +209,17 @@ public class RegistrationFormProviderAndCreditCard extends Actor {
 		registrationForm.setExpirationMonth(0);
 		registrationForm.setExpirationYear(0);
 		registrationForm.setCW(0);
+		registrationForm.setRatings(new HashSet<Rating>());
+		registrationForm.setComercialName("");
+		registrationForm.setSpeciality("");
+		registrationForm.setIsBanned(0);
+		registrationForm.setMediumScore(0);
 
 		//PREGUNTAR
 		final UserAccount user = new UserAccount();
 		user.setAuthorities(new HashSet<Authority>());
 		final Authority ad = new Authority();
-		//ad.setAuthority(Authority.PROVIDER);
+		//ad.setAuthority(Authority.RESTAURANT);
 		user.getAuthorities().add(ad);
 
 		//NUEVO

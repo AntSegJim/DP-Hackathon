@@ -16,32 +16,36 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
-import repositories.RestaurantRepository;
+import repositories.CustomerRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
 import domain.CreditCard;
+import domain.Customer;
+import domain.Finder;
 import domain.Rating;
-import domain.Restaurant;
-import forms.RegistrationFormRestaurantAndCreditCard;
+import forms.RegistrationFormCustomerAndCreditCard;
 
 @Service
 @Transactional
-public class RestaurantService {
+public class CustomerService {
 
 	@Autowired
-	private RestaurantRepository		restaurantRepository;
+	private CustomerRepository			customerRepository;
+
 	@Autowired
 	private CustomizableSystemService	customizableService;
+
 	@Autowired
 	private ActorService				actorService;
+
 	@Autowired
 	private Validator					validator;
 
 
-	public Restaurant create() {
-		final Restaurant res = new Restaurant();
+	public Customer create() {
+		final Customer res = new Customer();
 
 		res.setAddress("");
 		res.setEmail("");
@@ -54,16 +58,13 @@ public class RestaurantService {
 		res.setAddress("");
 		res.setCreditCard(new CreditCard());
 		res.setRatings(new HashSet<Rating>());
-		res.setComercialName("");
-		res.setSpeciality("");
-		res.setIsBanned(0);
-		res.setMediumScore(0);
+		res.setFinder(new Finder());
 
 		//PREGUNTAR
 		final UserAccount user = new UserAccount();
 		user.setAuthorities(new HashSet<Authority>());
 		final Authority ad = new Authority();
-		ad.setAuthority(Authority.RESTAURANT);
+		ad.setAuthority(Authority.CUSTOMER);
 		user.getAuthorities().add(ad);
 		user.setUsername("");
 		user.setPassword("");
@@ -72,29 +73,28 @@ public class RestaurantService {
 		return res;
 	}
 
-	public Collection<Restaurant> findAll() {
-		return this.restaurantRepository.findAll();
+	public Collection<Customer> findAll() {
+		return this.customerRepository.findAll();
 	}
 
-	public Restaurant findOne(final int restaurantId) {
-		final Restaurant restaurant = this.restaurantRepository.findOne(restaurantId);
+	public Customer findOne(final int customerId) {
+		final Customer customer = this.customerRepository.findOne(customerId);
 		final UserAccount userLoged = LoginService.getPrincipal();
 		final Actor a = this.actorService.getActorByUserAccount(userLoged.getId());
-		Assert.isTrue(userLoged.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT"));
-		Assert.isTrue(restaurant.equals(a));
-		return this.restaurantRepository.findOne(restaurantId);
+		Assert.isTrue(userLoged.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER"));
+		Assert.isTrue(customer.equals(a));
+		return this.customerRepository.findOne(customerId);
 	}
 
-	public Restaurant save(final Restaurant r) {
+	public Customer save(final Customer r) {
 
 		//final UserAccount userLoged = LoginService.getPrincipal();
 		//Assert.isTrue(userLoged.getAuthorities().iterator().next().getAuthority().equals("COMPANY"), "Comprobar que hay Company conectado");
-		Restaurant res = null;
-		Assert.isTrue(r.getComercialName() != null && r.getComercialName() != "", "Resturant.save -> comercialName  invalid");
-		Assert.isTrue(r.getSpeciality() != null && r.getSpeciality() != "", "Resturant.save -> spaciality  invalid");
-		Assert.isTrue(r != null && r.getName() != null && r.getSurnames() != null && r.getName() != "" && r.getUserAccount() != null && r.getEmail() != null && r.getEmail() != "", "Restaurant.save -> Name, Surname or email invalid");
-		Assert.isTrue(r.getVatNumber() != null, "Companny.save -> VatNumber  invalid");
-		Assert.isTrue(r.getCreditCard() != null, "Companny.save -> VatNumber  invalid");
+		Customer res = null;
+
+		Assert.isTrue(r != null && r.getName() != null && r.getSurnames() != null && r.getName() != "" && r.getUserAccount() != null && r.getEmail() != null && r.getEmail() != "", "Company.save -> Name, Surname or email invalid");
+		Assert.isTrue(r.getVatNumber() != null, "Customer.save -> VatNumber  invalid");
+		Assert.isTrue(r.getCreditCard() != null, "Customer.save -> CreditCard  invalid");
 
 		final String regexEmail1 = "[^@]+@[^@]+\\.[a-zA-Z]{2,}";
 		final Pattern patternEmail1 = Pattern.compile(regexEmail1);
@@ -103,12 +103,12 @@ public class RestaurantService {
 		final String regexEmail2 = "^[A-z0-9]+\\s*[A-z0-9\\s]*\\s\\<[A-z0-9]+\\@[A-z0-9]+\\.[A-z0-9.]+\\>";
 		final Pattern patternEmail2 = Pattern.compile(regexEmail2);
 		final Matcher matcherEmail2 = patternEmail2.matcher(r.getEmail());
-		Assert.isTrue(matcherEmail1.find() == true || matcherEmail2.find() == true, "ResturantService.save -> Correo inválido");
+		Assert.isTrue(matcherEmail1.find() == true || matcherEmail2.find() == true, "CustomerService.save -> Correo inválido");
 
 		final List<String> emails = this.actorService.getEmails();
 
 		if (r.getId() == 0)
-			Assert.isTrue(!emails.contains(r.getEmail()), "Resturant.Email -> The email you entered is already being used");
+			Assert.isTrue(!emails.contains(r.getEmail()), "Customer.Email -> The email you entered is already being used");
 		//		else {
 		//			final Company a = this.companyRepository.findOne(r.getId());
 		//			Assert.isTrue(a.getEmail().equals(r.getEmail()));
@@ -127,17 +127,16 @@ public class RestaurantService {
 			user.setPassword(hash);
 		}
 
-		res = this.restaurantRepository.save(r);
+		res = this.customerRepository.save(r);
 		return res;
 	}
 
-	public Restaurant getRestaurantByUserAccount(final Integer userAccountId) {
-		return this.restaurantRepository.getRestaurantByUserAccount(userAccountId);
-
+	public Customer getCustomerUserAccount(final Integer id) {
+		return this.customerRepository.getCustomerByUserAccountId(id);
 	}
 
-	public Restaurant reconstruct(final RegistrationFormRestaurantAndCreditCard registrationForm, final BindingResult binding) {
-		Restaurant res = new Restaurant();
+	public Customer reconstruct(final RegistrationFormCustomerAndCreditCard registrationForm, final BindingResult binding) {
+		Customer res = new Customer();
 
 		if (registrationForm.getId() == 0) {
 			res.setId(registrationForm.getUserAccount().getId());
@@ -151,15 +150,12 @@ public class RestaurantService {
 			res.setSurnames(registrationForm.getSurnames());
 			res.setCreditCard(registrationForm.getCreditCard());
 			res.setRatings(registrationForm.getRatings());
-			res.setComercialName(registrationForm.getComercialName());
-			res.setSpeciality(registrationForm.getSpeciality());
-			res.setIsBanned(0);
-			res.setMediumScore(0);
+			res.setFinder(registrationForm.getFinder());
 
 			final Authority ad = new Authority();
 			final UserAccount user = new UserAccount();
 			user.setAuthorities(new HashSet<Authority>());
-			ad.setAuthority(Authority.RESTAURANT);
+			ad.setAuthority(Authority.CUSTOMER);
 			user.getAuthorities().add(ad);
 			res.setUserAccount(user);
 			user.setUsername(registrationForm.getUserAccount().getUsername());
@@ -181,8 +177,8 @@ public class RestaurantService {
 			Assert.isTrue(registrationForm.getCheck() == true);
 
 		} else {
-			res = this.restaurantRepository.findOne(registrationForm.getId());
-			final Restaurant p = new Restaurant();
+			res = this.customerRepository.findOne(registrationForm.getId());
+			final Customer p = new Customer();
 
 			if (registrationForm.getUserAccount().getPassword().equals("") && registrationForm.getPassword().equals(""))
 				p.setUserAccount(res.getUserAccount());
@@ -219,10 +215,7 @@ public class RestaurantService {
 			p.setSurnames(registrationForm.getSurnames());
 			p.setCreditCard(registrationForm.getCreditCard());
 			p.setRatings(res.getRatings());
-			p.setComercialName(registrationForm.getComercialName());
-			p.setSpeciality(registrationForm.getSpeciality());
-			p.setIsBanned(res.getIsBanned());
-			p.setMediumScore(res.getMediumScore());
+			p.setFinder(res.getFinder());
 
 			if (p.getPhone().length() <= 5)
 				p.setPhone("");
