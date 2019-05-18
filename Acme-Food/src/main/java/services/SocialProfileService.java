@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.RestaurantRepository;
 import repositories.SocialProfileRepository;
@@ -25,6 +27,8 @@ public class SocialProfileService {
 	private RestaurantRepository	restaurantRepository;
 	@Autowired
 	private ActorService			actorS;
+	@Autowired
+	private Validator				validator;
 
 
 	public SocialProfile create() {
@@ -57,6 +61,35 @@ public class SocialProfileService {
 		Assert.isTrue(socialProfile.getRestaurant().equals(this.restaurantRepository.getRestaurantByUserAccount(userAccount.getId())));
 		final SocialProfile socialProfileSave = this.socialProfileRepository.save(socialProfile);
 		return socialProfileSave;
+	}
+
+	public void delete(final SocialProfile socialProfile) {
+		final UserAccount userAccount = LoginService.getPrincipal();
+		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT"));
+		Assert.isTrue(socialProfile.getRestaurant().equals(this.restaurantRepository.getRestaurantByUserAccount(userAccount.getId())));
+	}
+
+	public SocialProfile reconstruct(final SocialProfile socialProfile, final BindingResult binding) {
+		SocialProfile res;
+		if (socialProfile.getId() == 0) {
+			res = socialProfile;
+			final UserAccount user = LoginService.getPrincipal();
+			final Restaurant restaurant = this.restaurantRepository.getRestaurantByUserAccount(user.getId());
+			res.setRestaurant(restaurant);
+			this.validator.validate(res, binding);
+		} else {
+			res = this.socialProfileRepository.findOne(socialProfile.getId());
+			final SocialProfile sp = new SocialProfile();
+			sp.setId(res.getId());
+			sp.setVersion(res.getVersion());
+			sp.setNameSocialNetwork(socialProfile.getNameSocialNetwork());
+			sp.setNickName(socialProfile.getNickName());
+			sp.setUrl(socialProfile.getUrl());
+			sp.setRestaurant(res.getRestaurant());
+			this.validator.validate(sp, binding);
+			res = sp;
+		}
+		return res;
 	}
 
 }
