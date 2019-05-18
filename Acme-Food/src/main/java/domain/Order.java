@@ -61,9 +61,8 @@ public class Order extends DomainEntity {
 		this.customer = customer;
 	}
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	@Valid
-	@NotNull
 	public Dealer getDealer() {
 		return this.dealer;
 	}
