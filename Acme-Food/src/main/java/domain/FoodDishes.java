@@ -24,7 +24,7 @@ public class FoodDishes extends DomainEntity {
 	private String				name;
 	private String				description;
 	private String				pictures;
-	private int					price;
+	private Double				price;
 	private int					type;
 	private Collection<String>	ingredients;
 	private Restaurant			restaurant;
@@ -63,11 +63,11 @@ public class FoodDishes extends DomainEntity {
 	}
 
 	@Min(0)
-	public int getPrice() {
+	public Double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(final int price) {
+	public void setPrice(final Double price) {
 		this.price = price;
 	}
 

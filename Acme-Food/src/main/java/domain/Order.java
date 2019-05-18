@@ -30,7 +30,7 @@ public class Order extends DomainEntity {
 	private int						status;
 	private int						draftMode;
 	private Date					moment;
-	private int						totalPrice;
+	private Double					totalPrice;
 	private Date					senderMoment;
 	private int						choice;
 	private String					ticker;
@@ -103,11 +103,11 @@ public class Order extends DomainEntity {
 	}
 
 	@Min(0)
-	public int getTotalPrice() {
+	public Double getTotalPrice() {
 		return this.totalPrice;
 	}
 
-	public void setTotalPrice(final int totalPrice) {
+	public void setTotalPrice(final Double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 
