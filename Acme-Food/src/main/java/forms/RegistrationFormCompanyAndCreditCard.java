@@ -178,7 +178,7 @@ public class RegistrationFormCompanyAndCreditCard extends Actor {
 		final UserAccount user = new UserAccount();
 		user.setAuthorities(new HashSet<Authority>());
 		final Authority ad = new Authority();
-		ad.setAuthority(Authority.COMPANY);
+		//ad.setAuthority(Authority.COMPANY);
 		user.getAuthorities().add(ad);
 
 		//NUEVO
