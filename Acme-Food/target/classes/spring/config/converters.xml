@@ -41,6 +41,12 @@
 		<bean class="converters.StringToCreditCardConverter" />
 		<bean class="converters.CreditCardToStringConverter" />
 		
+		<bean class="converters.StringToOfferConverter" />
+		<bean class="converters.OfferToStringConverter" />
+		
+		<bean class="converters.StringToSocialProfileConverter" />
+		<bean class="converters.SocialProfileToStringConverter" />
+		
 		
 	</util:list>
 	

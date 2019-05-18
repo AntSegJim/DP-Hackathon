@@ -64,8 +64,8 @@
 
 		<property name="nameSystem" value="Acme Food" />
 		<property name="banner" value="https://www.tu-app.net/blog/wp-content/uploads/2016/09/APPS-restaurantes-1.jpg" />
-		<property name="messageWelcomePage" value="Welcome to Acme Food! We're the favourite food app!" />
-		<property name="spanishMessageWelcomePage" value="¡Bienvenidos a Acme Food!  ¡Somos la app favorita de comida!" />
+		<property name="messageWelcomePage" value="Welcome to Acme Food! ! We are the customers’ favorite food distribution market!" />
+		<property name="spanishMessageWelcomePage" value="¡Bienvenidos a Acme Food!  ¡Somos el mercado de distribución de comida favorito de los clientes!" />
 		<property name="telephoneCode" value="+34" />
 		<property name="timeCache" value="1" />
 		<property name="maxResults" value="10" />
