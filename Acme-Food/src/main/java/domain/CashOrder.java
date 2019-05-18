@@ -25,7 +25,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Order extends DomainEntity {
+public class CashOrder extends DomainEntity {
 
 	private int						status;
 	private int						draftMode;

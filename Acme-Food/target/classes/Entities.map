@@ -1,6 +1,8 @@
 #./src/main/resources/Entities.map
-#Fri May 17 20:14:18 CEST 2019
-administrator1=10
-customizableSystem1=9
-creditCard1=8
-userAccount1=7
+#Sat May 18 11:10:25 CEST 2019
+administrator1=14
+customizableSystem1=12
+notification2=11
+notification1=10
+creditCard1=13
+userAccount1=9

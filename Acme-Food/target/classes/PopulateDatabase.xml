@@ -72,4 +72,14 @@
 		
 	</bean>
 	
+	
+	<bean id="creditCard1" class="domain.CreditCard">
+  <property name="holderName" value="nombre1" /> 
+  <property name="brandName" value="VISA" /> 
+  <property name="number" value="5325065299416578" /> 
+  <property name="expirationMonth" value="3" /> 
+  <property name="expirationYear" value="2019" /> 
+  <property name="CW" value="101" /> 
+  </bean>
+	
 </beans>
