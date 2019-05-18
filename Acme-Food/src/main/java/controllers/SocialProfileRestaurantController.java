@@ -97,4 +97,23 @@ public class SocialProfileRestaurantController {
 		return result;
 	}
 
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(final SocialProfile socialProfile, final BindingResult binding) {
+		ModelAndView result;
+		try {
+			final SocialProfile sp = this.socialProfileService.reconstruct(socialProfile, binding);
+			if (!binding.hasErrors()) {
+				this.socialProfileService.delete(sp);
+				result = new ModelAndView("redirect:list.do");
+			} else {
+				result = new ModelAndView("socialProfile/edit");
+				result.addObject("socialProfile", socialProfile);
+			}
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:../../");
+		}
+
+		return result;
+	}
+
 }

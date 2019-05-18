@@ -67,6 +67,7 @@ public class SocialProfileService {
 		final UserAccount userAccount = LoginService.getPrincipal();
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT"));
 		Assert.isTrue(socialProfile.getRestaurant().equals(this.restaurantRepository.getRestaurantByUserAccount(userAccount.getId())));
+		this.socialProfileRepository.delete(socialProfile);
 	}
 
 	public SocialProfile reconstruct(final SocialProfile socialProfile, final BindingResult binding) {
