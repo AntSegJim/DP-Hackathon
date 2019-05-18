@@ -47,6 +47,9 @@
 <input type="submit" name="save" 
 	value="<spring:message code="foodDishes.save" />" />
 	
+<input type="submit" name="delete" 
+	value="<spring:message code="foodDishes.delete" />" />
+	
 <input type="button" name="cancel" value="<spring:message code="foodDishes.cancel" />"
 			onclick="javascript: relativeRedir('foodDishes/restaurant/list.do');" />
 </form:form>

@@ -48,7 +48,11 @@
 		<bean class="converters.SocialProfileToStringConverter" />
 		
 		<bean class="converters.StringToFinderConverter" />
-		<bean class="converters.FinderToStringConverter" />		
+		<bean class="converters.FinderToStringConverter" />	
+		
+		<bean class="converters.StringToFoodDishConverter" />
+		<bean class="converters.FoodDishToStringConverter" />		
+			
 		
 	</util:list>
 	

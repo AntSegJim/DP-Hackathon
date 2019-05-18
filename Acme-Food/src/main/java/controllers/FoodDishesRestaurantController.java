@@ -120,4 +120,26 @@ public class FoodDishesRestaurantController {
 		return result;
 	}
 
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(final FoodDishes food, final BindingResult binding) {
+		ModelAndView result;
+
+		try {
+			final FoodDishes deletedFood = this.foodDishesService.reconstruct(food, binding);
+
+			if (!binding.hasErrors()) {
+				this.foodDishesService.delete(deletedFood);
+				result = new ModelAndView("redirect:list.do");
+			} else {
+				result = new ModelAndView("foodDishes/edit");
+				result.addObject("foodDishe", food);
+			}
+		} catch (final Exception e) {
+			result = new ModelAndView("foodDishes/edit");
+			result.addObject("exception", e);
+			result.addObject("foodDishe", food);
+		}
+
+		return result;
+	}
 }
