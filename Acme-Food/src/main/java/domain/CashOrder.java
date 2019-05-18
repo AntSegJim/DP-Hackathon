@@ -122,7 +122,6 @@ public class CashOrder extends DomainEntity {
 		this.totalPrice = totalPrice;
 	}
 
-	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getSenderMoment() {

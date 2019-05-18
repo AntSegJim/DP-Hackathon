@@ -42,6 +42,7 @@
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">
+			<li><a href="cashOrder/customer/list.do"><spring:message code="master.page.cashOrder" /></a></li>
 			<li><a href="finder/customer/edit.do"><spring:message code="master.page.finder" /></a></li>
 		</security:authorize>
 		

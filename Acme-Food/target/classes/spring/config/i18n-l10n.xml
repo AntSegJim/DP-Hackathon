@@ -33,6 +33,7 @@
 		
 		<value>/views/administrator/messages</value>
 		<value>/views/foodDishes/messages</value>
+		<value>/views/cashOrder/messages</value>
 		
 
 		<value>/views/offer/messages</value>

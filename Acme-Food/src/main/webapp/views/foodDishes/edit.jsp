@@ -28,7 +28,7 @@
 
 <form:hidden path="id"/>
 <form:hidden path="version"/>
-
+${binding}
 <acme:textbox code="foodDishes.name" path="name"/>
 <acme:textarea code="foodDishes.description" path="description"/>
 <acme:textbox code="foodDishes.picture" path="pictures"/>
@@ -46,10 +46,10 @@
 <br/>
 <input type="submit" name="save" 
 	value="<spring:message code="foodDishes.save" />" />
-	
+<jstl:if test="${foodDishe.id ne 0 }">	
 <input type="submit" name="delete" 
 	value="<spring:message code="foodDishes.delete" />" />
-	
+</jstl:if>	
 <input type="button" name="cancel" value="<spring:message code="foodDishes.cancel" />"
 			onclick="javascript: relativeRedir('foodDishes/restaurant/list.do');" />
 </form:form>

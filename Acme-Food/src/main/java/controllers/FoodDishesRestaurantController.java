@@ -119,10 +119,10 @@ public class FoodDishesRestaurantController extends AbstractController {
 				result = new ModelAndView("foodDishes/edit");
 				result.addObject("foodDishe", foodDishe);
 			}
-
 		} catch (final ValidationException opps) {
 			result = new ModelAndView("foodDishes/edit");
 			result.addObject("foodDishe", foodDishe);
+
 		} catch (final Exception e) {
 			result = new ModelAndView("foodDishes/edit");
 			result.addObject("exception", e);
