@@ -10,8 +10,10 @@
 
 package forms;
 
+import java.util.Collection;
 import java.util.HashSet;
 
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -22,37 +24,54 @@ import security.Authority;
 import security.UserAccount;
 import domain.Actor;
 import domain.CreditCard;
+import domain.Finder;
+import domain.Rating;
 
-public class RegistrationFormCompanyAndCreditCard extends Actor {
+public class RegistrationFormCustomerAndCreditCard extends Actor {
 
 	// Constructors -----------------------------------------------------------
 
-	public RegistrationFormCompanyAndCreditCard() {
+	public RegistrationFormCustomerAndCreditCard() {
 		super();
 	}
 
 
 	// Properties -------------------------------------------------------------
 
-	private String	password;
+	private String				password;
 
-	private Boolean	check;
+	private Boolean				check;
 
-	private Boolean	patternPhone;
+	private Boolean				patternPhone;
 
-	private String	nameCompany;
+	private String				holderName;
+	private String				brandName;
+	private String				number;
+	private int					expirationMonth;
+	private int					expirationYear;
+	private int					CW;
 
-	private String	holderName;
-	private String	brandName;
-	private String	number;
-	private int		expirationMonth;
-	private int		expirationYear;
-	private int		CW;
-
-	private Integer	totalScore;
+	private Collection<Rating>	ratings;
+	private Finder				finder;
 
 
-	// Business methods -------------------------------------------------------
+	@OneToOne
+	@NotNull
+	public Finder getFinder() {
+		return this.finder;
+	}
+
+	public void setFinder(final Finder finder) {
+		this.finder = finder;
+	}
+
+	public Collection<Rating> getRatings() {
+		return this.ratings;
+	}
+
+	public void setRatings(final Collection<Rating> ratings) {
+		this.ratings = ratings;
+	}
 
 	@NotBlank
 	@NotNull
@@ -62,14 +81,6 @@ public class RegistrationFormCompanyAndCreditCard extends Actor {
 
 	public void setHolderName(final String holderName) {
 		this.holderName = holderName;
-	}
-
-	public Integer getTotalScore() {
-		return this.totalScore;
-	}
-
-	public void setTotalScore(final Integer totalScore) {
-		this.totalScore = totalScore;
 	}
 
 	@NotBlank
@@ -115,15 +126,6 @@ public class RegistrationFormCompanyAndCreditCard extends Actor {
 		this.CW = cW;
 	}
 
-	@NotBlank
-	public String getNameCompany() {
-		return this.nameCompany;
-	}
-
-	public void setNameCompany(final String nameCompany) {
-		this.nameCompany = nameCompany;
-	}
-
 	public Boolean getPatternPhone() {
 		return this.patternPhone;
 	}
@@ -151,10 +153,10 @@ public class RegistrationFormCompanyAndCreditCard extends Actor {
 
 	// Business methods -------------------------------------------------------
 
-	public RegistrationFormCompanyAndCreditCard createToCompanyAndCreditCard() {
+	public RegistrationFormCustomerAndCreditCard createToProviderAndCreditCard() {
 
-		final RegistrationFormCompanyAndCreditCard registrationForm = new RegistrationFormCompanyAndCreditCard();
-		registrationForm.setNameCompany("");
+		final RegistrationFormCustomerAndCreditCard registrationForm = new RegistrationFormCustomerAndCreditCard();
+
 		registrationForm.setCheck(false);
 		registrationForm.setPatternPhone(false);
 		registrationForm.setAddress("");
@@ -172,13 +174,14 @@ public class RegistrationFormCompanyAndCreditCard extends Actor {
 		registrationForm.setExpirationMonth(0);
 		registrationForm.setExpirationYear(0);
 		registrationForm.setCW(0);
-		registrationForm.setTotalScore(null);
+		registrationForm.setRatings(new HashSet<Rating>());
+		registrationForm.setFinder(new Finder());
 
 		//PREGUNTAR
 		final UserAccount user = new UserAccount();
 		user.setAuthorities(new HashSet<Authority>());
 		final Authority ad = new Authority();
-		//ad.setAuthority(Authority.COMPANY);
+		//ad.setAuthority(Authority.CUSTOMER);
 		user.getAuthorities().add(ad);
 
 		//NUEVO
