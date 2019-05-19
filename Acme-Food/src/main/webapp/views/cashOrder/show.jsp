@@ -23,6 +23,16 @@
 <b><spring:message code="cashOrder.ticker" /> : </b> <jstl:out value="${cashOrder.ticker}"></jstl:out> <br/>
 <b><spring:message code="cashOrder.moment" /> : </b> <fmt:formatDate value="${cashOrder.moment }" pattern="yyyy-MM-dd HH:mm" /><br/>
 <b><spring:message code="cashOrder.SenderMoment" /> : </b> <fmt:formatDate value="${cashOrder.senderMoment }" pattern="yyyy-MM-dd HH:mm" /><br/>
+<b><spring:message code="cashOrder.draftMode" /> : </b> 
+<jstl:choose>
+		<jstl:when test="${row.draftMode eq 1}">
+			<spring:message code="cashOrder.YesDraftMode" /> 
+		</jstl:when>
+		<jstl:otherwise>
+			<spring:message code="cashOrder.NoDraftMode" />
+		</jstl:otherwise>
+	</jstl:choose>
+<br/>
 <b><spring:message code="cashOrder.status" /> : </b> 
 <jstl:choose>
 		<jstl:when test="${row.status eq 0}">
@@ -47,6 +57,14 @@
 	</jstl:choose>
 <br/>
 <b><spring:message code="cashOrder.restaurant" /> : </b> <jstl:out value="${cashOrder.restaurant.comercialName}"></jstl:out>, <jstl:out value="${cashOrder.restaurant.speciality}"></jstl:out> <br/>
+<b><spring:message code="cashOrder.dealer" /> : </b> 
+<jstl:if test="${row.dealer.name eq null }">
+-
+</jstl:if>
+<jstl:if test="${row.dealer.name ne null }">
+	<spring:message code="cashOrder.draftMode" /> 
+</jstl:if>
+ <br/>
 <b><spring:message code="cashOrder.foodDishes" /> : </b> 
 <jstl:if test="${fn:length(cashOrder.foodDisheses) ne 0}">
 <jstl:forEach var="item" items="${cashOrder.foodDisheses}">

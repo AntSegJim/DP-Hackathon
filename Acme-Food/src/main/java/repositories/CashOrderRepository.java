@@ -2,6 +2,7 @@
 package repositories;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,5 +18,8 @@ public interface CashOrderRepository extends JpaRepository<CashOrder, Integer> {
 
 	@Query("select co from CashOrder co where co.restaurant.id = ?1 and co.status != 1")
 	public Collection<CashOrder> getCashOrderByRestaurant(Integer id);
+
+	@Query(value = "select date_add(NOW(), INTERVAL 30 MINUTE)", nativeQuery = true)
+	public Date getMoreHour();
 
 }

@@ -30,5 +30,6 @@
 		<put-attribute name="title" value="Platos de comida: Editar" />
 		<put-attribute name="body" value="/views/foodDishes/edit.jsp" />
 	</definition>
+
 	
 </tiles-definitions>

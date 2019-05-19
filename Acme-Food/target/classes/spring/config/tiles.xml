@@ -39,6 +39,7 @@
 		
 		<value>/views/finder/tiles.xml</value>
 			
+		<value>/views/restaurant/tiles.xml</value>
 		
 	</util:list>
 

@@ -53,6 +53,8 @@
 		<bean class="converters.StringToFoodDishConverter" />
 		<bean class="converters.FoodDishToStringConverter" />		
 			
+		<bean class="converters.StringToRestaurantConverter" />
+		<bean class="converters.RestaurantToStringConverter" />
 		
 	</util:list>
 	

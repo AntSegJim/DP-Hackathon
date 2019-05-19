@@ -19,8 +19,8 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
-<security:authorize access="hasRole('ADMIN')">
-<form:form action="notification/administrator/edit.do" modelAttribute="notification">
+<security:authorize access="hasRole('CUSTOMER')">
+<form:form action="cashOrder/customer/edit.do?restaurantId=${restaurant.id }" modelAttribute="cashOrder">
 
 <jstl:if test="${not empty exception}">
 		<p style="color:red"> <spring:message code="notification.error" /> </p>
@@ -29,15 +29,32 @@
 <form:hidden path="id"/>
 <form:hidden path="version"/>
 
-<acme:textbox code="notification.subject" path="subject"/>
-<acme:textarea code="notification.body" path="body"/>
-
+<acme:textbox code="cashOrder.SenderMoment" path="senderMoment"/>
+<acme:selectWithoutNullOption items="${foodDishes}" itemLabel="name" code="cashOrder.foodDishes" path="foodDisheses"/>
+<form:label path="choice"><spring:message code="cashOrder.choice" />:</form:label>
+<form:select path="choice">
+		<form:option value="0" label="Take away" />	
+		<form:option value="1" label="For send" />	
+	</form:select>
+	<form:errors path="choice"/>
+<br/>
+<form:label path="draftMode"><spring:message code="cashOrder.draftMode" />:</form:label>
+<form:select path="draftMode">
+		<form:option value="1" label="Yes" />	
+		<form:option value="0" label="No" />	
+	</form:select>
+	<form:errors path="draftMode"/>
+<br/>
 <br/>
 <input type="submit" name="save" 
-	value="<spring:message code="notification.save" />" />
+	value="<spring:message code="cashOrder.save" />" />
 	
-<input type="button" name="cancel" value="<spring:message code="notification.cancel" />"
-			onclick="javascript: relativeRedir('notification/actor/list.do');" />
+<input type="button" name="cancel" value="<spring:message code="cashOrder.cancel" />"
+			onclick="javascript: relativeRedir('cashOrder/customer/list.do');" />
+
+
 </form:form>
+
+	
 
 </security:authorize>

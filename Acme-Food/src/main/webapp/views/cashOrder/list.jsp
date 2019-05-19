@@ -72,4 +72,7 @@ ${row.restaurant.comercialName}, ${row.restaurant.speciality}
 
 </display:table>
 
+<input type="button" name="create" value="<spring:message code="cashOrder.create" />"
+			onclick="javascript: relativeRedir('cashOrder/customer/create.do');" />
+
 </security:authorize>

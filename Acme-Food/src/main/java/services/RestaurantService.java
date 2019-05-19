@@ -244,4 +244,12 @@ public class RestaurantService {
 
 	}
 
+	public Collection<Restaurant> getActivesRestaurants() {
+		return this.restaurantRepository.getActivesRestaurants();
+	}
+
+	public Integer getFreeDealersByRestauran(final Integer id) {
+		return this.restaurantRepository.getFreeDealerByRestaurant(id);
+	}
+
 }

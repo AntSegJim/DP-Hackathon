@@ -41,7 +41,7 @@ public class CashOrderService {
 		cashOrder.setDraftMode(1);
 		cashOrder.setMoment(new Date());
 		cashOrder.setTotalPrice(0.);
-		cashOrder.setSenderMoment(null);
+		cashOrder.setSenderMoment(this.cashOrderRepositoty.getMoreHour());
 		cashOrder.setChoice(0);
 		cashOrder.setTicker("");
 		cashOrder.setCustomer(new Customer());
@@ -88,9 +88,9 @@ public class CashOrderService {
 		cashOrder.setCustomer(cust);
 		cashOrder.setTicker(CashOrderService.generarTicker());
 		cashOrder.setStatus(0);
-		cashOrder.setDraftMode(1);
 		cashOrder.setMoment(new Date());
 		cashOrder.setDealer(null);
+		cashOrder.setTotalPrice(0.0);
 
 		this.validator.validate(res, binding);
 
@@ -106,7 +106,7 @@ public class CashOrderService {
 
 		for (int i = 0; i < tamLetras; i++) {
 			final Integer random = (int) (Math.floor(Math.random() * letras.length()) % letras.length());
-			d = d + d.charAt(random);
+			d = d + letras.charAt(random);
 		}
 
 		String ticker = d + "-";

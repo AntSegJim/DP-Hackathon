@@ -40,6 +40,7 @@
 		<value>/views/socialProfile/messages</value>
 		
 		<value>/views/finder/messages</value>
+		<value>/views/restaurant/messages</value>
 				
 	</util:list>
 
