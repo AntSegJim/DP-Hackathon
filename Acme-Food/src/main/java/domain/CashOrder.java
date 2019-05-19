@@ -84,7 +84,7 @@ public class CashOrder extends DomainEntity {
 		this.dealer = dealer;
 	}
 
-	@Range(min = 0, max = 4)
+	@Range(min = 0, max = 3)
 	public int getStatus() {
 		return this.status;
 	}
