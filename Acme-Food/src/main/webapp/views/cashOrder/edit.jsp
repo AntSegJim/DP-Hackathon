@@ -30,7 +30,7 @@
 <form:hidden path="version"/>
 
 <acme:textbox code="cashOrder.SenderMoment" path="senderMoment"/>
-<acme:selectWithoutNullOption items="${foodDishes}" itemLabel="name" code="cashOrder.foodDishes" path="foodDisheses"/>
+<acme:selectWithoutNullOption id="platos" items="${foodDishes}" itemLabel="name" code="cashOrder.foodDishes" path="foodDisheses" onchange="myFunction()"/>
 <form:label path="choice"><spring:message code="cashOrder.choice" />:</form:label>
 <form:select path="choice">
 		<form:option value="0" label="Take away" />	
@@ -50,10 +50,21 @@
 	value="<spring:message code="cashOrder.save" />" />
 	
 <input type="button" name="cancel" value="<spring:message code="cashOrder.cancel" />"
-			onclick="javascript: relativeRedir('cashOrder/customer/list.do');" />
-
+			onclick="javascript: relativeRedir('restaurant/customer/list.do');" />
 
 </form:form>
+<h1 id="precio"></h1>
+<script>
+	function myFunction() {
+		var platos = $('select#platos').val();
+		var precio = 0;
+		for (var x=0;x<platos.length;x++){
+			precio = precio + 1;
+		}
+		document.getElementById("precio").innerHTML = precio;
 
+
+	}
+</script>
 
 </security:authorize>
