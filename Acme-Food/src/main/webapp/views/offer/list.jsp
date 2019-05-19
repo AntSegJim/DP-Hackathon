@@ -15,19 +15,23 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <security:authorize access="hasRole('RESTAURANT')">
 <display:table pagesize="5" name="offers" id="row"
 requestURI="offer/restaurant/list.do" >
 
-
+<display:column>
+	<a href="offer/restaurant/edit.do?offerId=${row.id}"><spring:message code="edit" /></a>
+</display:column>
 <display:column>
 	<a href="offer/restaurant/show.do?offerId=${row.id}"><spring:message code="moreDetails" /></a>
 </display:column>
 <display:column property="title" titleKey="offer.title"/>
 <display:column property="totalPrice" titleKey="offer.totalPrice"/>
-
 </display:table>
+<input type="button" name="create" value="<spring:message code="create" />"
+			onclick="javascript: relativeRedir('offer/restaurant/create.do');" /><br>
 
 </security:authorize>
 

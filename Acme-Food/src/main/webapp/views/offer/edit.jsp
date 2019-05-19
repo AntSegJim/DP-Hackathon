@@ -15,27 +15,30 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
 <security:authorize access="hasRole('RESTAURANT')">
-<form:form action="socialProfile/restaurant/edit.do" modelAttribute="socialProfile">
+<form:form action="offer/restaurant/edit.do" modelAttribute="offer">
+
+<jstl:if test="${not empty exception}">
+		<p style="color:red"> <spring:message code="offer.error" /> </p>
+</jstl:if>
 
 <form:hidden path="id"/>
 <form:hidden path="version"/>
 
-<acme:textbox code="socialProfile.nickName" path="nickName"/>
-<acme:textbox code="socialProfile.nameSocialNetwork" path="nameSocialNetwork"/>
-<acme:textbox code="socialProfile.url" path="url"/>
+<acme:textbox code="offer.title" path="title"/>
+<acme:textbox code="offer.totalPrice" path="totalPrice"/>
+<acme:multipleSelect items="${foodDisheses}" itemLabel="description" code="offer.foodDishes.name" path="foodDisheses"/>
 
 <br/>
 <input type="submit" name="save" value="<spring:message code="save" />" />
-<jstl:if test="${socialProfile.id ne 0 }">	
+<jstl:if test="${offer.id ne 0 }">	
 	<input type="submit" name="delete" value="<spring:message code="delete" />" />
 </jstl:if>
-<input type="button" name="cancel" value="<spring:message code="foodDishes.cancel" />"
-			onclick="javascript: relativeRedir('socialProfile/restaurant/list.do');" />
+<input type="button" name="cancel" value="<spring:message code="cancel" />"
+			onclick="javascript: relativeRedir('offer/restaurant/list.do');" />
 </form:form>
 
 </security:authorize>

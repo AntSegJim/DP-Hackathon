@@ -27,7 +27,6 @@ public class Offer extends DomainEntity {
 
 	@ManyToMany
 	@Valid
-	@NotNull
 	public Collection<FoodDishes> getFoodDisheses() {
 		return this.foodDisheses;
 	}
