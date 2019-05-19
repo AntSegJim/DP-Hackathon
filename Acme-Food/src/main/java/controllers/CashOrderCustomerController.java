@@ -110,17 +110,22 @@ public class CashOrderCustomerController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final Integer cashOrderId) {
 		ModelAndView result;
+		try {
+			final CashOrder cashOrder;
+			Collection<FoodDishes> foodDishes;
 
-		final CashOrder cashOrder;
-		Collection<FoodDishes> foodDishes;
+			cashOrder = this.cashOrderService.findOne(cashOrderId);
+			Assert.notNull(cashOrder);
+			Assert.isTrue(cashOrder.getDraftMode() == 1);
+			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(cashOrder.getRestaurant().getId());
 
-		cashOrder = this.cashOrderService.findOne(cashOrderId);
-		Assert.notNull(cashOrder);
-		foodDishes = this.foodDishesService.findFoodDishesByRestaurant(cashOrder.getRestaurant().getId());
+			result = new ModelAndView("cashOrder/edit2");
+			result.addObject("cashOrder", cashOrder);
+			result.addObject("foodDishes", foodDishes);
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:list.do");
 
-		result = new ModelAndView("cashOrder/edit2");
-		result.addObject("cashOrder", cashOrder);
-		result.addObject("foodDishes", foodDishes);
+		}
 		return result;
 
 	}
@@ -183,9 +188,7 @@ public class CashOrderCustomerController extends AbstractController {
 				result.addObject("cashOrder", cashOrder);
 				result.addObject("foodDishes", foodDishes);
 			}
-		}
-
-		catch (final Exception e) {
+		} catch (final Exception e) {
 			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
 
 			Collection<FoodDishes> foodDishes;

@@ -70,7 +70,9 @@ ${row.restaurant.comercialName}, ${row.restaurant.speciality}
 	
 </display:column>
 <display:column>
-	<a href="cashOrder/customer/edit.do?cashOrderId=${row.id}"><spring:message code="cashOrder.edit" /></a>
+	<jstl:if test="${row.draftMode eq 1 }">
+		<a href="cashOrder/customer/edit.do?cashOrderId=${row.id}"><spring:message code="cashOrder.edit" /></a>
+	</jstl:if>
 </display:column>
 </display:table>
 

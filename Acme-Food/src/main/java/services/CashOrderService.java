@@ -115,7 +115,6 @@ public class CashOrderService {
 			res = this.cashOrderRepositoty.findOne(cashOrder.getId());
 			final CashOrder copy = new CashOrder();
 			if (user.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER")) {
-
 				copy.setId(res.getId());
 				copy.setVersion(res.getVersion());
 				copy.setStatus(res.getStatus());
