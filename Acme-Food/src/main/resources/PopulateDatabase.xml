@@ -636,7 +636,7 @@
 
 	<bean id="cashOrder3" class="domain.CashOrder">
 	
-		<property name="status" value="4"/>
+		<property name="status" value="3"/>
 		<property name="draftMode" value="1"/>
 		<property name="moment" value="04/12/2019 12:00"/>
 		<property name="totalPrice" value="56.2"/>
