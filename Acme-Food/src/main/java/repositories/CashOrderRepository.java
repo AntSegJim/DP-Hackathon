@@ -16,7 +16,7 @@ public interface CashOrderRepository extends JpaRepository<CashOrder, Integer> {
 	@Query("select co from CashOrder co where co.customer.id = ?1")
 	public Collection<CashOrder> getCashOrderByCustomer(Integer id);
 
-	@Query("select co from CashOrder co where co.restaurant.id = ?1 and co.status != 1")
+	@Query("select co from CashOrder co where co.restaurant.id = ?1 and co.status != 1 and co.draftMode=0")
 	public Collection<CashOrder> getCashOrderByRestaurant(Integer id);
 
 	@Query(value = "select date_add(NOW(), INTERVAL 30 MINUTE)", nativeQuery = true)
