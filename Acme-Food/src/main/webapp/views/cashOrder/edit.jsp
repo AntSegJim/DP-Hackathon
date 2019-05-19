@@ -57,9 +57,10 @@
 <script>
 	function myFunction() {
 		var platos = $('select#platos').val();
-		var precio = 0;
+		//var precio = 0;
+		var precio = "";
 		for (var x=0;x<platos.length;x++){
-			precio = precio + 1;
+			precio += platos[x] + "<br>";
 		}
 		document.getElementById("precio").innerHTML = precio;
 
