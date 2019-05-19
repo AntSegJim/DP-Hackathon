@@ -75,8 +75,8 @@ public class CashOrderService {
 
 	public CashOrder save(final CashOrder cashOrder) {
 		CashOrder res;
-
-		if (cashOrder.getId() != 0) {
+		final UserAccount user = LoginService.getPrincipal();
+		if (cashOrder.getId() != 0 && user.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER")) {
 			final CashOrder older = this.cashOrderRepositoty.findOne(cashOrder.getId());
 			Assert.isTrue(older.getDraftMode() == 1, "esta en draftMode");
 		}
@@ -105,6 +105,9 @@ public class CashOrderService {
 			cashOrder.setTotalPrice(0.0);
 			cashOrder.setRestaurant(this.restaurantRepository.findOne(id));
 
+			if (!cashOrder.getSenderMoment().after(this.cashOrderRepositoty.getMoreHourR()))
+				binding.rejectValue("senderMoment", "NoTime");
+
 			this.validator.validate(res, binding);
 			return res;
 		} else {
@@ -127,6 +130,9 @@ public class CashOrderService {
 				copy.setTotalPrice(this.getTotalPrice(cashOrder));
 				copy.setSenderMoment(cashOrder.getSenderMoment());
 				copy.setChoice(cashOrder.getChoice());
+
+				if (!cashOrder.getSenderMoment().after(this.cashOrderRepositoty.getMoreHourR()))
+					binding.rejectValue("senderMoment", "NoTime");
 
 				this.validator.validate(copy, binding);
 
