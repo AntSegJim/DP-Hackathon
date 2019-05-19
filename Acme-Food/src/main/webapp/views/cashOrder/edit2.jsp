@@ -20,7 +20,7 @@
 
 
 <security:authorize access="hasRole('CUSTOMER')">
-<form:form action="cashOrder/customer/edit.do?restaurantId=${restaurant.id }" modelAttribute="cashOrder">
+<form:form action="cashOrder/customer/edit2.do" modelAttribute="cashOrder">
 
 <jstl:if test="${not empty exception}">
 		<p style="color:red"> <spring:message code="notification.error" /> </p>

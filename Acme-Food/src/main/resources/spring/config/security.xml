@@ -63,6 +63,7 @@
 		 <security:intercept-url pattern="/cashOrder/customer/show.do" access="hasRole('CUSTOMER')" /> 
 		 <security:intercept-url pattern="/cashOrder/customer/create.do" access="hasRole('CUSTOMER')" /> 
 		 <security:intercept-url pattern="/cashOrder/customer/edit.do" access="hasRole('CUSTOMER')" /> 
+		 <security:intercept-url pattern="/cashOrder/customer/edit2.do" access="hasRole('CUSTOMER')" /> 
 		 <security:intercept-url pattern="/restaurant/customer/list.do" access="hasRole('CUSTOMER')" /> 
 		 
 		 

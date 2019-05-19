@@ -9,10 +9,12 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.CashOrderRepository;
+import repositories.RestaurantRepository;
 import security.LoginService;
 import security.UserAccount;
 import domain.CashOrder;
@@ -25,13 +27,16 @@ import domain.Restaurant;
 public class CashOrderService {
 
 	@Autowired
-	private CashOrderRepository	cashOrderRepositoty;
+	private CashOrderRepository		cashOrderRepositoty;
 
 	@Autowired
-	private ActorService		actorService;
+	private ActorService			actorService;
 
 	@Autowired
-	private Validator			validator;
+	private RestaurantRepository	restaurantRepository;
+
+	@Autowired
+	private Validator				validator;
 
 
 	public CashOrder create() {
@@ -71,30 +76,60 @@ public class CashOrderService {
 	public CashOrder save(final CashOrder cashOrder) {
 		CashOrder res;
 
+		if (cashOrder.getId() != 0) {
+			final CashOrder older = this.cashOrderRepositoty.findOne(cashOrder.getId());
+			Assert.isTrue(older.getDraftMode() == 1, "esta en draftMode");
+		}
+
 		res = this.cashOrderRepositoty.save(cashOrder);
 		return res;
 	}
 
 	//RECONSTRUCT
-	public CashOrder reconstruct(final CashOrder cashOrder, final BindingResult binding) {
+	public CashOrder reconstruct(final CashOrder cashOrder, final BindingResult binding, final Integer id) {
 		CashOrder res;
 
-		//if....
-		res = cashOrder;
+		if (cashOrder.getId() == 0) {
+			res = cashOrder;
 
-		final UserAccount user = LoginService.getPrincipal();
-		final Customer cust = (Customer) this.actorService.getActorByUserAccount(user.getId());
+			final UserAccount user = LoginService.getPrincipal();
+			final Customer cust = (Customer) this.actorService.getActorByUserAccount(user.getId());
 
-		cashOrder.setCustomer(cust);
-		cashOrder.setTicker(CashOrderService.generarTicker());
-		cashOrder.setStatus(0);
-		cashOrder.setMoment(new Date());
-		cashOrder.setDealer(null);
-		cashOrder.setTotalPrice(0.0);
+			cashOrder.setCustomer(cust);
+			cashOrder.setTicker(CashOrderService.generarTicker());
+			cashOrder.setStatus(0);
+			cashOrder.setMoment(new Date());
+			cashOrder.setDealer(null);
+			cashOrder.setTotalPrice(0.0);
+			cashOrder.setRestaurant(this.restaurantRepository.findOne(id));
 
-		this.validator.validate(res, binding);
+			this.validator.validate(res, binding);
+			return res;
+		} else {
+			final UserAccount user = LoginService.getPrincipal();
+			res = this.cashOrderRepositoty.findOne(cashOrder.getId());
+			final CashOrder copy = new CashOrder();
+			if (user.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER")) {
 
-		return res;
+				copy.setId(res.getId());
+				copy.setVersion(res.getVersion());
+				copy.setStatus(res.getStatus());
+				copy.setMoment(res.getMoment());
+				copy.setTicker(res.getTicker());
+				copy.setCustomer(res.getCustomer());
+				copy.setRestaurant(res.getRestaurant());
+				copy.setDealer(res.getDealer());
+
+				copy.setDraftMode(cashOrder.getDraftMode());
+				copy.setTotalPrice(this.getTotalPrice(cashOrder));
+				copy.setSenderMoment(cashOrder.getSenderMoment());
+				copy.setChoice(cashOrder.getChoice());
+				copy.setFoodDisheses(cashOrder.getFoodDisheses());
+				this.validator.validate(copy, binding);
+				return copy;
+			} else
+				return res;
+		}
 	}
 
 	//TICKER
@@ -119,5 +154,12 @@ public class CashOrderService {
 
 		return ticker;
 
+	}
+
+	public Double getTotalPrice(final CashOrder cashOrder) {
+		Double res = 0.0;
+		for (int i = 0; i < cashOrder.getFoodDisheses().size(); i++)
+			res = res + cashOrder.getFoodDisheses().iterator().next().getPrice();
+		return res;
 	}
 }

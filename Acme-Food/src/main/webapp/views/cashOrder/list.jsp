@@ -69,10 +69,9 @@ ${row.restaurant.comercialName}, ${row.restaurant.speciality}
 	</jstl:choose>
 	
 </display:column>
-
+<display:column>
+	<a href="cashOrder/customer/edit.do?cashOrderId=${row.id}"><spring:message code="cashOrder.edit" /></a>
+</display:column>
 </display:table>
-
-<input type="button" name="create" value="<spring:message code="cashOrder.create" />"
-			onclick="javascript: relativeRedir('cashOrder/customer/create.do');" />
 
 </security:authorize>

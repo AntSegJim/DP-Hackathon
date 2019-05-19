@@ -107,16 +107,31 @@ public class CashOrderCustomerController extends AbstractController {
 
 	}
 
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit(@RequestParam final Integer cashOrderId) {
+		ModelAndView result;
+
+		final CashOrder cashOrder;
+		Collection<FoodDishes> foodDishes;
+
+		cashOrder = this.cashOrderService.findOne(cashOrderId);
+		Assert.notNull(cashOrder);
+		foodDishes = this.foodDishesService.findFoodDishesByRestaurant(cashOrder.getRestaurant().getId());
+
+		result = new ModelAndView("cashOrder/edit2");
+		result.addObject("cashOrder", cashOrder);
+		result.addObject("foodDishes", foodDishes);
+		return result;
+
+	}
+
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public ModelAndView edit(final CashOrder cashOrder, final BindingResult binding, @RequestParam final Integer restaurantId) {
 		ModelAndView result;
 
-		final Restaurant r = this.restaurantReposiroty.findOne(restaurantId);
-		final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding);
+		final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, restaurantId);
 
-		pedido.setRestaurant(r);
-
-		final Integer dealers = this.restaurantReposiroty.getFreeDealerByRestaurant(r.getId());
+		final Integer dealers = this.restaurantReposiroty.getFreeDealerByRestaurant(pedido.getRestaurant().getId());
 		if (dealers == 0 && pedido.getChoice() == 1)
 			binding.rejectValue("choice", "NoFreeDealers");
 
@@ -124,7 +139,7 @@ public class CashOrderCustomerController extends AbstractController {
 			this.cashOrderService.save(pedido);
 			result = new ModelAndView("redirect:list.do");
 		} else {
-
+			final Restaurant r = this.restaurantReposiroty.findOne(restaurantId);
 			Collection<FoodDishes> foodDishes;
 			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(r.getId());
 			result = new ModelAndView("cashOrder/edit");
@@ -135,4 +150,28 @@ public class CashOrderCustomerController extends AbstractController {
 
 		return result;
 	}
+	@RequestMapping(value = "/edit2", method = RequestMethod.POST)
+	public ModelAndView edit(final CashOrder cashOrder, final BindingResult binding) {
+		ModelAndView result;
+
+		final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
+
+		final Integer dealers = this.restaurantReposiroty.getFreeDealerByRestaurant(pedido.getRestaurant().getId());
+		if (dealers == 0 && pedido.getChoice() == 1)
+			binding.rejectValue("choice", "NoFreeDealers");
+
+		if (!binding.hasErrors()) {
+			this.cashOrderService.save(pedido);
+			result = new ModelAndView("redirect:list.do");
+		} else {
+			Collection<FoodDishes> foodDishes;
+			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(pedido.getRestaurant().getId());
+			result = new ModelAndView("cashOrder/edit2");
+			result.addObject("cashOrder", cashOrder);
+			result.addObject("foodDishes", foodDishes);
+		}
+
+		return result;
+	}
+
 }

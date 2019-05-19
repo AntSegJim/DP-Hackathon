@@ -31,4 +31,9 @@
 		<put-attribute name="body" value="/views/cashOrder/edit.jsp" />
 	</definition>
 	
+	<definition name="cashOrder/edit2" extends="master.page">	
+		<put-attribute name="title" value="Edit cash order" />
+		<put-attribute name="body" value="/views/cashOrder/edit2.jsp" />
+	</definition>
+	
 </tiles-definitions>

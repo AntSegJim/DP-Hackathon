@@ -599,7 +599,7 @@
 		<property name="draftMode" value="1"/>
 		<property name="moment" value="05/12/2019 12:00"/>
 		<property name="totalPrice" value="56.2"/>
-		<property name="senderMoment" value="05/12/2019 13:00"/>
+		<property name="senderMoment" value="10/12/2019 13:00"/>
 		<property name="choice" value="0"/>
 		<property name="ticker" value="yuty-431432"/>
 		<property name="customer" ref="customer1"/>
@@ -619,7 +619,7 @@
 		<property name="draftMode" value="1"/>
 		<property name="moment" value="05/12/2019 12:00"/>
 		<property name="totalPrice" value="56.2"/>
-		<property name="senderMoment" value="05/12/2019 13:00"/>
+		<property name="senderMoment" value="11/12/2019 13:00"/>
 		<property name="choice" value="1"/>
 		<property name="ticker" value="yuty-431413"/>
 		<property name="customer" ref="customer1"/>
@@ -638,9 +638,9 @@
 	
 		<property name="status" value="4"/>
 		<property name="draftMode" value="1"/>
-		<property name="moment" value="05/12/2019 12:00"/>
+		<property name="moment" value="04/12/2019 12:00"/>
 		<property name="totalPrice" value="56.2"/>
-		<property name="senderMoment" value="05/12/2019 13:00"/>
+		<property name="senderMoment" value="12/16/2019 13:00"/>
 		<property name="choice" value="1"/>
 		<property name="ticker" value="yuty-431532"/>
 		<property name="customer" ref="customer1"/>
@@ -661,7 +661,7 @@
 		<property name="draftMode" value="1"/>
 		<property name="moment" value="05/12/2019 12:00"/>
 		<property name="totalPrice" value="56.2"/>
-		<property name="senderMoment" value="05/12/2019 13:00"/>
+		<property name="senderMoment" value="12/12/2019 13:00"/>
 		<property name="choice" value="0"/>
 		<property name="ticker" value="yuty-431152"/>
 		<property name="customer" ref="customer1"/>
