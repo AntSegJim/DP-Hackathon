@@ -2,8 +2,10 @@
 package services;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.transaction.Transactional;
+import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import repositories.OfferRepository;
 import repositories.RestaurantRepository;
 import security.LoginService;
 import security.UserAccount;
+import domain.FoodDishes;
 import domain.Offer;
 import domain.Restaurant;
 
@@ -38,7 +41,7 @@ public class OfferService {
 		offer.setTitle("");
 		offer.setTotalPrice(0);
 		offer.setRestaurant(this.restaurantRepository.getRestaurantByUserAccount(user.getId()));
-
+		offer.setFoodDisheses(new HashSet<FoodDishes>());
 		return offer;
 	}
 
@@ -59,6 +62,7 @@ public class OfferService {
 		final UserAccount userAccount = LoginService.getPrincipal();
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT"));
 		Assert.isTrue(offer.getRestaurant().equals(this.restaurantRepository.getRestaurantByUserAccount(userAccount.getId())));
+		Assert.isTrue(offer.getFoodDisheses().size() >= 2);
 		final Offer offerSave = this.offerRepository.save(offer);
 		return offerSave;
 	}
@@ -67,6 +71,7 @@ public class OfferService {
 		final UserAccount userAccount = LoginService.getPrincipal();
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT"));
 		Assert.isTrue(offer.getRestaurant().equals(this.restaurantRepository.getRestaurantByUserAccount(userAccount.getId())));
+		this.offerRepository.delete(offer);
 	}
 
 	public Offer reconstruct(final Offer offer, final BindingResult binding) {
@@ -85,7 +90,10 @@ public class OfferService {
 			o.setTitle(offer.getTitle());
 			o.setTotalPrice(offer.getTotalPrice());
 			o.setRestaurant(res.getRestaurant());
+			o.setFoodDisheses(offer.getFoodDisheses());
 			this.validator.validate(o, binding);
+			if (binding.hasErrors())
+				throw new ValidationException();
 			res = o;
 		}
 		return res;
