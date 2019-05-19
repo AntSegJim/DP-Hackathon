@@ -23,7 +23,7 @@
 <form:form action="cashOrder/customer/edit2.do" modelAttribute="cashOrder">
 
 <jstl:if test="${not empty exception}">
-		<p style="color:red"> <spring:message code="notification.error" /> </p>
+		<p style="color:red"> <spring:message code="cashOrder.error" /> </p>
 </jstl:if>
 
 <form:hidden path="id"/>

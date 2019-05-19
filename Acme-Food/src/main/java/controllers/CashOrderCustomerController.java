@@ -129,23 +129,35 @@ public class CashOrderCustomerController extends AbstractController {
 	public ModelAndView edit(final CashOrder cashOrder, final BindingResult binding, @RequestParam final Integer restaurantId) {
 		ModelAndView result;
 
-		final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, restaurantId);
+		try {
+			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, restaurantId);
 
-		final Integer dealers = this.restaurantReposiroty.getFreeDealerByRestaurant(pedido.getRestaurant().getId());
-		if (dealers == 0 && pedido.getChoice() == 1)
-			binding.rejectValue("choice", "NoFreeDealers");
+			final Integer dealers = this.restaurantReposiroty.getFreeDealerByRestaurant(pedido.getRestaurant().getId());
+			if (dealers == 0 && pedido.getChoice() == 1)
+				binding.rejectValue("choice", "NoFreeDealers");
 
-		if (!binding.hasErrors()) {
-			this.cashOrderService.save(pedido);
-			result = new ModelAndView("redirect:list.do");
-		} else {
-			final Restaurant r = this.restaurantReposiroty.findOne(restaurantId);
+			if (!binding.hasErrors()) {
+				this.cashOrderService.save(pedido);
+				result = new ModelAndView("redirect:list.do");
+			} else {
+				final Restaurant r = this.restaurantReposiroty.findOne(restaurantId);
+				Collection<FoodDishes> foodDishes;
+				foodDishes = this.foodDishesService.findFoodDishesByRestaurant(r.getId());
+				result = new ModelAndView("cashOrder/edit");
+				result.addObject("cashOrder", cashOrder);
+				result.addObject("foodDishes", foodDishes);
+				result.addObject("restaurant", r);
+			}
+		} catch (final Exception e) {
+			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
+
 			Collection<FoodDishes> foodDishes;
-			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(r.getId());
-			result = new ModelAndView("cashOrder/edit");
+			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(pedido.getRestaurant().getId());
+			result = new ModelAndView("cashOrder/edit2");
 			result.addObject("cashOrder", cashOrder);
 			result.addObject("foodDishes", foodDishes);
-			result.addObject("restaurant", r);
+			result.addObject("exception", e);
+
 		}
 
 		return result;
@@ -154,21 +166,34 @@ public class CashOrderCustomerController extends AbstractController {
 	public ModelAndView edit(final CashOrder cashOrder, final BindingResult binding) {
 		ModelAndView result;
 
-		final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
+		try {
+			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
 
-		final Integer dealers = this.restaurantReposiroty.getFreeDealerByRestaurant(pedido.getRestaurant().getId());
-		if (dealers == 0 && pedido.getChoice() == 1)
-			binding.rejectValue("choice", "NoFreeDealers");
+			final Integer dealers = this.restaurantReposiroty.getFreeDealerByRestaurant(pedido.getRestaurant().getId());
+			if (dealers == 0 && pedido.getChoice() == 1)
+				binding.rejectValue("choice", "NoFreeDealers");
 
-		if (!binding.hasErrors()) {
-			this.cashOrderService.save(pedido);
-			result = new ModelAndView("redirect:list.do");
-		} else {
+			if (!binding.hasErrors()) {
+				this.cashOrderService.save(pedido);
+				result = new ModelAndView("redirect:list.do");
+			} else {
+				Collection<FoodDishes> foodDishes;
+				foodDishes = this.foodDishesService.findFoodDishesByRestaurant(pedido.getRestaurant().getId());
+				result = new ModelAndView("cashOrder/edit2");
+				result.addObject("cashOrder", cashOrder);
+				result.addObject("foodDishes", foodDishes);
+			}
+		}
+
+		catch (final Exception e) {
+			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
+
 			Collection<FoodDishes> foodDishes;
 			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(pedido.getRestaurant().getId());
 			result = new ModelAndView("cashOrder/edit2");
 			result.addObject("cashOrder", cashOrder);
 			result.addObject("foodDishes", foodDishes);
+			result.addObject("exception", e);
 		}
 
 		return result;

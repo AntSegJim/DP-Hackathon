@@ -81,6 +81,8 @@ public class CashOrderService {
 			Assert.isTrue(older.getDraftMode() == 1, "esta en draftMode");
 		}
 
+		cashOrder.setTotalPrice(this.getTotalPrice(cashOrder));
+
 		res = this.cashOrderRepositoty.save(cashOrder);
 		return res;
 	}
@@ -120,12 +122,14 @@ public class CashOrderService {
 				copy.setRestaurant(res.getRestaurant());
 				copy.setDealer(res.getDealer());
 
+				copy.setFoodDisheses(cashOrder.getFoodDisheses());
 				copy.setDraftMode(cashOrder.getDraftMode());
 				copy.setTotalPrice(this.getTotalPrice(cashOrder));
 				copy.setSenderMoment(cashOrder.getSenderMoment());
 				copy.setChoice(cashOrder.getChoice());
-				copy.setFoodDisheses(cashOrder.getFoodDisheses());
+
 				this.validator.validate(copy, binding);
+
 				return copy;
 			} else
 				return res;
@@ -158,8 +162,13 @@ public class CashOrderService {
 
 	public Double getTotalPrice(final CashOrder cashOrder) {
 		Double res = 0.0;
-		for (int i = 0; i < cashOrder.getFoodDisheses().size(); i++)
-			res = res + cashOrder.getFoodDisheses().iterator().next().getPrice();
+		try {
+			if (cashOrder.getFoodDisheses().size() > 0)
+				for (final FoodDishes food : cashOrder.getFoodDisheses())
+					res = res + food.getPrice();
+		} catch (final NullPointerException opps) {
+			res = cashOrder.getTotalPrice();
+		}
 		return res;
 	}
 }
