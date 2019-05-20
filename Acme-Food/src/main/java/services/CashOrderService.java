@@ -94,6 +94,13 @@ public class CashOrderService {
 			Assert.isTrue(older.getStatus() == 0);
 			if (cashOrder.getChoice() == 0)
 				Assert.isTrue(cashOrder.getDealer() == null);
+
+			//			if(cashOrder.getChoice()==1){
+			//				Assert.isTrue(cashOrder.getDealer() != null);
+			//				Assert.isTrue(cashOrder.getDealer().getRestaurant().equals(this.actorService.getActorByUserAccount(user.getId())));
+			//	
+			//			}
+
 		} else if (cashOrder.getId() != 0 && user.getAuthorities().iterator().next().getAuthority().equals("DEALER")) {
 			//Ser el mismo dealer que esta en el pedido
 			Assert.isTrue(cashOrder.getDealer().equals(this.actorService.getActorByUserAccount(user.getId())));

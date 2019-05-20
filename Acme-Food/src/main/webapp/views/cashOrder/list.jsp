@@ -123,7 +123,9 @@ requestURI="cashOrder/restaurant/list.do" >
 </display:column>
 
 <display:column>
+	<jstl:if test="${row.status eq 0 }">
 	<a href="cashOrder/restaurant/edit.do?cashOrderId=${row.id}"><spring:message code="cashOrder.edit" /></a>
+	</jstl:if>
 </display:column>
 
 </display:table>
@@ -175,7 +177,7 @@ requestURI="cashOrder/dealer/list.do" >
 	
 </display:column>
 
-<display:column>
+<display:column>	
 	<a href="cashOrder/dealer/edit.do?cashOrderId=${row.id}"><spring:message code="cashOrder.edit" /></a>
 </display:column>
 
