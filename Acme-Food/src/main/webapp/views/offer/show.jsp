@@ -32,5 +32,25 @@ requestURI="foodDishes/restaurant/list.do" >
 </display:table>
 
 <acme:cancel url="offer/restaurant/list.do" code="cancel"/>
+</security:authorize>
+
+
+
+<security:authorize access="isAnonymous()">
+<b><spring:message code="offer.title" />:</b><jstl:out value="${offer.title}"></jstl:out><br/>
+<b><spring:message code="offer.totalPrice" />:</b><jstl:out value="${offer.totalPrice}"></jstl:out><br/>
+
+<display:table pagesize="5" name="foodDisheses" id="row"
+requestURI="foodDishes/list.do" >
+
+<display:column property="name" titleKey="offer.foodDishes.name" />
+<display:column property="description" titleKey="offer.foodDishes.description" />
+<display:column property="price" titleKey="offer.foodDishes.price" />
+<display:column titleKey="offer.foodDishes.picture"> <img src="${row.pictures}" width="130px" height="80px"></display:column>
+</display:table>
+
+<acme:cancel url="offer/list.do?restaurantId=${restaurant.id}" code="cancel"/>
+
+
 
 </security:authorize>

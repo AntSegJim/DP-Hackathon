@@ -30,3 +30,18 @@ requestURI="restaurant/customer/list.do" >
 </display:column>
 </display:table>
 </security:authorize>
+
+
+<security:authorize access="isAnonymous()">
+<display:table pagesize="5" name="restaurants" id="row"
+requestURI="restaurant/list.do" >
+<display:column>
+	<a href="offer/list.do?restaurantId=${row.id}"><spring:message code="restaurant.offer" /></a>
+</display:column>
+<display:column property="comercialName" titleKey="restaurant.comercialName"/>
+<display:column property="speciality" titleKey="restaurant.speciality"/>
+<display:column property="mediumScore" titleKey="restaurant.mediumScore"/>
+</display:table>
+</security:authorize>
+
+

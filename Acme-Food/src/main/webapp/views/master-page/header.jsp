@@ -58,7 +58,7 @@
 					<li><a href="rookie/create.do"><spring:message code="master.page.rookie.register" /></a></li>
 					<li><a href="provider/create.do"><spring:message code="master.page.provider.register" /></a></li>
 				</ul>
-			
+			<li><a href="restaurant/list.do"><spring:message code="master.page.restaurant" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
