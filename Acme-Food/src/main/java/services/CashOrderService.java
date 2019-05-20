@@ -87,12 +87,26 @@ public class CashOrderService {
 			Assert.isTrue(older.getDraftMode() == 1, "esta en draftMode");
 		}
 
-		if (cashOrder.getId() != 0 && user.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT")) {
+		else if (cashOrder.getId() != 0 && user.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT")) {
 			Assert.isTrue(cashOrder.getRestaurant().equals(this.actorService.getActorByUserAccount(user.getId())));
-
+			Assert.isTrue(cashOrder.getDraftMode() == 0);
+			final CashOrder older = this.cashOrderRepositoty.findOne(cashOrder.getId());
+			Assert.isTrue(older.getStatus() == 0);
 			if (cashOrder.getChoice() == 0)
 				Assert.isTrue(cashOrder.getDealer() == null);
+		} else if (cashOrder.getId() != 0 && user.getAuthorities().iterator().next().getAuthority().equals("DEALER")) {
+			//Ser el mismo dealer que esta en el pedido
+			Assert.isTrue(cashOrder.getDealer().equals(this.actorService.getActorByUserAccount(user.getId())));
+			//Pertener al restaurante
+			Assert.isTrue(cashOrder.getDealer().getRestaurant().equals(cashOrder.getRestaurant()));
+			//Que el pedido este aceptado
+			Assert.isTrue(cashOrder.getStatus() == 3);
+			//Que este seleccionada la opcion de llevar a su domicilio
+			Assert.isTrue(cashOrder.getChoice() == 1);
+			//Que este fuera de draftMode
+			Assert.isTrue(cashOrder.getDraftMode() == 0);
 		}
+
 		cashOrder.setTotalPrice(this.getTotalPrice(cashOrder));
 
 		res = this.cashOrderRepositoty.save(cashOrder);
@@ -148,8 +162,7 @@ public class CashOrderService {
 				this.validator.validate(copy, binding);
 
 				return copy;
-			}
-			if (user.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT")) {
+			} else if (user.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT")) {
 				copy.setId(res.getId());
 				copy.setVersion(res.getVersion());
 				copy.setStatus(cashOrder.getStatus());
@@ -167,11 +180,27 @@ public class CashOrderService {
 				this.validator.validate(copy, binding);
 
 				return copy;
-			} else
-				return res;
+			} else {
+				copy.setId(res.getId());
+				copy.setVersion(res.getVersion());
+				copy.setStatus(cashOrder.getStatus());
+				copy.setMoment(res.getMoment());
+				copy.setTicker(res.getTicker());
+				copy.setCustomer(res.getCustomer());
+				copy.setRestaurant(res.getRestaurant());
+				copy.setDealer(res.getDealer());
+				copy.setFoodDisheses(res.getFoodDisheses());
+				copy.setDraftMode(res.getDraftMode());
+				copy.setTotalPrice(res.getTotalPrice());
+				copy.setSenderMoment(res.getSenderMoment());
+				copy.setChoice(res.getChoice());
+
+				this.validator.validate(copy, binding);
+
+				return copy;
+			}
 		}
 	}
-
 	//TICKER
 	public static String generarTicker() {
 		final int tamLetras = 4;

@@ -81,13 +81,22 @@ public class CashOrderRestaurantController extends AbstractController {
 	public ModelAndView edit(final CashOrder cashOrder, final BindingResult binding) {
 		ModelAndView result;
 
-		final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
-		if (!binding.hasErrors()) {
-			this.cashOrderService.save(pedido);
-			result = new ModelAndView("redirect:list.do");
-		} else {
+		try {
+			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
+			if (!binding.hasErrors()) {
+				this.cashOrderService.save(pedido);
+				result = new ModelAndView("redirect:list.do");
+			} else {
+				result = new ModelAndView("cashOrder/edit2");
+				result.addObject("cashOrder", pedido);
+			}
+		} catch (final Exception e) {
+			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
+
 			result = new ModelAndView("cashOrder/edit2");
-			result.addObject("cashOrder", cashOrder);
+			result.addObject("cashOrder", pedido);
+			result.addObject("exception", e);
+
 		}
 
 		return result;

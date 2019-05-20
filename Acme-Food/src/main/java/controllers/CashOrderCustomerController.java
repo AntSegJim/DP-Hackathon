@@ -113,11 +113,14 @@ public class CashOrderCustomerController extends AbstractController {
 		try {
 			final CashOrder cashOrder;
 			Collection<FoodDishes> foodDishes;
+			final UserAccount user = LoginService.getPrincipal();
+			final Actor a = this.actorService.getActorByUserAccount(user.getId());
 
 			cashOrder = this.cashOrderService.findOne(cashOrderId);
 			Assert.notNull(cashOrder);
 			Assert.isTrue(cashOrder.getDraftMode() == 1);
 			Assert.isTrue(cashOrder.getStatus() == 0);
+			Assert.isTrue(cashOrder.getCustomer().equals(a));
 			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(cashOrder.getRestaurant().getId());
 
 			result = new ModelAndView("cashOrder/edit2");
