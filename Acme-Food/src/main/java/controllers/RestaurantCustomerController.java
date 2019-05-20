@@ -25,7 +25,7 @@ public class RestaurantCustomerController {
 		final ModelAndView result;
 		final Collection<Restaurant> restaurants;
 
-		restaurants = this.restaurantService.getActivesRestaurants();
+		restaurants = this.restaurantService.getRestaurantWithFood();
 
 		result = new ModelAndView("restaurant/list");
 		result.addObject("restaurants", restaurants);

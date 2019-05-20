@@ -252,4 +252,8 @@ public class RestaurantService {
 		return this.restaurantRepository.getFreeDealerByRestaurant(id);
 	}
 
+	public Collection<Restaurant> getRestaurantWithFood() {
+		return this.restaurantRepository.getRestaurantWithFood();
+	}
+
 }

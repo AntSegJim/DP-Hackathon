@@ -12,6 +12,9 @@ import domain.Restaurant;
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Integer> {
 
+	@Query("select r from Restaurant r where (select count(f) from FoodDishes f where f.restaurant.id=r.id) > 0 and r.isBanned=0")
+	public Collection<Restaurant> getRestaurantWithFood();
+
 	@Query("select m from Restaurant m where m.userAccount.id = ?1")
 	public Restaurant getRestaurantByUserAccount(int userAccountId);
 
