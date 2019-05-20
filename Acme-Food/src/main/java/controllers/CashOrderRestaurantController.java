@@ -16,8 +16,10 @@ import security.LoginService;
 import security.UserAccount;
 import services.ActorService;
 import services.CashOrderService;
+import services.DealerService;
 import domain.Actor;
 import domain.CashOrder;
+import domain.Dealer;
 
 @Controller
 @RequestMapping("/cashOrder/restaurant")
@@ -28,6 +30,9 @@ public class CashOrderRestaurantController extends AbstractController {
 
 	@Autowired
 	private CashOrderService	cashOrderService;
+
+	@Autowired
+	private DealerService		dealerService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -86,6 +91,26 @@ public class CashOrderRestaurantController extends AbstractController {
 		}
 
 		return result;
+	}
+
+	@RequestMapping(value = "/reloadDealers", method = RequestMethod.GET)
+	public ModelAndView reloadDealer(@RequestParam final Integer statusValue) {
+		ModelAndView result;
+
+		final Collection<Dealer> dealers;
+
+		if (statusValue == 3) {
+			final UserAccount user = LoginService.getPrincipal();
+			final Actor a = this.actorService.getActorByUserAccount(user.getId());
+
+			dealers = this.dealerService.getActiveDealersByRestaurant(a.getId());
+		} else
+			dealers = null;
+		result = new ModelAndView("cashOrder/dropdown");
+		result.addObject("dealers", dealers);
+
+		return result;
+
 	}
 
 }

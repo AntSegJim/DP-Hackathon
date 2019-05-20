@@ -76,7 +76,7 @@
 
 <b><spring:message code="cashOrder.choice" /> : </b>
 	<jstl:choose>
-		<jstl:when test="${cashOrder.status eq 0}">
+		<jstl:when test="${cashOrder.choice eq 0}">
 			<spring:message code="cashOrder.takeAway" /> 
 		</jstl:when>
 		
@@ -99,12 +99,22 @@
 
 
 <form:label path="status"><spring:message code="cashOrder.status" />:</form:label>
-<form:select path="status">
+<form:select path="status" id="status" onchange="javascript: reloadDealers()">
 		<form:option value="1" label="Rejected" />	
 		<form:option value="3" label="Acceptance" />	
 	</form:select>
 	<form:errors path="status"/>
 <br/>
+<jstl:if test="${cashOrder.choice eq 1 }">
+<form:label path="dealer">
+	<spring:message code="cashOrder.dealer" />
+</form:label>
+<form:select id="dealers" path="dealer">
+		<form:options items="${dealers}" itemValue="id"
+			itemLabel="name" />
+	</form:select>
+<form:errors cssClass="error" path="dealer"/>
+</jstl:if>
 
 <br/>
 <input type="submit" name="save" 
@@ -115,6 +125,17 @@
 
 
 </form:form>
+
+
+<script type="text/javascript">
+		function reloadDealers() {
+			var status = $('select#status').val();
+			
+			//var placeholder = $('select#dealers');
+			//placeholder.load("cashOrder/restaurant/reloadDealers.do?statusValue="+status);	
+			
+		}
+</script>
 
 
 </security:authorize>

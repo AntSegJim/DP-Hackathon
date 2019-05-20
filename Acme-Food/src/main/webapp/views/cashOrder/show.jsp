@@ -68,6 +68,17 @@
 <br/>
 </jstl:forEach>
 </jstl:if>
+<b><spring:message code="cashOrder.choice" /> : </b> 
+<jstl:choose>
+		<jstl:when test="${cashOrder.choice eq 0}">
+			<spring:message code="cashOrder.takeAway" /> 
+		</jstl:when>
+		
+		<jstl:otherwise>
+			<spring:message code="cashOrder.send" />
+		</jstl:otherwise>
+	</jstl:choose>
+<br/>
 <b><spring:message code="cashOrder.price" /> : </b> <jstl:out value="${cashOrder.totalPrice}"></jstl:out> <br/>
 <br/>
 <input type="button" name="cancel" value="<spring:message code="cashOrder.cancel" />"

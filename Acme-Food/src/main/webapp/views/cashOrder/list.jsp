@@ -55,7 +55,7 @@ ${row.restaurant.comercialName}, ${row.restaurant.speciality}
 <display:column titleKey="cashOrder.choice" >
 
 	<jstl:choose>
-		<jstl:when test="${row.status eq 0}">
+		<jstl:when test="${row.choice eq 0}">
 			<spring:message code="cashOrder.takeAway" /> 
 		</jstl:when>
 		
@@ -115,7 +115,7 @@ requestURI="cashOrder/restaurant/list.do" >
 <display:column titleKey="cashOrder.choice" >
 
 	<jstl:choose>
-		<jstl:when test="${row.status eq 0}">
+		<jstl:when test="${row.choice eq 0}">
 			<spring:message code="cashOrder.takeAway" /> 
 		</jstl:when>
 		

@@ -81,6 +81,10 @@ public class CashOrderService {
 			Assert.isTrue(older.getDraftMode() == 1, "esta en draftMode");
 		}
 
+		if (cashOrder.getId() != 0 && user.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT"))
+			if (cashOrder.getChoice() == 0)
+				Assert.isTrue(cashOrder.getDealer() == null);
+
 		cashOrder.setTotalPrice(this.getTotalPrice(cashOrder));
 
 		res = this.cashOrderRepositoty.save(cashOrder);
