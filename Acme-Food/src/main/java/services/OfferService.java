@@ -58,12 +58,17 @@ public class OfferService {
 		return offer;
 	}
 
+	public Offer findOneSinAutenticar(final int offerId) {
+		return this.offerRepository.findOne(offerId);
+	}
+
 	public Offer save(final Offer offer) {
 		final UserAccount userAccount = LoginService.getPrincipal();
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT"));
 		Assert.isTrue(offer.getRestaurant().equals(this.restaurantRepository.getRestaurantByUserAccount(userAccount.getId())));
 		Assert.isTrue(offer.getFoodDisheses().size() >= 2);
-		//Assert.isTrue(offer.getTotalPrice() < this.getSumaPrecioPlatosByOffer(offer.getId()));
+		//final Double res = this.getSumaPrecioPlatosByOffer(offer.getId());
+		//Assert.isTrue(offer.getTotalPrice() < res);
 		Double res = 0.;
 		for (final FoodDishes f : offer.getFoodDisheses())
 			res = res + f.getPrice();

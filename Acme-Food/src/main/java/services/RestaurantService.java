@@ -84,6 +84,9 @@ public class RestaurantService {
 		Assert.isTrue(restaurant.equals(a));
 		return this.restaurantRepository.findOne(restaurantId);
 	}
+	public Restaurant findOneSinAutenticar(final int restaurantId) {
+		return this.restaurantRepository.findOne(restaurantId);
+	}
 
 	public Restaurant save(final Restaurant r) {
 

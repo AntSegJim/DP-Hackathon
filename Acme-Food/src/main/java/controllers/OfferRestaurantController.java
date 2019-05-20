@@ -24,8 +24,8 @@ import domain.Offer;
 import domain.Restaurant;
 
 @Controller
-@RequestMapping("/offer/restaurant")
-public class OfferRestaurantController {
+@RequestMapping("/offer")
+public class OfferRestaurantController extends AbstractController {
 
 	@Autowired
 	private OfferService		offerService;
@@ -36,6 +36,36 @@ public class OfferRestaurantController {
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView listOfferSinAutentificar(@RequestParam final int restaurantId) {
+		final ModelAndView result;
+		final Collection<Offer> offers;
+
+		offers = this.offerService.getOffersByRestaurant(restaurantId);
+		final Restaurant r = this.restaurantService.findOneSinAutenticar(restaurantId);
+		result = new ModelAndView("offer/list");
+		result.addObject("offers", offers);
+		result.addObject("restaurant", r);
+		return result;
+	}
+
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public ModelAndView showOfferSinAutenticar(@RequestParam final Integer offerId, @RequestParam final Integer restaurantId) {
+		ModelAndView result;
+		final Offer offer;
+
+		offer = this.offerService.findOneSinAutenticar(offerId);
+		final Collection<FoodDishes> foodDisheses = offer.getFoodDisheses();
+		final Restaurant r = this.restaurantService.findOneSinAutenticar(restaurantId);
+		Assert.notNull(offer);
+
+		result = new ModelAndView("offer/show");
+		result.addObject("offer", offer);
+		result.addObject("foodDisheses", foodDisheses);
+		result.addObject("restaurant", r);
+		return result;
+	}
+
+	@RequestMapping(value = "/restaurant/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		final ModelAndView result;
 		final Collection<Offer> offers;
@@ -48,10 +78,9 @@ public class OfferRestaurantController {
 		result = new ModelAndView("offer/list");
 		result.addObject("offers", offers);
 		return result;
-
 	}
 
-	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	@RequestMapping(value = "/restaurant/show", method = RequestMethod.GET)
 	public ModelAndView show(@RequestParam final Integer offerId) {
 		ModelAndView result;
 		try {
@@ -68,10 +97,9 @@ public class OfferRestaurantController {
 			result = new ModelAndView("redirect:list.do");
 		}
 		return result;
-
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/restaurant/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		final ModelAndView result;
 		final Offer offer;
@@ -91,7 +119,7 @@ public class OfferRestaurantController {
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/restaurant/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int offerId) {
 		ModelAndView result;
 		final Offer offer;
@@ -114,7 +142,7 @@ public class OfferRestaurantController {
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/restaurant/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView edit(final Offer offer, final BindingResult binding) {
 		ModelAndView result;
 		Offer o;
@@ -153,7 +181,7 @@ public class OfferRestaurantController {
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	@RequestMapping(value = "/restaurant/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(final Offer offer, final BindingResult binding) {
 		ModelAndView result;
 		try {

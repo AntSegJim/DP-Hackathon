@@ -32,7 +32,21 @@ requestURI="offer/restaurant/list.do" >
 </display:table>
 <input type="button" name="create" value="<spring:message code="create" />"
 			onclick="javascript: relativeRedir('offer/restaurant/create.do');" /><br>
+</security:authorize>
 
+
+
+
+<security:authorize access="isAnonymous()">
+<display:table pagesize="5" name="offers" id="row"
+requestURI="offer/list.do" >
+<display:column>
+	<a href="offer/show.do?offerId=${row.id}&restaurantId=${restaurant.id}"><spring:message code="moreDetails" /></a>
+</display:column>
+<display:column property="title" titleKey="offer.title"/>
+<display:column property="totalPrice" titleKey="offer.totalPrice"/>
+</display:table>
+<acme:cancel url="restaurant/list.do" code="cancel"/>
 </security:authorize>
 
 

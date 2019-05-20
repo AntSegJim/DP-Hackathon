@@ -23,7 +23,7 @@ import domain.SocialProfile;
 
 @Controller
 @RequestMapping("/socialProfile/restaurant")
-public class SocialProfileRestaurantController {
+public class SocialProfileRestaurantController extends AbstractController {
 
 	@Autowired
 	private SocialProfileService	socialProfileService;
