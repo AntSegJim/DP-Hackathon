@@ -20,7 +20,7 @@ import org.hibernate.validator.constraints.SafeHtml;
 public class Offer extends DomainEntity {
 
 	private String					title;
-	private int						totalPrice;
+	private Double					totalPrice;
 	private Restaurant				restaurant;
 	private Collection<FoodDishes>	foodDisheses;
 
@@ -47,11 +47,11 @@ public class Offer extends DomainEntity {
 	}
 
 	@Min(0)
-	public int getTotalPrice() {
+	public Double getTotalPrice() {
 		return this.totalPrice;
 	}
 
-	public void setTotalPrice(final int totalPrice) {
+	public void setTotalPrice(final Double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 
