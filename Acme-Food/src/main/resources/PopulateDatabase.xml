@@ -586,8 +586,95 @@
 			</list>
 		</property>
 		<property name="restaurant" ref="restaurant2"/>
-		
-		
+	</bean>
+	
+	<bean id="foodDishes5" class="domain.FoodDishes">
+		<property name="name" value="Arroz con carne"/>
+		<property name="description" value="Plato de azzor con carne de conejo y guisantes"/>
+		<property name="pictures" value="https://okdiario.com/img/recetas/2017/06/20/arroz-con-carne.jpg"/>
+		<property name="price" value="4.0"/>
+		<property name="type" value="1"/>
+		<property name="ingredients">
+			<list>
+				<value>Arroz</value>
+				<value>Carne de pollo</value>
+				<value>Guisantes</value>
+				<value>Aceite</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	
+	<bean id="foodDishes6" class="domain.FoodDishes">
+		<property name="name" value="Albondigas con patatas"/>
+		<property name="description" value="Albondigas con patatas al jack daniels"/>
+		<property name="pictures" value="https://sevilla.abc.es/gurme//wp-content/uploads/2010/01/1035_albondigaspatatas_1262654889.jpg"/>
+		<property name="price" value="6.5"/>
+		<property name="type" value="1"/>
+		<property name="ingredients">
+			<list>
+				<value>Patatas</value>
+				<value>Carne de cerdo picada</value>
+				<value>aceite</value>
+				<value>Pan rallado</value>
+				<value>Perejil</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	
+	<bean id="foodDishes7" class="domain.FoodDishes">
+		<property name="name" value="Hamburguesa club"/>
+		<property name="description" value="Hamburguesa de carne de buey con tomate a rodajas, huevo y bacon a la plancha."/>
+		<property name="pictures" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxRsH1-afd0XrtMmux0j8IQ4634chQNORvztW4iKQCyBicNcXZ"/>
+		<property name="price" value="5.5"/>
+		<property name="type" value="1"/>
+		<property name="ingredients">
+			<list>
+				<value>Pan de hamburguesa</value>
+				<value>Carne de buey picada</value>
+				<value>bacon</value>
+				<value>huevo</value>
+				<value>Queso</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	
+	<bean id="foodDishes8" class="domain.FoodDishes">
+		<property name="name" value="Sandwich mixto"/>
+		<property name="description" value="Triple sandwich de jamon york y queso con patatas fritas"/>
+		<property name="pictures" value="https://www.b2in.es/308-large_default/sandwich-mixto.jpg"/>
+		<property name="price" value="3.5"/>
+		<property name="type" value="1"/>
+		<property name="ingredients">
+			<list>
+				<value>Pan de molde</value>
+				<value>Jamon york</value>
+				<value>Queso</value>
+				<value>Patatas</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	
+	<bean id="foodDishes9" class="domain.FoodDishes">
+		<property name="name" value="Ensalada cesar"/>
+		<property name="description" value="Ensala con tomate, lechuga, tiras de pollo, queso, picatostes y salsa cesar."/>
+		<property name="pictures" value="https://www.rebanando.com/media/caesar-salad-source-thinkstock-jpg_crop.jpeg/rh/ensalada-cesar.jpg"/>
+		<property name="price" value="3.0"/>
+		<property name="type" value="1"/>
+		<property name="ingredients">
+			<list>
+				<value>Picatostes</value>
+				<value>Carne de pollo</value>
+				<value>Queso</value>
+				<value>Tomate</value>
+				<value>Lechuga</value>
+				<value>Salsa cesar</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
 	</bean>
 	
 	

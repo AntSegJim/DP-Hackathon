@@ -46,6 +46,7 @@ requestURI="offer/list.do" >
 <display:column property="title" titleKey="offer.title"/>
 <display:column property="totalPrice" titleKey="offer.totalPrice"/>
 </display:table>
+<acme:cancel url="restaurant/list.do" code="cancel"/>
 </security:authorize>
 
 

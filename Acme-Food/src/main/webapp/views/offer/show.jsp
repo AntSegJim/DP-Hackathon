@@ -23,7 +23,7 @@
 <b><spring:message code="offer.totalPrice" />:</b><jstl:out value="${offer.totalPrice}"></jstl:out><br/>
 
 <display:table pagesize="5" name="foodDisheses" id="row"
-requestURI="foodDishes/restaurant/list.do" >
+requestURI="offer/restaurant/show.do?offerId=${offer.id}" >
 
 <display:column property="name" titleKey="offer.foodDishes.name" />
 <display:column property="description" titleKey="offer.foodDishes.description" />
@@ -41,7 +41,7 @@ requestURI="foodDishes/restaurant/list.do" >
 <b><spring:message code="offer.totalPrice" />:</b><jstl:out value="${offer.totalPrice}"></jstl:out><br/>
 
 <display:table pagesize="5" name="foodDisheses" id="row"
-requestURI="foodDishes/list.do" >
+requestURI="offer/show.do?offerId=${offer.id }" >
 
 <display:column property="name" titleKey="offer.foodDishes.name" />
 <display:column property="description" titleKey="offer.foodDishes.description" />

@@ -31,7 +31,7 @@
 
 <acme:textbox code="offer.title" path="title"/>
 <acme:textbox code="offer.totalPrice" path="totalPrice"/>
-<acme:selectWithoutNullOption items="${foodDisheses}" itemLabel="description" code="offer.foodDishes.name" path="foodDisheses"/>
+<acme:selectWithoutNullOption items="${foodDisheses}" itemLabel="name" code="offer.foodDishes.name" path="foodDisheses"/>
 
 <br/>
 <input type="submit" name="save" value="<spring:message code="save" />" />
