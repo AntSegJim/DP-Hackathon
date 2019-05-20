@@ -38,10 +38,6 @@ requestURI="cashOrder/customer/list.do" >
 		</jstl:when>
 		
 		<jstl:when test="${row.status eq 2}">
-			<spring:message code="cashOrder.inProcess" />
-		</jstl:when>
-		
-		<jstl:when test="${row.status eq 3}">
 			<spring:message code="cashOrder.delivered" />
 		</jstl:when>
 		
@@ -83,10 +79,8 @@ ${row.restaurant.comercialName}, ${row.restaurant.speciality}
 <security:authorize access="hasRole('RESTAURANT')">
 
 <display:table pagesize="5" name="cashOrders" id="row"
-requestURI="cashOrder/customer/list.do" >
-<display:column>
-	<a href="cashOrder/customer/show.do?idCashOrder=${row.id}"><spring:message code="cashOrder.moreDetails" /></a>
-</display:column>
+requestURI="cashOrder/restaurant/list.do" >
+
 
 <display:column property="moment" titleKey="cashOrder.moment" format="{0,date,dd/MM/yyyy hh:mm}"  />
 
@@ -131,6 +125,11 @@ requestURI="cashOrder/customer/list.do" >
 	</jstl:choose>
 	
 </display:column>
+
+<display:column>
+	<a href="cashOrder/restaurant/edit.do?cashOrderId=${row.id}"><spring:message code="cashOrder.edit" /></a>
+</display:column>
+
 </display:table>
 
 </security:authorize>

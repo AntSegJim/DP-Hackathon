@@ -136,6 +136,25 @@ public class CashOrderService {
 				this.validator.validate(copy, binding);
 
 				return copy;
+			}
+			if (user.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT")) {
+				copy.setId(res.getId());
+				copy.setVersion(res.getVersion());
+				copy.setStatus(cashOrder.getStatus());
+				copy.setMoment(res.getMoment());
+				copy.setTicker(res.getTicker());
+				copy.setCustomer(res.getCustomer());
+				copy.setRestaurant(res.getRestaurant());
+				copy.setDealer(cashOrder.getDealer());
+				copy.setFoodDisheses(res.getFoodDisheses());
+				copy.setDraftMode(res.getDraftMode());
+				copy.setTotalPrice(res.getTotalPrice());
+				copy.setSenderMoment(res.getSenderMoment());
+				copy.setChoice(res.getChoice());
+
+				this.validator.validate(copy, binding);
+
+				return copy;
 			} else
 				return res;
 		}

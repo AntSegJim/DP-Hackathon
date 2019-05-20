@@ -33,8 +33,8 @@
 		</jstl:otherwise>
 	</jstl:choose>
 <br/>
-<b><spring:message code="cashOrder.status" /> : </b> 
-<jstl:choose>
+<b><spring:message code="cashOrder.status" /> : </b> <jstl:out value="${cashOrder.status}"></jstl:out> <br/>
+	<jstl:choose>
 		<jstl:when test="${row.status eq 0}">
 			<spring:message code="cashOrder.pending" /> 
 		</jstl:when>
@@ -44,10 +44,6 @@
 		</jstl:when>
 		
 		<jstl:when test="${row.status eq 2}">
-			<spring:message code="cashOrder.inProcess" />
-		</jstl:when>
-		
-		<jstl:when test="${row.status eq 3}">
 			<spring:message code="cashOrder.delivered" />
 		</jstl:when>
 		
