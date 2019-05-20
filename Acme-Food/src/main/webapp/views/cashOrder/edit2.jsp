@@ -125,7 +125,63 @@
 
 
 </form:form>
+</security:authorize>
 
+<security:authorize access="hasRole('DEALER')">
+
+<b><spring:message code="cashOrder.customer" /> : </b><jstl:out value="${cashOrder.customer.name}"></jstl:out> <br/>
+<b><spring:message code="cashOrder.ticker" /> : </b> <jstl:out value="${cashOrder.ticker}"></jstl:out> <br/>
+<b><spring:message code="cashOrder.moment" /> : </b> <fmt:formatDate value="${cashOrder.moment }" pattern="yyyy-MM-dd HH:mm" /><br/>
+<b><spring:message code="cashOrder.SenderMoment" /> : </b> <fmt:formatDate value="${cashOrder.senderMoment }" pattern="yyyy-MM-dd HH:mm" /><br/>
+
+<b><spring:message code="cashOrder.foodDishes" /> : </b> 
+<jstl:if test="${fn:length(cashOrder.foodDisheses) ne 0}">
+<jstl:forEach var="item" items="${cashOrder.foodDisheses}">
+-<jstl:out value="${item.name}"></jstl:out>
+<br/>
+</jstl:forEach>
+</jstl:if>
+
+<b><spring:message code="cashOrder.choice" /> : </b>
+	<jstl:choose>
+		<jstl:when test="${cashOrder.choice eq 0}">
+			<spring:message code="cashOrder.takeAway" /> 
+		</jstl:when>
+		
+		<jstl:otherwise>
+			<spring:message code="cashOrder.send" />
+		</jstl:otherwise>
+	</jstl:choose>
+<br/>
+<b><spring:message code="cashOrder.price" /> : </b> <jstl:out value="${cashOrder.totalPrice}"></jstl:out> <br/>
+<br/>
+
+<form:form action="cashOrder/dealer/edit.do" modelAttribute="cashOrder">
+
+<jstl:if test="${not empty exception}">
+		<p style="color:red"> <spring:message code="cashOrder.error" /> </p>
+</jstl:if>
+
+<form:hidden path="id"/>
+<form:hidden path="version"/>
+
+
+<form:label path="status"><spring:message code="cashOrder.status" />:</form:label>
+<form:select path="status" id="status" onchange="javascript: reloadDealers()">
+		<form:option value="3" label="Acceptance" />
+		<form:option value="2" label="Delivered" />		
+	</form:select>
+	<form:errors path="status"/>
+
+<br/>
+<input type="submit" name="save" 
+	value="<spring:message code="cashOrder.save" />" />
+	
+<input type="button" name="cancel" value="<spring:message code="cashOrder.cancel" />"
+			onclick="javascript: relativeRedir('cashOrder/dealer/list.do');" />
+
+
+</form:form>
 
 <script type="text/javascript">
 		function reloadDealers() {

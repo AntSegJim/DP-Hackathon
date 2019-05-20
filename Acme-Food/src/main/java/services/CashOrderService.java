@@ -102,12 +102,14 @@ public class CashOrderService {
 			//			}
 
 		} else if (cashOrder.getId() != 0 && user.getAuthorities().iterator().next().getAuthority().equals("DEALER")) {
+			final CashOrder older = this.cashOrderRepositoty.findOne(cashOrder.getId());
+
 			//Ser el mismo dealer que esta en el pedido
 			Assert.isTrue(cashOrder.getDealer().equals(this.actorService.getActorByUserAccount(user.getId())));
 			//Pertener al restaurante
 			Assert.isTrue(cashOrder.getDealer().getRestaurant().equals(cashOrder.getRestaurant()));
 			//Que el pedido este aceptado
-			Assert.isTrue(cashOrder.getStatus() == 3);
+			Assert.isTrue(older.getStatus() == 3);
 			//Que este seleccionada la opcion de llevar a su domicilio
 			Assert.isTrue(cashOrder.getChoice() == 1);
 			//Que este fuera de draftMode
