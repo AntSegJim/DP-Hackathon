@@ -56,7 +56,7 @@ public class CashOrderDealerController {
 
 			cashOrder = this.cashOrderService.findOne(cashOrderId);
 			Assert.notNull(cashOrder);
-			Assert.notNull(cashOrder.getStatus() == 3);
+			Assert.isTrue(cashOrder.getStatus() == 3);
 
 			final UserAccount user = LoginService.getPrincipal();
 			final Actor a = this.actorService.getActorByUserAccount(user.getId());
