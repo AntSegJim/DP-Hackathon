@@ -39,7 +39,7 @@ public class OfferService {
 		final Offer offer = new Offer();
 		final UserAccount user = this.actorS.getActorLogged().getUserAccount();
 		offer.setTitle("");
-		offer.setTotalPrice(0);
+		offer.setTotalPrice(0.0);
 		offer.setRestaurant(this.restaurantRepository.getRestaurantByUserAccount(user.getId()));
 		offer.setFoodDisheses(new HashSet<FoodDishes>());
 		return offer;
@@ -63,6 +63,11 @@ public class OfferService {
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT"));
 		Assert.isTrue(offer.getRestaurant().equals(this.restaurantRepository.getRestaurantByUserAccount(userAccount.getId())));
 		Assert.isTrue(offer.getFoodDisheses().size() >= 2);
+		//Assert.isTrue(offer.getTotalPrice() < this.getSumaPrecioPlatosByOffer(offer.getId()));
+		Double res = 0.;
+		for (final FoodDishes f : offer.getFoodDisheses())
+			res = res + f.getPrice();
+		Assert.isTrue(offer.getTotalPrice() < res);
 		final Offer offerSave = this.offerRepository.save(offer);
 		return offerSave;
 	}
@@ -92,8 +97,10 @@ public class OfferService {
 			o.setRestaurant(res.getRestaurant());
 			o.setFoodDisheses(offer.getFoodDisheses());
 			this.validator.validate(o, binding);
+
 			if (binding.hasErrors())
 				throw new ValidationException();
+
 			res = o;
 		}
 		return res;
@@ -103,4 +110,7 @@ public class OfferService {
 		return this.offerRepository.getOffersByRestaurant(restaurantId);
 	}
 
+	public Double getSumaPrecioPlatosByOffer(final Integer offerId) {
+		return this.offerRepository.getPrecioPlatosOferta(offerId);
+	}
 }

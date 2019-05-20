@@ -20,17 +20,18 @@
 
 <security:authorize access="hasRole('RESTAURANT')">
 <form:form action="offer/restaurant/edit.do" modelAttribute="offer">
-
+ 
 <jstl:if test="${not empty exception}">
 		<p style="color:red"> <spring:message code="offer.error" /> </p>
 </jstl:if>
+
 
 <form:hidden path="id"/>
 <form:hidden path="version"/>
 
 <acme:textbox code="offer.title" path="title"/>
 <acme:textbox code="offer.totalPrice" path="totalPrice"/>
-<acme:multipleSelect items="${foodDisheses}" itemLabel="description" code="offer.foodDishes.name" path="foodDisheses"/>
+<acme:selectWithoutNullOption items="${foodDisheses}" itemLabel="description" code="offer.foodDishes.name" path="foodDisheses"/>
 
 <br/>
 <input type="submit" name="save" value="<spring:message code="save" />" />

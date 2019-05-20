@@ -678,7 +678,7 @@
 	<!-- Offer -->
 	<bean id="offer1" class="domain.Offer">
 		<property name="title" value="title1"/>
-		<property name="totalPrice" value="6"/>
+		<property name="totalPrice" value="6.0"/>
 		<property name="restaurant" ref="restaurant1"/>
 		<property name="foodDisheses">
 			<list>
