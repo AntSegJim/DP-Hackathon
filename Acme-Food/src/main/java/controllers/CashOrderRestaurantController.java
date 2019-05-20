@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,4 +71,21 @@ public class CashOrderRestaurantController extends AbstractController {
 		return result;
 
 	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView edit(final CashOrder cashOrder, final BindingResult binding) {
+		ModelAndView result;
+
+		final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
+		if (!binding.hasErrors()) {
+			this.cashOrderService.save(pedido);
+			result = new ModelAndView("redirect:list.do");
+		} else {
+			result = new ModelAndView("cashOrder/edit2");
+			result.addObject("cashOrder", cashOrder);
+		}
+
+		return result;
+	}
+
 }

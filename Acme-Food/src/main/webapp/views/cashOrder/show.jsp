@@ -33,25 +33,25 @@
 		</jstl:otherwise>
 	</jstl:choose>
 <br/>
-<b><spring:message code="cashOrder.status" /> : </b> <jstl:out value="${cashOrder.status}"></jstl:out> <br/>
-	<jstl:choose>
-		<jstl:when test="${row.status eq 0}">
-			<spring:message code="cashOrder.pending" /> 
-		</jstl:when>
+<b><spring:message code="cashOrder.status" /> : </b>
+		<jstl:choose>
+			<jstl:when test="${cashOrder.status eq 0}">
+				<spring:message code="cashOrder.pending" /> 
+			</jstl:when>
 		
-		<jstl:when test="${row.status eq 1}">
-			<spring:message code="cashOrder.rejected" />
-		</jstl:when>
+			<jstl:when test="${cashOrder.status eq 1}">
+				<spring:message code="cashOrder.rejected" />
+			</jstl:when>
 		
-		<jstl:when test="${row.status eq 2}">
-			<spring:message code="cashOrder.delivered" />
-		</jstl:when>
+			<jstl:when test="${cashOrder.status eq 2}">
+				<spring:message code="cashOrder.delivered" />
+			</jstl:when>
 		
-		<jstl:otherwise>
-			<spring:message code="cashOrder.acceptance" />
-		</jstl:otherwise>
-	</jstl:choose>
-<br/>
+			<jstl:otherwise>
+				<spring:message code="cashOrder.acceptance" />
+			</jstl:otherwise>
+		</jstl:choose>
+	<br/>
 <b><spring:message code="cashOrder.restaurant" /> : </b> <jstl:out value="${cashOrder.restaurant.comercialName}"></jstl:out>, <jstl:out value="${cashOrder.restaurant.speciality}"></jstl:out> <br/>
 <b><spring:message code="cashOrder.dealer" /> : </b> 
 <jstl:if test="${row.dealer.name eq null }">

@@ -61,46 +61,11 @@
 
 <security:authorize access="hasRole('RESTAURANT')">
 
+<b><spring:message code="cashOrder.customer" /> : </b><jstl:out value="${cashOrder.customer.name}"></jstl:out> <br/>
 <b><spring:message code="cashOrder.ticker" /> : </b> <jstl:out value="${cashOrder.ticker}"></jstl:out> <br/>
 <b><spring:message code="cashOrder.moment" /> : </b> <fmt:formatDate value="${cashOrder.moment }" pattern="yyyy-MM-dd HH:mm" /><br/>
 <b><spring:message code="cashOrder.SenderMoment" /> : </b> <fmt:formatDate value="${cashOrder.senderMoment }" pattern="yyyy-MM-dd HH:mm" /><br/>
-<b><spring:message code="cashOrder.draftMode" /> : </b> 
-<jstl:choose>
-		<jstl:when test="${row.draftMode eq 1}">
-			<spring:message code="cashOrder.YesDraftMode" /> 
-		</jstl:when>
-		<jstl:otherwise>
-			<spring:message code="cashOrder.NoDraftMode" />
-		</jstl:otherwise>
-	</jstl:choose>
-<br/>
-<b><spring:message code="cashOrder.status" /> : </b> <jstl:out value="${cashOrder.status}"></jstl:out> <br/>
-	<jstl:choose>
-		<jstl:when test="${row.status eq 0}">
-			<spring:message code="cashOrder.pending" /> 
-		</jstl:when>
-		
-		<jstl:when test="${row.status eq 1}">
-			<spring:message code="cashOrder.rejected" />
-		</jstl:when>
-		
-		<jstl:when test="${row.status eq 2}">
-			<spring:message code="cashOrder.delivered" />
-		</jstl:when>
-		
-		<jstl:otherwise>
-			<spring:message code="cashOrder.acceptance" />
-		</jstl:otherwise>
-	</jstl:choose>
-<br/>
-<b><spring:message code="cashOrder.dealer" /> : </b> 
-<jstl:if test="${row.dealer.name eq null }">
--
-</jstl:if>
-<jstl:if test="${row.dealer.name ne null }">
-	<spring:message code="cashOrder.draftMode" /> 
-</jstl:if>
- <br/>
+
 <b><spring:message code="cashOrder.foodDishes" /> : </b> 
 <jstl:if test="${fn:length(cashOrder.foodDisheses) ne 0}">
 <jstl:forEach var="item" items="${cashOrder.foodDisheses}">
@@ -108,10 +73,22 @@
 <br/>
 </jstl:forEach>
 </jstl:if>
+
+<b><spring:message code="cashOrder.choice" /> : </b>
+	<jstl:choose>
+		<jstl:when test="${cashOrder.status eq 0}">
+			<spring:message code="cashOrder.takeAway" /> 
+		</jstl:when>
+		
+		<jstl:otherwise>
+			<spring:message code="cashOrder.send" />
+		</jstl:otherwise>
+	</jstl:choose>
+<br/>
 <b><spring:message code="cashOrder.price" /> : </b> <jstl:out value="${cashOrder.totalPrice}"></jstl:out> <br/>
 <br/>
 
-<form:form action="cashOrder/restaurant/edit2.do" modelAttribute="cashOrder">
+<form:form action="cashOrder/restaurant/edit.do" modelAttribute="cashOrder">
 
 <jstl:if test="${not empty exception}">
 		<p style="color:red"> <spring:message code="cashOrder.error" /> </p>
