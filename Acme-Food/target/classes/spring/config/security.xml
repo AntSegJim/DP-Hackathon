@@ -68,6 +68,7 @@
 		 <security:intercept-url pattern="/cashOrder/restaurant/list.do" access="hasRole('RESTAURANT')" /> 
 		 <security:intercept-url pattern="/cashOrder/restaurant/edit.do" access="hasRole('RESTAURANT')" /> 
 		 <security:intercept-url pattern="/cashOrder/restaurant/reloadDealers.do" access="hasRole('RESTAURANT')" /> 
+		 <security:intercept-url pattern="/cashOrder/dealer/list.do" access="hasRole('DEALER')" /> 
 		 
 		 
 		<security:intercept-url pattern="/foodDishes/restaurant/list.do" access="hasRole('RESTAURANT')" /> 

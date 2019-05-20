@@ -73,18 +73,26 @@ public class CashOrderService {
 		return this.cashOrderRepositoty.getCashOrderByRestaurant(id);
 	}
 
+	public Collection<CashOrder> findByDealer(final Integer id) {
+		return this.cashOrderRepositoty.getCashOrderByDealer(id);
+	}
+
 	public CashOrder save(final CashOrder cashOrder) {
 		CashOrder res;
 		final UserAccount user = LoginService.getPrincipal();
 		if (cashOrder.getId() != 0 && user.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER")) {
+			Assert.isTrue(cashOrder.getCustomer().equals(this.actorService.getActorByUserAccount(user.getId())));
+			Assert.isTrue(cashOrder.getStatus() == 0);
 			final CashOrder older = this.cashOrderRepositoty.findOne(cashOrder.getId());
 			Assert.isTrue(older.getDraftMode() == 1, "esta en draftMode");
 		}
 
-		if (cashOrder.getId() != 0 && user.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT"))
+		if (cashOrder.getId() != 0 && user.getAuthorities().iterator().next().getAuthority().equals("RESTAURANT")) {
+			Assert.isTrue(cashOrder.getRestaurant().equals(this.actorService.getActorByUserAccount(user.getId())));
+
 			if (cashOrder.getChoice() == 0)
 				Assert.isTrue(cashOrder.getDealer() == null);
-
+		}
 		cashOrder.setTotalPrice(this.getTotalPrice(cashOrder));
 
 		res = this.cashOrderRepositoty.save(cashOrder);

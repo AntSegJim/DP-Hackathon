@@ -117,6 +117,7 @@ public class CashOrderCustomerController extends AbstractController {
 			cashOrder = this.cashOrderService.findOne(cashOrderId);
 			Assert.notNull(cashOrder);
 			Assert.isTrue(cashOrder.getDraftMode() == 1);
+			Assert.isTrue(cashOrder.getStatus() == 0);
 			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(cashOrder.getRestaurant().getId());
 
 			result = new ModelAndView("cashOrder/edit2");

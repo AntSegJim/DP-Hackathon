@@ -702,8 +702,8 @@
 	
 	<bean id="cashOrder2" class="domain.CashOrder">
 	
-		<property name="status" value="0"/>
-		<property name="draftMode" value="1"/>
+		<property name="status" value="3"/>
+		<property name="draftMode" value="0"/>
 		<property name="moment" value="05/12/2019 12:00"/>
 		<property name="totalPrice" value="56.2"/>
 		<property name="senderMoment" value="11/12/2019 13:00"/>
@@ -732,7 +732,7 @@
 		<property name="ticker" value="yuty-431532"/>
 		<property name="customer" ref="customer1"/>
 		<property name="restaurant" ref="restaurant1"/>
-		<property name="dealer" ref="dealer2" />
+		<property name="dealer"> <null/> </property>
 		<property name="foodDisheses"> 
 			<list>
 				<ref bean="foodDishes1" />

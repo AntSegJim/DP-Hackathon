@@ -49,6 +49,10 @@
 			<li><a href="finder/customer/edit.do"><spring:message code="master.page.finder" /></a></li>
 		</security:authorize>
 		
+		<security:authorize access="hasRole('DEALER')">
+			<li><a href="cashOrder/dealer/list.do"><spring:message code="master.page.cashOrder" /></a></li>
+		</security:authorize>
+		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 			<li><a class="fNiv"><spring:message	code="master.page.register" /></a>
