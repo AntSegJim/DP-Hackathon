@@ -18,6 +18,7 @@ import repositories.CashOrderRepository;
 import repositories.RestaurantRepository;
 import security.LoginService;
 import security.UserAccount;
+import domain.Actor;
 import domain.CashOrder;
 import domain.Customer;
 import domain.FoodDishes;
@@ -123,6 +124,17 @@ public class CashOrderService {
 
 		res = this.cashOrderRepositoty.save(cashOrder);
 		return res;
+	}
+
+	public void delete(final CashOrder cashOrder) {
+		final UserAccount user = LoginService.getPrincipal();
+		final Actor a = this.actorService.getActorByUserAccount(user.getId());
+
+		Assert.isTrue(cashOrder.getCustomer().equals(a));
+		Assert.isTrue(cashOrder.getDraftMode() == 1);
+		Assert.isTrue(cashOrder.getStatus() == 0);
+
+		this.cashOrderRepositoty.delete(cashOrder);
 	}
 
 	//RECONSTRUCT

@@ -229,4 +229,41 @@ public class CashOrderCustomerController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/edit2", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(final CashOrder cashOrder, final BindingResult binding) {
+		ModelAndView result;
+
+		try {
+			final CashOrder pedido = this.cashOrderService.findOne(cashOrder.getId());
+
+			if (!binding.hasErrors()) {
+				this.cashOrderService.delete(pedido);
+				result = new ModelAndView("redirect:list.do");
+			} else {
+				Collection<Offer> offers;
+				Collection<FoodDishes> foodDishes;
+				offers = this.offerService.getOffersByRestaurant(pedido.getRestaurant().getId());
+				foodDishes = this.foodDishesService.findFoodDishesByRestaurant(pedido.getRestaurant().getId());
+				result = new ModelAndView("cashOrder/edit2");
+				result.addObject("cashOrder", cashOrder);
+				result.addObject("foodDishes", foodDishes);
+				result.addObject("offers", offers);
+			}
+		} catch (final Exception e) {
+			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
+
+			Collection<Offer> offers;
+			Collection<FoodDishes> foodDishes;
+			offers = this.offerService.getOffersByRestaurant(pedido.getRestaurant().getId());
+			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(pedido.getRestaurant().getId());
+			result = new ModelAndView("cashOrder/edit2");
+			result.addObject("cashOrder", cashOrder);
+			result.addObject("foodDishes", foodDishes);
+			result.addObject("offers", offers);
+			result.addObject("exception", e);
+		}
+
+		return result;
+	}
+
 }

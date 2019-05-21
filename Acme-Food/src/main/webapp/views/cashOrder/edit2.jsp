@@ -53,8 +53,10 @@
 	
 <input type="button" name="cancel" value="<spring:message code="cashOrder.cancel" />"
 			onclick="javascript: relativeRedir('cashOrder/customer/list.do');" />
-
-
+<jstl:if test="${cashOrder.id ne 0 }">
+<input type="submit" name="delete" 
+	value="<spring:message code="cashOrder.delete" />" />
+	</jstl:if>
 </form:form>
 
 
