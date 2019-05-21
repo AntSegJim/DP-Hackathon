@@ -36,6 +36,8 @@ public class RestaurantService {
 	@Autowired
 	private ActorService				actorService;
 	@Autowired
+	private CustomerService				customerService;
+	@Autowired
 	private Validator					validator;
 
 
@@ -257,4 +259,7 @@ public class RestaurantService {
 		return this.restaurantRepository.getRestaurantWithFood();
 	}
 
+	public Collection<Restaurant> getAllRestaurantWhereIHaveDoneAOrder() {
+		return this.restaurantRepository.getAllRestaurantWhereIHaveDoneAOrder(this.customerService.getCustomerUserAccount(LoginService.getPrincipal().getId()).getId());
+	}
 }

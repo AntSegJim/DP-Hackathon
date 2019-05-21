@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.RatingService;
+import services.RestaurantService;
 import domain.Rating;
 
 @Controller
@@ -19,7 +20,9 @@ import domain.Rating;
 public class RatingCustomerController {
 
 	@Autowired
-	private RatingService	ratingService;
+	private RatingService		ratingService;
+	@Autowired
+	private RestaurantService	restaurantService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -51,6 +54,7 @@ public class RatingCustomerController {
 
 		result = new ModelAndView("rating/edit");
 		result.addObject("rating", rating);
+		result.addObject("restaurants", this.restaurantService.getAllRestaurantWhereIHaveDoneAOrder());
 		return result;
 
 	}
