@@ -190,6 +190,7 @@ public class CashOrderService {
 				copy.setTotalPrice(res.getTotalPrice());
 				copy.setSenderMoment(res.getSenderMoment());
 				copy.setChoice(res.getChoice());
+				copy.setOffers(res.getOffers());
 
 				this.validator.validate(copy, binding);
 
@@ -209,6 +210,7 @@ public class CashOrderService {
 				copy.setTotalPrice(res.getTotalPrice());
 				copy.setSenderMoment(res.getSenderMoment());
 				copy.setChoice(res.getChoice());
+				copy.setOffers(res.getOffers());
 
 				this.validator.validate(copy, binding);
 

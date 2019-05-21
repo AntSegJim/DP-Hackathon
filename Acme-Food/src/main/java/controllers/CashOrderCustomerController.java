@@ -19,7 +19,6 @@ import services.ActorService;
 import services.CashOrderService;
 import services.FoodDishesService;
 import services.OfferService;
-import services.RestaurantService;
 import domain.Actor;
 import domain.CashOrder;
 import domain.FoodDishes;
@@ -44,9 +43,6 @@ public class CashOrderCustomerController extends AbstractController {
 
 	@Autowired
 	private OfferService			offerService;
-
-	@Autowired
-	private RestaurantService		restaurantService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -128,14 +124,13 @@ public class CashOrderCustomerController extends AbstractController {
 			Collection<Offer> offers;
 			final UserAccount user = LoginService.getPrincipal();
 			final Actor a = this.actorService.getActorByUserAccount(user.getId());
-			final Restaurant r = this.restaurantService.getRestaurantByUserAccount(user.getId());
 
 			cashOrder = this.cashOrderService.findOne(cashOrderId);
 			Assert.notNull(cashOrder);
 			Assert.isTrue(cashOrder.getDraftMode() == 1);
 			Assert.isTrue(cashOrder.getStatus() == 0);
 			Assert.isTrue(cashOrder.getCustomer().equals(a));
-			offers = this.offerService.getOffersByRestaurant(r.getId());
+			offers = this.offerService.getOffersByRestaurant(cashOrder.getRestaurant().getId());
 			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(cashOrder.getRestaurant().getId());
 
 			result = new ModelAndView("cashOrder/edit2");
