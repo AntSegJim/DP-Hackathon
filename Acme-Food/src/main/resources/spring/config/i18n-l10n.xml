@@ -41,6 +41,7 @@
 		
 		<value>/views/finder/messages</value>
 		<value>/views/restaurant/messages</value>
+		<value>/views/rating/messages</value>
 				
 	</util:list>
 

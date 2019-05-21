@@ -56,6 +56,9 @@
 		<bean class="converters.StringToRestaurantConverter" />
 		<bean class="converters.RestaurantToStringConverter" />
 		
+		<bean class="converters.StringToRatingConverter" />
+		<bean class="converters.RatingToStringConverter" />
+		
 	</util:list>
 	
 </beans>
