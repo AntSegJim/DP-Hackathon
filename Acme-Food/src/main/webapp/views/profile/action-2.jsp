@@ -83,8 +83,8 @@
 	</fieldset>
 	
 	<fieldset>
-	 <legend><spring:message code="company.userAccount" /></legend>
-	<acme:textbox code="company.username" path="userAccount.username"/>	
+	 <legend><spring:message code="actor.userAccount" /></legend>
+	<acme:textbox code="actor.username" path="userAccount.username"/>	
 	<acme:password code="profile.pass1" path="userAccount.password"/>
 	<acme:password code="profile.pass2" path="password"/>
 	</fieldset>

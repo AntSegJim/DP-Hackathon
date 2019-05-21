@@ -21,7 +21,7 @@
 
 <security:authorize access="isAuthenticated()">
 
-<img src="<jstl:out value='${actor.photo }'/> ">  <br/>
+<img src="<jstl:out value='${actor.photo}'/> ">  <br/>
 <br/>
 <fieldset>
 	<legend><spring:message code="profile.personalDatas" /></legend>	
@@ -32,7 +32,7 @@
 <b><spring:message code="profile.action.2.phone" /></b> <jstl:out value="${actor.phone }"/> <br/>
 <b><spring:message code="profile.action.2.address" /></b> <jstl:out value="${actor.address }"/> <br/>
 
-<security:authorize access="hasRole('COMPANY')">
+<!--<security:authorize access="hasRole('COMPANY')">
 <b><spring:message code="profile.company.nameCompany" /></b> <jstl:out value="${actor.nameCompany }"/> <br/>
 <b><spring:message code="profile.company.Score" /></b> <jstl:out value="${actor.totalScore }"/> <br/>
 </security:authorize>
@@ -47,7 +47,7 @@
 <br/>
 </jstl:forEach>
 
-</security:authorize>
+</security:authorize>-->
 
 
 </fieldset>
@@ -66,7 +66,7 @@
 
 
 	<fieldset>
-	 <legend><spring:message code="company.userAccount" /></legend>
+	 <legend><spring:message code="actor.userAccount" /></legend>
 	 <b><spring:message code="see.username" /></b> <jstl:out value="${actor.userAccount.username }"/> <br/>
 	 </fieldset>
 	<br />
