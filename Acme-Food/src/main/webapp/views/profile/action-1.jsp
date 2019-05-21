@@ -45,7 +45,7 @@
 
 
 
-
+<security:authorize access="hasRole('CUSTOMER')">
 <fieldset>
 	 <legend><spring:message code="creditCard.Data" /></legend>
 	 <b><spring:message code="profile.creditCard.brandName" /> </b> <jstl:out value="${creditCard.brandName}"/> <br/>
@@ -57,6 +57,7 @@
 	 
 	 <br />
 	</fieldset>
+	</security:authorize>
 
 
 	<fieldset>
@@ -81,8 +82,8 @@
 </security:authorize>
 
 
-<security:authorize access="hasRole('COMPANY')">
-<form action="profile/edit-company.do">
+<security:authorize access="hasRole('CUSTOMER')">
+<form action="profile/edit-customer.do">
     <input type="submit" value="<spring:message code="profile.edit.profile" />" />
 </form>
 </security:authorize>

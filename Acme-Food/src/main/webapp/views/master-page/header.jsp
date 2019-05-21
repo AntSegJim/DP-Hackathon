@@ -67,7 +67,7 @@
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
-			<li><a href="notification/actor/list.do"><spring:message	code="master.page.notification" /></a>
+			<li><a href="notification/actor/list.do"><spring:message code="master.page.notification" /></a>
 		
 			<li>
 				<a class="fNiv"> 

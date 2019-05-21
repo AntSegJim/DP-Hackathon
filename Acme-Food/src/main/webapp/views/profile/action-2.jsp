@@ -70,7 +70,7 @@
 	</security:authorize>
 	</fieldset>
 	<br />
-	
+	<security:authorize access="hasRole('CUSTOMER')">
 	<fieldset>
 	 <legend><spring:message code="profile.creditCard.Data" /></legend>
 	<acme:textbox code="creditCard.brandName" path="brandName"/>
@@ -81,6 +81,7 @@
 	<acme:textbox code="creditCard.CW" path="CW"/>
 	<br />
 	</fieldset>
+		</security:authorize>
 	
 	<fieldset>
 	 <legend><spring:message code="actor.userAccount" /></legend>
