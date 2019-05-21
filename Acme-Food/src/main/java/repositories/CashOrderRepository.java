@@ -22,10 +22,7 @@ public interface CashOrderRepository extends JpaRepository<CashOrder, Integer> {
 	@Query("select co from CashOrder co where co.dealer.id=?1 and co.choice=1 and co.status=3 and co.draftMode=0")
 	public Collection<CashOrder> getCashOrderByDealer(Integer id);
 
-	@Query(value = "select date_add(NOW(), INTERVAL 30 MINUTE)", nativeQuery = true)
-	public Date getMoreHour();
-
-	@Query(value = "select date_add(NOW(), INTERVAL 29 MINUTE)", nativeQuery = true)
-	public Date getMoreHourR();
+	@Query(value = "select date_add(NOW(), INTERVAL ?1 MINUTE)", nativeQuery = true)
+	public Date getMoreHour(Integer time);
 
 }

@@ -48,7 +48,7 @@ public class CashOrderService {
 		cashOrder.setDraftMode(1);
 		cashOrder.setMoment(new Date());
 		cashOrder.setTotalPrice(0.);
-		cashOrder.setSenderMoment(this.cashOrderRepositoty.getMoreHour());
+		cashOrder.setSenderMoment(new Date());
 		cashOrder.setChoice(0);
 		cashOrder.setTicker("");
 		cashOrder.setCustomer(new Customer());
@@ -143,7 +143,7 @@ public class CashOrderService {
 			cashOrder.setTotalPrice(0.0);
 			cashOrder.setRestaurant(this.restaurantRepository.findOne(id));
 
-			if (!cashOrder.getSenderMoment().after(this.cashOrderRepositoty.getMoreHourR()))
+			if (!cashOrder.getSenderMoment().after(this.cashOrderRepositoty.getMoreHour(cashOrder.getRestaurant().getOrderTime())))
 				binding.rejectValue("senderMoment", "NoTime");
 
 			if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
@@ -175,7 +175,7 @@ public class CashOrderService {
 				if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
 					binding.rejectValue("foodDisheses", "NoFood");
 
-				if (!cashOrder.getSenderMoment().after(this.cashOrderRepositoty.getMoreHourR()))
+				if (!cashOrder.getSenderMoment().after(this.cashOrderRepositoty.getMoreHour(cashOrder.getRestaurant().getOrderTime())))
 					binding.rejectValue("senderMoment", "NoTime");
 
 				this.validator.validate(copy, binding);
