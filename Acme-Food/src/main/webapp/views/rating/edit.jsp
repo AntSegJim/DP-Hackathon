@@ -24,10 +24,9 @@
 
 <form:hidden path="id"/>
 <form:hidden path="version"/>
-<acme:textbox code="foodDishes.name" path="valoration"/>
-<acme:textarea code="foodDishes.description" path="comment"/>
-
-<form:label path="type"><spring:message code="foodDishes.type" />:</form:label>
+<acme:textbox code="rating.valoration" path="valoration"/>
+<acme:textarea code="rating.comment" path="comment"/>
+<acme:select items="${restaurants}" itemLabel="commercialName" code="finder.nameRestaurante" path="restaurant"/>
 
 <input type="submit" name="save" value="<spring:message code="foodDishes.save" />" />
 
