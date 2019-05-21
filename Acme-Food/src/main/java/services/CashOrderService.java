@@ -252,7 +252,13 @@ public class CashOrderService {
 				for (final Offer offer : cashOrder.getOffers())
 					res = res + offer.getTotalPrice();
 		} catch (final NullPointerException opps) {
-			res = cashOrder.getTotalPrice();
+			if (cashOrder.getFoodDisheses() == null)
+				for (final Offer offer : cashOrder.getOffers())
+					res = res + offer.getTotalPrice();
+			else if (cashOrder.getOffers() == null)
+				for (final FoodDishes food : cashOrder.getFoodDisheses())
+					res = res + food.getPrice();
+
 		}
 		return res;
 	}
