@@ -262,4 +262,8 @@ public class RestaurantService {
 	public Collection<Restaurant> getAllRestaurantWhereIHaveDoneAOrder() {
 		return this.restaurantRepository.getAllRestaurantWhereIHaveDoneAOrder(this.customerService.getCustomerUserAccount(LoginService.getPrincipal().getId()).getId());
 	}
+
+	public Collection<Restaurant> getAllMyRatings() {
+		return this.restaurantRepository.getAllMyRatings(this.customerService.getCustomerUserAccount(LoginService.getPrincipal().getId()).getId());
+	}
 }

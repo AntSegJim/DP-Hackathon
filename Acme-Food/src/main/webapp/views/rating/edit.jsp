@@ -26,9 +26,11 @@
 <form:hidden path="version"/>
 <acme:textbox code="rating.valoration" path="valoration"/>
 <acme:textarea code="rating.comment" path="comment"/>
-<acme:select items="${restaurants}" itemLabel="commercialName" code="finder.nameRestaurante" path="restaurant"/>
+<jstl:if test="${rating.id eq 0}">
+	<acme:select items="${restaurants}" itemLabel="comercialName" code="finder.nameRestaurante" path="restaurant" />
+</jstl:if>
 
-<input type="submit" name="save" value="<spring:message code="foodDishes.save" />" />
+		<input type="submit" name="save" value="<spring:message code="foodDishes.save" />" />
 
 <input type="button" name="cancel" value="<spring:message code="foodDishes.cancel" />"
 			onclick="javascript: relativeRedir('rating/customer/list.do');" />

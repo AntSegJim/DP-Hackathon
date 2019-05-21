@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.RatingService;
 import services.RestaurantService;
 import domain.Rating;
+import domain.Restaurant;
 
 @Controller
 @RequestMapping("/rating/customer")
@@ -54,7 +55,9 @@ public class RatingCustomerController {
 
 		result = new ModelAndView("rating/edit");
 		result.addObject("rating", rating);
-		result.addObject("restaurants", this.restaurantService.getAllRestaurantWhereIHaveDoneAOrder());
+		final Collection<Restaurant> restaurants = this.restaurantService.getAllRestaurantWhereIHaveDoneAOrder();
+		restaurants.removeAll(this.restaurantService.getAllMyRatings());
+		result.addObject("restaurants", restaurants);
 		return result;
 
 	}
@@ -81,6 +84,12 @@ public class RatingCustomerController {
 			if (!binding.hasErrors()) {
 				this.ratingService.save(rating);
 				result = new ModelAndView("redirect:list.do");
+			} else if (r.getId() == 0) {
+				result = new ModelAndView("rating/edit");
+				result.addObject("rating", rating);
+				final Collection<Restaurant> restaurants = this.restaurantService.getAllRestaurantWhereIHaveDoneAOrder();
+				restaurants.removeAll(this.restaurantService.getAllMyRatings());
+				result.addObject("restaurants", restaurants);
 			} else {
 				result = new ModelAndView("rating/edit");
 				result.addObject("rating", rating);

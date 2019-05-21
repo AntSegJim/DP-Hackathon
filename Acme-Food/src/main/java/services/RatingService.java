@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
@@ -21,6 +22,8 @@ public class RatingService {
 
 	@Autowired
 	private RatingRepository	ratingRepository;
+	@Autowired
+	private RestaurantService	restaurantService;
 	@Autowired
 	private CustomerService		customerService;
 	@Autowired
@@ -49,12 +52,16 @@ public class RatingService {
 
 	public Rating save(final Rating r) {
 		Rating saved;
-		if (r.getId() == 0)
+		if (r.getId() == 0) {
+			final Collection<Restaurant> restaurants = this.restaurantService.getAllRestaurantWhereIHaveDoneAOrder();
+			restaurants.removeAll(this.restaurantService.getAllMyRatings());
+			Assert.isTrue(restaurants.contains(r.getRestaurant()));
 			saved = this.ratingRepository.save(r);
-		else {
+		} else {
 			final Rating savedRating = this.ratingRepository.findOne(r.getId());
 			savedRating.setComment(r.getComment());
 			savedRating.setValoration(r.getValoration());
+			Assert.isTrue(this.restaurantService.getAllMyRatings().contains(r.getRestaurant()));
 			saved = this.ratingRepository.save(savedRating);
 		}
 		return saved;
@@ -75,7 +82,7 @@ public class RatingService {
 			copy.setComment(rating.getComment());
 			copy.setValoration(rating.getValoration());
 			copy.setCustomer(res.getCustomer());
-			copy.setRestaurant(rating.getRestaurant());
+			copy.setRestaurant(res.getRestaurant());
 
 			this.validator.validate(copy, binding);
 			res = copy;

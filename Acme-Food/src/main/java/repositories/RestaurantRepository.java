@@ -29,4 +29,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 
 	@Query("select distinct c.restaurant from CashOrder c where c.customer.id = ?1")
 	public Collection<Restaurant> getAllRestaurantWhereIHaveDoneAOrder(int customerId);
+
+	@Query("select r.restaurant from Rating r where r.customer.id = ?1")
+	public Collection<Restaurant> getAllMyRatings(int customerId);
 }
