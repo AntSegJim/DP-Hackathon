@@ -63,17 +63,6 @@
 	
 	
 	<fieldset>
-	 <legend><spring:message code="creditCard.Data" /></legend>
-	<acme:textbox code="creditCard.registro.brandName" path="brandName"/>
-	<acme:textbox code="creditCard.registro.holderName" path="holderName"/>		
-	<acme:textbox code="creditCard.registro.number" path="number"/>
-	<acme:textbox code="creditCard.registro.expirationMonth" path="expirationMonth"/>
-	<acme:textbox code="creditCard.registro.expirationYear" path="ExpirationYear"/>
-	<acme:textbox code="creditCard.registro.CW" path="CW"/>
-	<br />
-	</fieldset>
-	
-	<fieldset>
 	 <legend><spring:message code="administrator.userAccount" /></legend>
 	 
 	 <acme:textbox code="administrator.username" path="userAccount.username"/>
