@@ -146,6 +146,9 @@ public class CashOrderService {
 			if (!cashOrder.getSenderMoment().after(this.cashOrderRepositoty.getMoreHourR()))
 				binding.rejectValue("senderMoment", "NoTime");
 
+			if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
+				binding.rejectValue("foodDisheses", "NoFood");
+
 			this.validator.validate(res, binding);
 			return res;
 		} else {
@@ -168,6 +171,9 @@ public class CashOrderService {
 				copy.setTotalPrice(this.getTotalPrice(cashOrder));
 				copy.setSenderMoment(cashOrder.getSenderMoment());
 				copy.setChoice(cashOrder.getChoice());
+
+				if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
+					binding.rejectValue("foodDisheses", "NoFood");
 
 				if (!cashOrder.getSenderMoment().after(this.cashOrderRepositoty.getMoreHourR()))
 					binding.rejectValue("senderMoment", "NoTime");
@@ -252,12 +258,14 @@ public class CashOrderService {
 				for (final Offer offer : cashOrder.getOffers())
 					res = res + offer.getTotalPrice();
 		} catch (final NullPointerException opps) {
-			if (cashOrder.getFoodDisheses() == null)
+			if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() != null)
 				for (final Offer offer : cashOrder.getOffers())
 					res = res + offer.getTotalPrice();
-			else if (cashOrder.getOffers() == null)
+			else if (cashOrder.getOffers() == null && cashOrder.getFoodDisheses() != null)
 				for (final FoodDishes food : cashOrder.getFoodDisheses())
 					res = res + food.getPrice();
+			else if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
+				res = 0.0;
 
 		}
 		return res;
