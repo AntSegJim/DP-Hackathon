@@ -39,7 +39,18 @@ public class CashOrder extends DomainEntity {
 	private Restaurant				restaurant;
 	private Dealer					dealer;
 	private Collection<FoodDishes>	foodDisheses;
+	private Collection<Offer>		offers;
 
+
+	@ManyToMany
+	@Valid
+	public Collection<Offer> getOffers() {
+		return this.offers;
+	}
+
+	public void setOffers(final Collection<Offer> offers) {
+		this.offers = offers;
+	}
 
 	@ManyToOne(optional = false)
 	@Valid
