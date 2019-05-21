@@ -228,6 +228,7 @@
 		<property name="speciality" value="Especialidad1"/>
 		<property name="isBanned" value="0"/>
 		<property name="mediumScore" value="5"/>
+		<property name="orderTime" value="30"/>
 		
 	
 	
@@ -252,6 +253,7 @@
 		<property name="speciality" value="Especialidad2"/>
 		<property name="isBanned" value="0"/>
 		<property name="mediumScore" value="6"/>
+		<property name="orderTime" value="60"/>
 		
 	
 	</bean>
@@ -275,6 +277,7 @@
 		<property name="speciality" value="Especialidad3"/>
 		<property name="isBanned" value="0"/>
 		<property name="mediumScore" value="7"/>
+		<property name="orderTime" value="30"/>
 	
 	</bean>
 	
@@ -297,6 +300,7 @@
 		<property name="speciality" value="Especialidad4"/>
 		<property name="isBanned" value="0"/>
 		<property name="mediumScore" value="8"/>
+		<property name="orderTime" value="30"/>
 	
 	</bean>
 	

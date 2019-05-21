@@ -32,11 +32,15 @@
 <b><spring:message code="profile.action.2.phone" /></b> <jstl:out value="${actor.phone }"/> <br/>
 <b><spring:message code="profile.action.2.address" /></b> <jstl:out value="${actor.address }"/> <br/>
 
-<!--<security:authorize access="hasRole('COMPANY')">
-<b><spring:message code="profile.company.nameCompany" /></b> <jstl:out value="${actor.nameCompany }"/> <br/>
-<b><spring:message code="profile.company.Score" /></b> <jstl:out value="${actor.totalScore }"/> <br/>
+<security:authorize access="hasRole('RESTAURANT')">
+<b><spring:message code="profile.company.nameCompany" /></b> <jstl:out value="${actor.comercialName}"/> <br/>
+<b><spring:message code="profile.company.Score" /></b> <jstl:out value="${actor.speciality}"/> <br/>
+<b><spring:message code="profile.company.Score" /></b> <jstl:out value="${actor.mediumScore}"/> <br/>
+
+
+
 </security:authorize>
-<security:authorize access="hasRole('PROVIDER')">
+<!--<security:authorize access="hasRole('PROVIDER')">
 <b><spring:message code="profile.provider.make" /></b> <jstl:out value="${actor.make}"/> <br/>
 
 </security:authorize>

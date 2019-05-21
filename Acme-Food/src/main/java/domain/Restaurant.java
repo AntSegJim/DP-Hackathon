@@ -24,6 +24,7 @@ public class Restaurant extends Actor {
 	private String				speciality;
 	private int					isBanned;
 	private Integer				mediumScore;
+	private Integer				orderTime;
 
 
 	@Length(min = 4)
@@ -75,6 +76,15 @@ public class Restaurant extends Actor {
 
 	public void setRatings(final Collection<Rating> ratings) {
 		this.ratings = ratings;
+	}
+
+	@NotNull
+	public Integer getOrderTime() {
+		return this.orderTime;
+	}
+
+	public void setOrderTime(final Integer orderTime) {
+		this.orderTime = orderTime;
 	}
 
 }
