@@ -15,11 +15,35 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-<%@ page import="java.util.ArrayList"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script src="scripts/ajax.js"></script>
 
 
 <security:authorize access="hasRole('CUSTOMER')">
+
+
+<!--<display:table pagesize="${ ñapa }" name="restaurants" id="row" requestURI="#">
+
+<display:column property="comercialName" titleKey="restaurant.nameRestaurant" />
+<display:column property="speciality" titleKey="restaurant.speciality" />
+<display:column property="mediumScore" titleKey="restaurant.mediumScore" />
+<display:column >
+	<button type="button" onclick="watchMore(${row.id})"><b><spring:message code="restaurant.info" /></b></button>
+</display:column>
+</display:table>-->
+
+	<script type="text/javascript">
+		function watchMore(restaurantId) {
+			$.ajax({
+				type : 'GET',
+				url : 'finder/customer/watch-more.do?restaurantId='+restaurantId,
+				success : function(res) {
+					alert(res);
+				}
+			});
+		}
+	</script>
+
 	<jstl:if test="${fn:length(restaurants) eq 0 }">
 		<table>
 			<thead>
@@ -30,12 +54,13 @@
 			<tbody>
 				<tr style="background-color: #f2f2f2">
 					<td><spring:message code="finder.empty.message" /></td>
-
 				</tr>
 			</tbody>
 		</table>
 	</jstl:if>
 	
+	
+
 	<table>
 		<thead>
 			<tr>
@@ -53,7 +78,7 @@
 						<td><jstl:out value="${r.comercialName}" /></td>
 						<td><jstl:out value="${r.speciality}" /></td>
 						<td><jstl:out value="${r.mediumScore}" /></td>
-						<td><a href="#"><spring:message code="restaurant.info" /></a></td>
+						<td><button type="button" onclick="watchMore(${r.id})"><b><spring:message code="restaurant.info" /></b></button></td>
 					</tr>
 				</jstl:if>
 				<jstl:if test="${loopCounter.count%2 != 0 }">
@@ -61,7 +86,7 @@
 						<td><jstl:out value="${r.comercialName}" /></td>
 						<td><jstl:out value="${r.speciality}" /></td>
 						<td><jstl:out value="${r.mediumScore}" /></td>
-						<td><a href="#"><spring:message code="restaurant.info" /></a></td>
+						<td><button type="button" onclick="javascript:watchMore(${r.id})"><b><spring:message code="restaurant.info" /></b></button></td>
 					</tr>
 				</jstl:if>
 			</jstl:forEach>

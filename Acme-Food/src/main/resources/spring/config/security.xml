@@ -58,6 +58,7 @@
 		
 		<security:intercept-url pattern="/finder/customer/edit.do" access="hasRole('CUSTOMER')" />
 		<security:intercept-url pattern="/finder/customer/show.do" access="hasRole('CUSTOMER')" />
+		<security:intercept-url pattern="/finder/customer/watch-more.do" access="hasRole('CUSTOMER')" />
 		
 		 <security:intercept-url pattern="/cashOrder/customer/list.do" access="hasRole('CUSTOMER')" /> 
 		 <security:intercept-url pattern="/cashOrder/customer/show.do" access="hasRole('CUSTOMER')" /> 
