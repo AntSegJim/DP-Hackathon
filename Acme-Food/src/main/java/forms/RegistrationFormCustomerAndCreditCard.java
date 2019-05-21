@@ -157,7 +157,7 @@ public class RegistrationFormCustomerAndCreditCard extends Customer {
 
 	// Business methods -------------------------------------------------------
 
-	public RegistrationFormCustomerAndCreditCard createToProviderAndCreditCard() {
+	public RegistrationFormCustomerAndCreditCard createToCustomerAndCreditCard() {
 
 		final RegistrationFormCustomerAndCreditCard registrationForm = new RegistrationFormCustomerAndCreditCard();
 
@@ -185,7 +185,7 @@ public class RegistrationFormCustomerAndCreditCard extends Customer {
 		final UserAccount user = new UserAccount();
 		user.setAuthorities(new HashSet<Authority>());
 		final Authority ad = new Authority();
-		//ad.setAuthority(Authority.CUSTOMER);
+		ad.setAuthority(Authority.CUSTOMER);
 		user.getAuthorities().add(ad);
 
 		//NUEVO

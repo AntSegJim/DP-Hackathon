@@ -8,10 +8,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.CreditCardRepository;
 import domain.CreditCard;
+import domain.Customer;
+import forms.RegistrationFormCustomerAndCreditCard;
 
 @Service
 @Transactional
@@ -22,6 +25,9 @@ public class CreditCardService {
 
 	@Autowired
 	private AdministratorService	adminService;
+
+	@Autowired
+	private CustomerService			customerService;
 
 	@Autowired
 	private ActorService			actorService;
@@ -73,6 +79,53 @@ public class CreditCardService {
 
 	public CreditCard getCreditCardByNumber(final String number) {
 		return this.creditCardRepository.CreditCardByNumber(number);
+	}
+
+	public CreditCard reconstruct(final RegistrationFormCustomerAndCreditCard registrationForm, final BindingResult binding) {
+		CreditCard res = new CreditCard();
+
+		if (registrationForm.getId() == 0) {
+			res.setId(registrationForm.getId());
+			res.setVersion(registrationForm.getVersion());
+			res.setBrandName(registrationForm.getBrandName());
+			res.setHolderName(registrationForm.getHolderName());
+			res.setNumber(registrationForm.getNumber());
+			res.setExpirationMonth(registrationForm.getExpirationMonth());
+			res.setExpirationYear(registrationForm.getExpirationYear());
+			res.setCW(registrationForm.getCW());
+
+			final Collection<String> creditCardsNumbers = this.getAllNumbers();
+			if (creditCardsNumbers.contains(res.getNumber()))
+				binding.rejectValue("number", "NumeroRepetido");
+
+			this.validator.validate(res, binding);
+
+		} else {
+			Customer customer;
+			customer = this.customerService.findOne(registrationForm.getId());
+			res = customer.getCreditCard();
+			final CreditCard p = new CreditCard();
+			p.setId(res.getId());
+			p.setVersion(res.getVersion());
+			p.setBrandName(registrationForm.getBrandName());
+			p.setHolderName(registrationForm.getHolderName());
+			p.setNumber(registrationForm.getNumber());
+			p.setExpirationMonth(registrationForm.getExpirationMonth());
+			p.setExpirationYear(registrationForm.getExpirationYear());
+			p.setCW(registrationForm.getCW());
+
+			final Collection<String> creditCardsNumbers = this.getAllNumbers();
+			final CreditCard creditCard = this.findOne(res.getId());
+			final String number = creditCard.getNumber();
+			creditCardsNumbers.remove(number);
+			if (creditCardsNumbers.contains(p.getNumber()))
+				binding.rejectValue("number", "NumeroRepetido");
+
+			this.validator.validate(p, binding);
+			res = p;
+
+		}
+		return res;
 	}
 
 }

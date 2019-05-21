@@ -33,6 +33,8 @@ public class CustomerService {
 
 	@Autowired
 	private CustomerRepository			customerRepository;
+	@Autowired
+	private FinderService				finderService;
 
 	@Autowired
 	private CustomizableSystemService	customizableService;
@@ -150,7 +152,10 @@ public class CustomerService {
 			res.setSurnames(registrationForm.getSurnames());
 			res.setCreditCard(registrationForm.getCreditCard());
 			res.setRatings(registrationForm.getRatings());
-			res.setFinder(registrationForm.getFinder());
+
+			final Finder finder = this.finderService.create();
+			final Finder savedFinder = this.finderService.save(finder);
+			res.setFinder(savedFinder);
 
 			final Authority ad = new Authority();
 			final UserAccount user = new UserAccount();
