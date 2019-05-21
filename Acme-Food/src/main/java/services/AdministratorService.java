@@ -146,7 +146,7 @@ public class AdministratorService {
 			res.setPhone(registrationForm.getPhone());
 			res.setPhoto(registrationForm.getPhoto());
 			res.setSurnames(registrationForm.getSurnames());
-			res.setCreditCard(registrationForm.getCreditCard());
+
 			final Authority ad = new Authority();
 			final UserAccount user = new UserAccount();
 			user.setAuthorities(new HashSet<Authority>());
@@ -209,7 +209,6 @@ public class AdministratorService {
 			a.setPhone(registrationForm.getPhone());
 			a.setPhoto(registrationForm.getPhoto());
 			a.setSurnames(registrationForm.getSurnames());
-			a.setCreditCard(registrationForm.getCreditCard());
 
 			if (a.getPhone().length() <= 5)
 				a.setPhone("");

@@ -22,12 +22,12 @@ import org.hibernate.validator.constraints.Range;
 
 import security.Authority;
 import security.UserAccount;
-import domain.Actor;
 import domain.CreditCard;
+import domain.Customer;
 import domain.Finder;
 import domain.Rating;
 
-public class RegistrationFormCustomerAndCreditCard extends Actor {
+public class RegistrationFormCustomerAndCreditCard extends Customer {
 
 	// Constructors -----------------------------------------------------------
 
@@ -55,20 +55,24 @@ public class RegistrationFormCustomerAndCreditCard extends Actor {
 	private Finder				finder;
 
 
+	@Override
 	@OneToOne
 	@NotNull
 	public Finder getFinder() {
 		return this.finder;
 	}
 
+	@Override
 	public void setFinder(final Finder finder) {
 		this.finder = finder;
 	}
 
+	@Override
 	public Collection<Rating> getRatings() {
 		return this.ratings;
 	}
 
+	@Override
 	public void setRatings(final Collection<Rating> ratings) {
 		this.ratings = ratings;
 	}

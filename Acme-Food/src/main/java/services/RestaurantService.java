@@ -21,7 +21,6 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
-import domain.CreditCard;
 import domain.Rating;
 import domain.Restaurant;
 import forms.RegistrationFormRestaurantAndCreditCard;
@@ -52,7 +51,7 @@ public class RestaurantService {
 		res.setPhoto("");
 		res.setSurnames("");
 		res.setAddress("");
-		res.setCreditCard(new CreditCard());
+
 		res.setRatings(new HashSet<Rating>());
 		res.setComercialName("");
 		res.setSpeciality("");
@@ -97,7 +96,6 @@ public class RestaurantService {
 		Assert.isTrue(r.getSpeciality() != null && r.getSpeciality() != "", "Resturant.save -> spaciality  invalid");
 		Assert.isTrue(r != null && r.getName() != null && r.getSurnames() != null && r.getName() != "" && r.getUserAccount() != null && r.getEmail() != null && r.getEmail() != "", "Restaurant.save -> Name, Surname or email invalid");
 		Assert.isTrue(r.getVatNumber() != null, "Companny.save -> VatNumber  invalid");
-		Assert.isTrue(r.getCreditCard() != null, "Companny.save -> VatNumber  invalid");
 
 		final String regexEmail1 = "[^@]+@[^@]+\\.[a-zA-Z]{2,}";
 		final Pattern patternEmail1 = Pattern.compile(regexEmail1);
@@ -152,7 +150,7 @@ public class RestaurantService {
 			res.setPhone(registrationForm.getPhone());
 			res.setPhoto(registrationForm.getPhoto());
 			res.setSurnames(registrationForm.getSurnames());
-			res.setCreditCard(registrationForm.getCreditCard());
+
 			res.setRatings(registrationForm.getRatings());
 			res.setComercialName(registrationForm.getComercialName());
 			res.setSpeciality(registrationForm.getSpeciality());
@@ -220,7 +218,7 @@ public class RestaurantService {
 			p.setPhone(registrationForm.getPhone());
 			p.setPhoto(registrationForm.getPhoto());
 			p.setSurnames(registrationForm.getSurnames());
-			p.setCreditCard(registrationForm.getCreditCard());
+
 			p.setRatings(res.getRatings());
 			p.setComercialName(registrationForm.getComercialName());
 			p.setSpeciality(registrationForm.getSpeciality());
