@@ -44,6 +44,17 @@ public class RatingCustomerController {
 
 	}
 
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public ModelAndView create() {
+		final ModelAndView result;
+		final Rating rating = this.ratingService.create();
+
+		result = new ModelAndView("rating/edit");
+		result.addObject("rating", rating);
+		return result;
+
+	}
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final Integer ratingId) {
 		final ModelAndView result;

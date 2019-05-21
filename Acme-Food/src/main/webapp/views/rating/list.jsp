@@ -22,18 +22,17 @@
 <display:table pagesize="5" name="ratings" id="row" requestURI="rating/customer/list.do" >
 
 
-<display:column property="name" titleKey="foodDishes.name" class="${css}"/>/>
-<display:column property="description" titleKey="foodDishes.description" class="${css}"/>/>
-<display:column property="price" titleKey="foodDishes.price" class="${css}"/>/>
+<display:column property="restaurant.comercialName" titleKey="finder.nameRestaurante"/>
+<display:column property="valoration" titleKey="rating.valoration"/>
+<display:column property="comment" titleKey="rating.comment" />
 
 <display:column>
 	<a href="rating/customer/edit.do?ratingId=${row.id}"><spring:message code="rating.edit" /></a>
 </display:column>		
 </display:table>
 
-<!-- PENSAR EN COMO PONER ESTA PARTE AQUI CON UN SELECT O EN PEDIDO O EN RESTAURANTES O EN EL FINDER -->
 <input type="button" name="create" value="<spring:message code="rating.create" />"
-			onclick="javascript: relativeRedir('foodDishes/restaurant/create.do');" />
+			onclick="javascript: relativeRedir('rating/customer/create.do');" />
 
 </security:authorize>
 
