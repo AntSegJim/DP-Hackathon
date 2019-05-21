@@ -32,7 +32,6 @@ public class Actor extends DomainEntity {
 	private String		phone;
 	private String		address;
 	private UserAccount	userAccount;
-	private CreditCard	creditCard;
 
 
 	//Getters and Setters
@@ -107,17 +106,6 @@ public class Actor extends DomainEntity {
 
 	public void setAddress(final String address) {
 		this.address = address;
-	}
-
-	@Valid
-	@NotNull
-	@OneToOne(optional = false)
-	public CreditCard getCreditCard() {
-		return this.creditCard;
-	}
-
-	public void setCreditCard(final CreditCard creditCard) {
-		this.creditCard = creditCard;
 	}
 
 	@Valid

@@ -17,6 +17,7 @@ public class Customer extends Actor {
 
 	private Collection<Rating>	ratings;
 	private Finder				finder;
+	private CreditCard			creditCard;
 
 
 	@OneToOne
@@ -38,6 +39,17 @@ public class Customer extends Actor {
 
 	public void setRatings(final Collection<Rating> ratings) {
 		this.ratings = ratings;
+	}
+
+	@Valid
+	@NotNull
+	@OneToOne(optional = false)
+	public CreditCard getCreditCard() {
+		return this.creditCard;
+	}
+
+	public void setCreditCard(final CreditCard creditCard) {
+		this.creditCard = creditCard;
 	}
 
 }
