@@ -32,6 +32,7 @@
 
 <acme:textbox code="cashOrder.SenderMoment" path="senderMoment"/>
 <acme:selectWithoutNullOption items="${foodDishes}" itemLabel="name" code="cashOrder.foodDishes" path="foodDisheses"/>
+<acme:multipleSelect id="ofertas" items="${offers}" itemLabel="title" code="cashOrder.offer" path="offers"/>
 <form:label path="choice"><spring:message code="cashOrder.choice" />:</form:label>
 <form:select path="choice">
 		<form:option value="0" label="Take away" />	

@@ -68,6 +68,15 @@
 <br/>
 </jstl:forEach>
 </jstl:if>
+
+<b><spring:message code="cashOrder.offer" /> : </b> 
+<jstl:if test="${fn:length(cashOrder.offers) ne 0}">
+<jstl:forEach var="item" items="${cashOrder.offers}">
+-<jstl:out value="${item.title}"></jstl:out>
+<br/>
+</jstl:forEach>
+</jstl:if>
+ <br/>
 <b><spring:message code="cashOrder.choice" /> : </b> 
 <jstl:choose>
 		<jstl:when test="${cashOrder.choice eq 0}">

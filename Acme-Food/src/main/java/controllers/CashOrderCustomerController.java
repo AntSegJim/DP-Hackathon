@@ -18,9 +18,12 @@ import security.UserAccount;
 import services.ActorService;
 import services.CashOrderService;
 import services.FoodDishesService;
+import services.OfferService;
+import services.RestaurantService;
 import domain.Actor;
 import domain.CashOrder;
 import domain.FoodDishes;
+import domain.Offer;
 import domain.Restaurant;
 
 @Controller
@@ -38,6 +41,12 @@ public class CashOrderCustomerController extends AbstractController {
 
 	@Autowired
 	private FoodDishesService		foodDishesService;
+
+	@Autowired
+	private OfferService			offerService;
+
+	@Autowired
+	private RestaurantService		restaurantService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -88,6 +97,7 @@ public class CashOrderCustomerController extends AbstractController {
 
 		final CashOrder cashOrder;
 		Collection<FoodDishes> foodDishes;
+		Collection<Offer> offers;
 		Restaurant restaurant;
 
 		cashOrder = this.cashOrderService.create();
@@ -95,12 +105,14 @@ public class CashOrderCustomerController extends AbstractController {
 
 		restaurant = this.restaurantReposiroty.findOne(restaurantId);
 		foodDishes = this.foodDishesService.findFoodDishesByRestaurant(restaurant.getId());
+		offers = this.offerService.getOffersByRestaurant(restaurantId);
 
 		cashOrder.setRestaurant(restaurant);
 
 		result = new ModelAndView("cashOrder/edit");
 		result.addObject("cashOrder", cashOrder);
 		result.addObject("foodDishes", foodDishes);
+		result.addObject("offers", offers);
 		result.addObject("restaurant", restaurant);
 
 		return result;
@@ -113,19 +125,23 @@ public class CashOrderCustomerController extends AbstractController {
 		try {
 			final CashOrder cashOrder;
 			Collection<FoodDishes> foodDishes;
+			Collection<Offer> offers;
 			final UserAccount user = LoginService.getPrincipal();
 			final Actor a = this.actorService.getActorByUserAccount(user.getId());
+			final Restaurant r = this.restaurantService.getRestaurantByUserAccount(user.getId());
 
 			cashOrder = this.cashOrderService.findOne(cashOrderId);
 			Assert.notNull(cashOrder);
 			Assert.isTrue(cashOrder.getDraftMode() == 1);
 			Assert.isTrue(cashOrder.getStatus() == 0);
 			Assert.isTrue(cashOrder.getCustomer().equals(a));
+			offers = this.offerService.getOffersByRestaurant(r.getId());
 			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(cashOrder.getRestaurant().getId());
 
 			result = new ModelAndView("cashOrder/edit2");
 			result.addObject("cashOrder", cashOrder);
 			result.addObject("foodDishes", foodDishes);
+			result.addObject("offers", offers);
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:list.do");
 
@@ -150,21 +166,27 @@ public class CashOrderCustomerController extends AbstractController {
 				result = new ModelAndView("redirect:list.do");
 			} else {
 				final Restaurant r = this.restaurantReposiroty.findOne(restaurantId);
+				Collection<Offer> offers;
 				Collection<FoodDishes> foodDishes;
+				offers = this.offerService.getOffersByRestaurant(r.getId());
 				foodDishes = this.foodDishesService.findFoodDishesByRestaurant(r.getId());
 				result = new ModelAndView("cashOrder/edit");
 				result.addObject("cashOrder", cashOrder);
 				result.addObject("foodDishes", foodDishes);
+				result.addObject("offers", offers);
 				result.addObject("restaurant", r);
 			}
 		} catch (final Exception e) {
 			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
 
 			Collection<FoodDishes> foodDishes;
+			Collection<Offer> offers;
+			offers = this.offerService.getOffersByRestaurant(restaurantId);
 			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(pedido.getRestaurant().getId());
 			result = new ModelAndView("cashOrder/edit2");
 			result.addObject("cashOrder", cashOrder);
 			result.addObject("foodDishes", foodDishes);
+			result.addObject("offers", offers);
 			result.addObject("exception", e);
 
 		}
@@ -186,20 +208,26 @@ public class CashOrderCustomerController extends AbstractController {
 				this.cashOrderService.save(pedido);
 				result = new ModelAndView("redirect:list.do");
 			} else {
+				Collection<Offer> offers;
 				Collection<FoodDishes> foodDishes;
+				offers = this.offerService.getOffersByRestaurant(pedido.getRestaurant().getId());
 				foodDishes = this.foodDishesService.findFoodDishesByRestaurant(pedido.getRestaurant().getId());
 				result = new ModelAndView("cashOrder/edit2");
 				result.addObject("cashOrder", cashOrder);
 				result.addObject("foodDishes", foodDishes);
+				result.addObject("offers", offers);
 			}
 		} catch (final Exception e) {
 			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
 
+			Collection<Offer> offers;
 			Collection<FoodDishes> foodDishes;
+			offers = this.offerService.getOffersByRestaurant(pedido.getRestaurant().getId());
 			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(pedido.getRestaurant().getId());
 			result = new ModelAndView("cashOrder/edit2");
 			result.addObject("cashOrder", cashOrder);
 			result.addObject("foodDishes", foodDishes);
+			result.addObject("offers", offers);
 			result.addObject("exception", e);
 		}
 

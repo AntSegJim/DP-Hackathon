@@ -4,6 +4,7 @@ package services;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 
 import javax.transaction.Transactional;
 
@@ -20,6 +21,7 @@ import security.UserAccount;
 import domain.CashOrder;
 import domain.Customer;
 import domain.FoodDishes;
+import domain.Offer;
 import domain.Restaurant;
 
 @Service
@@ -53,6 +55,7 @@ public class CashOrderService {
 		cashOrder.setRestaurant(new Restaurant());
 		cashOrder.setDealer(null);
 		cashOrder.setFoodDisheses(new ArrayList<FoodDishes>());
+		cashOrder.setOffers(new HashSet<Offer>());
 
 		return cashOrder;
 	}
@@ -160,6 +163,7 @@ public class CashOrderService {
 				copy.setDealer(res.getDealer());
 
 				copy.setFoodDisheses(cashOrder.getFoodDisheses());
+				copy.setOffers(cashOrder.getOffers());
 				copy.setDraftMode(cashOrder.getDraftMode());
 				copy.setTotalPrice(this.getTotalPrice(cashOrder));
 				copy.setSenderMoment(cashOrder.getSenderMoment());
@@ -181,6 +185,7 @@ public class CashOrderService {
 				copy.setRestaurant(res.getRestaurant());
 				copy.setDealer(cashOrder.getDealer());
 				copy.setFoodDisheses(res.getFoodDisheses());
+				copy.setOffers(res.getOffers());
 				copy.setDraftMode(res.getDraftMode());
 				copy.setTotalPrice(res.getTotalPrice());
 				copy.setSenderMoment(res.getSenderMoment());
@@ -199,6 +204,7 @@ public class CashOrderService {
 				copy.setRestaurant(res.getRestaurant());
 				copy.setDealer(res.getDealer());
 				copy.setFoodDisheses(res.getFoodDisheses());
+				copy.setOffers(res.getOffers());
 				copy.setDraftMode(res.getDraftMode());
 				copy.setTotalPrice(res.getTotalPrice());
 				copy.setSenderMoment(res.getSenderMoment());
@@ -240,6 +246,9 @@ public class CashOrderService {
 			if (cashOrder.getFoodDisheses().size() > 0)
 				for (final FoodDishes food : cashOrder.getFoodDisheses())
 					res = res + food.getPrice();
+			if (cashOrder.getOffers().size() > 0)
+				for (final Offer offer : cashOrder.getOffers())
+					res = res + offer.getTotalPrice();
 		} catch (final NullPointerException opps) {
 			res = cashOrder.getTotalPrice();
 		}

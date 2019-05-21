@@ -31,6 +31,7 @@
 
 <acme:textbox code="cashOrder.SenderMoment" path="senderMoment"/>
 <acme:selectWithoutNullOption id="platos" items="${foodDishes}" itemLabel="name" code="cashOrder.foodDishes" path="foodDisheses" onchange="myFunction()"/>
+<acme:multipleSelect id="ofertas" items="${offers}" itemLabel="title" code="cashOrder.offer" path="offers" onchange="myFunction()"/>
 <form:label path="choice"><spring:message code="cashOrder.choice" />:</form:label>
 <form:select path="choice">
 		<form:option value="0" label="Take away" />	
@@ -63,8 +64,6 @@
 			precio += platos[x] + "<br>";
 		}
 		document.getElementById("precio").innerHTML = precio;
-
-
 	}
 </script>
 
