@@ -33,28 +33,18 @@
 <b><spring:message code="profile.action.2.address" /></b> <jstl:out value="${actor.address }"/> <br/>
 
 <security:authorize access="hasRole('RESTAURANT')">
-<b><spring:message code="profile.company.nameCompany" /></b> <jstl:out value="${actor.comercialName}"/> <br/>
-<b><spring:message code="profile.company.Score" /></b> <jstl:out value="${actor.speciality}"/> <br/>
-<b><spring:message code="profile.company.Score" /></b> <jstl:out value="${actor.mediumScore}"/> <br/>
-
+<b><spring:message code="profile.restaurant.comercialName" /></b> <jstl:out value="${actor.comercialName}"/> <br/>
+<b><spring:message code="profile.restaurant.speciality" /></b> <jstl:out value="${actor.speciality}"/> <br/>
+<b><spring:message code="profile.restaurant.mediumScore" /></b> <jstl:out value="${actor.mediumScore}"/> <br/>
+<b><spring:message code="profile.restaurant.orderTime" /></b> <jstl:out value="${actor.orderTime}"/> <br/>
 
 
 </security:authorize>
-<!--<security:authorize access="hasRole('PROVIDER')">
-<b><spring:message code="profile.provider.make" /></b> <jstl:out value="${actor.make}"/> <br/>
-
-</security:authorize>
-<security:authorize access="hasRole('AUDITOR')">
-<b><spring:message code="profile.auditor.positions" /></b>
-<jstl:forEach var="position" items="${actor.positions}">
-<jstl:out value="${position.title}"></jstl:out>
-<br/>
-</jstl:forEach>
-
-</security:authorize>-->
-
 
 </fieldset>
+
+
+
 
 <fieldset>
 	 <legend><spring:message code="creditCard.Data" /></legend>
