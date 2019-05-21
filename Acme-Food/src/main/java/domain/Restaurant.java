@@ -78,6 +78,7 @@ public class Restaurant extends Actor {
 		this.ratings = ratings;
 	}
 
+	@Range(min = 0)
 	@NotNull
 	public Integer getOrderTime() {
 		return this.orderTime;
