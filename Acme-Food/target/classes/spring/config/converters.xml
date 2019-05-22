@@ -59,6 +59,9 @@
 		<bean class="converters.StringToRatingConverter" />
 		<bean class="converters.RatingToStringConverter" />
 		
+		<bean class="converters.StringToDealerConverter" />
+		<bean class="converters.DealerToStringConverter" />
+		
 	</util:list>
 	
 </beans>
