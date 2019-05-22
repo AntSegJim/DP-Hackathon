@@ -2,6 +2,7 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -155,7 +156,7 @@ public class CashOrderService {
 			cashOrder.setTotalPrice(0.0);
 			cashOrder.setRestaurant(this.restaurantRepository.findOne(id));
 
-			if (!cashOrder.getSenderMoment().after(this.cashOrderRepositoty.getMoreHour(cashOrder.getRestaurant().getOrderTime())))
+			if (!cashOrder.getSenderMoment().after(this.fechaSumada(cashOrder.getRestaurant().getOrderTime())))
 				binding.rejectValue("senderMoment", "NoTime");
 
 			if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
@@ -187,7 +188,9 @@ public class CashOrderService {
 				if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
 					binding.rejectValue("foodDisheses", "NoFood");
 
-				if (!cashOrder.getSenderMoment().after(this.cashOrderRepositoty.getMoreHour(cashOrder.getRestaurant().getOrderTime())))
+				final Date date = this.fechaSumada((int) res.getRestaurant().getOrderTime());
+
+				if (!cashOrder.getSenderMoment().after(date))
 					binding.rejectValue("senderMoment", "NoTime");
 
 				this.validator.validate(copy, binding);
@@ -281,5 +284,14 @@ public class CashOrderService {
 
 		}
 		return res;
+	}
+
+	public Date fechaSumada(final Integer integer) {
+		final Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date()); //tuFechaBase es un Date;
+		calendar.add(Calendar.MINUTE, integer); //minutosASumar es int.
+		//lo que más quieras sumar
+		final Date fechaSalida = calendar.getTime(); //Y ya tienes la fecha sumada.
+		return fechaSalida;
 	}
 }
