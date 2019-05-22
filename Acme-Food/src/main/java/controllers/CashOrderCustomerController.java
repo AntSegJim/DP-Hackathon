@@ -150,11 +150,15 @@ public class CashOrderCustomerController extends AbstractController {
 		ModelAndView result;
 
 		try {
-			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, restaurantId);
+			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
+			pedido.setRestaurant(this.restaurantReposiroty.findOne(restaurantId));
 
 			final Integer dealers = this.restaurantReposiroty.getFreeDealerByRestaurant(pedido.getRestaurant().getId());
 			if (dealers == 0 && pedido.getChoice() == 1)
 				binding.rejectValue("choice", "NoFreeDealers");
+
+			if (!pedido.getSenderMoment().after(this.cashOrderService.fechaSumada(pedido.getRestaurant().getOrderTime())))
+				binding.rejectValue("senderMoment", "NoTime");
 
 			if (!binding.hasErrors()) {
 				this.cashOrderService.save(pedido);
@@ -172,12 +176,10 @@ public class CashOrderCustomerController extends AbstractController {
 				result.addObject("restaurant", r);
 			}
 		} catch (final Exception e) {
-			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
-
 			Collection<FoodDishes> foodDishes;
 			Collection<Offer> offers;
 			offers = this.offerService.getOffersByRestaurant(restaurantId);
-			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(pedido.getRestaurant().getId());
+			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(restaurantId);
 			result = new ModelAndView("cashOrder/edit2");
 			result.addObject("cashOrder", cashOrder);
 			result.addObject("foodDishes", foodDishes);
@@ -198,6 +200,9 @@ public class CashOrderCustomerController extends AbstractController {
 			final Integer dealers = this.restaurantReposiroty.getFreeDealerByRestaurant(pedido.getRestaurant().getId());
 			if (dealers == 0 && pedido.getChoice() == 1)
 				binding.rejectValue("choice", "NoFreeDealers");
+
+			if (!pedido.getSenderMoment().after(this.cashOrderService.fechaSumada(pedido.getRestaurant().getOrderTime())))
+				binding.rejectValue("senderMoment", "NoTime");
 
 			if (!binding.hasErrors()) {
 				this.cashOrderService.save(pedido);

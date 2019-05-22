@@ -154,10 +154,7 @@ public class CashOrderService {
 			cashOrder.setMoment(new Date());
 			cashOrder.setDealer(null);
 			cashOrder.setTotalPrice(0.0);
-			cashOrder.setRestaurant(this.restaurantRepository.findOne(id));
-
-			if (!cashOrder.getSenderMoment().after(this.fechaSumada(cashOrder.getRestaurant().getOrderTime())))
-				binding.rejectValue("senderMoment", "NoTime");
+			cashOrder.setRestaurant(new Restaurant());
 
 			if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
 				binding.rejectValue("foodDisheses", "NoFood");
@@ -187,11 +184,6 @@ public class CashOrderService {
 
 				if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
 					binding.rejectValue("foodDisheses", "NoFood");
-
-				final Date date = this.fechaSumada((int) res.getRestaurant().getOrderTime());
-
-				if (!cashOrder.getSenderMoment().after(date))
-					binding.rejectValue("senderMoment", "NoTime");
 
 				this.validator.validate(copy, binding);
 
