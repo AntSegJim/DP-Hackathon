@@ -603,7 +603,7 @@
 				<value>Aceite</value>
 			</list>
 		</property>
-		<property name="restaurant" ref="restaurant1"/>
+		<property name="restaurant" ref="restaurant2"/>
 	</bean>
 	
 	<bean id="foodDishes6" class="domain.FoodDishes">
@@ -772,6 +772,18 @@
 			<list>
 				<ref bean="foodDishes1" />
 				<ref bean="foodDishes2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="offer2" class="domain.Offer">
+		<property name="title" value="title2"/>
+		<property name="totalPrice" value="3.0"/>
+		<property name="restaurant" ref="restaurant2"/>
+		<property name="foodDisheses">
+			<list>
+				<ref bean="foodDishes4" />
+				<ref bean="foodDishes5" />
 			</list>
 		</property>
 	</bean>
