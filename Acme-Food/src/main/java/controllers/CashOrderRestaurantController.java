@@ -59,9 +59,11 @@ public class CashOrderRestaurantController extends AbstractController {
 		ModelAndView result;
 		try {
 			final CashOrder cashOrder;
+			Collection<Dealer> dealers;
 
 			cashOrder = this.cashOrderService.findOne(cashOrderId);
 			Assert.notNull(cashOrder);
+			dealers = this.dealerService.getActiveDealersByRestaurant(cashOrder.getRestaurant().getId());
 
 			final UserAccount user = LoginService.getPrincipal();
 			final Actor a = this.actorService.getActorByUserAccount(user.getId());
@@ -69,6 +71,7 @@ public class CashOrderRestaurantController extends AbstractController {
 
 			result = new ModelAndView("cashOrder/edit2");
 			result.addObject("cashOrder", cashOrder);
+			result.addObject("dealers", dealers);
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:list.do");
 
@@ -87,39 +90,25 @@ public class CashOrderRestaurantController extends AbstractController {
 				this.cashOrderService.save(pedido);
 				result = new ModelAndView("redirect:list.do");
 			} else {
+				final Collection<Dealer> dealers = this.dealerService.getActiveDealersByRestaurant(pedido.getRestaurant().getId());
+
 				result = new ModelAndView("cashOrder/edit2");
 				result.addObject("cashOrder", pedido);
+				result.addObject("dealers", dealers);
+
 			}
 		} catch (final Exception e) {
 			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
+			final Collection<Dealer> dealers = this.dealerService.getActiveDealersByRestaurant(pedido.getRestaurant().getId());
 
 			result = new ModelAndView("cashOrder/edit2");
 			result.addObject("cashOrder", pedido);
 			result.addObject("exception", e);
+			result.addObject("dealers", dealers);
 
 		}
 
 		return result;
-	}
-
-	@RequestMapping(value = "/reloadDealers", method = RequestMethod.GET)
-	public ModelAndView reloadDealer(@RequestParam final Integer statusValue) {
-		ModelAndView result;
-
-		final Collection<Dealer> dealers;
-
-		if (statusValue == 3) {
-			final UserAccount user = LoginService.getPrincipal();
-			final Actor a = this.actorService.getActorByUserAccount(user.getId());
-
-			dealers = this.dealerService.getActiveDealersByRestaurant(a.getId());
-		} else
-			dealers = null;
-		result = new ModelAndView("cashOrder/dropdown");
-		result.addObject("dealers", dealers);
-
-		return result;
-
 	}
 
 }

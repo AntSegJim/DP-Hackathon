@@ -213,6 +213,10 @@ public class CashOrderService {
 				copy.setChoice(res.getChoice());
 				copy.setOffers(res.getOffers());
 
+				if (copy.getChoice() == 1)
+					if (cashOrder.getStatus() == 3 && cashOrder.getDealer() == null)
+						binding.rejectValue("dealer", "NoDealer");
+
 				this.validator.validate(copy, binding);
 
 				return copy;

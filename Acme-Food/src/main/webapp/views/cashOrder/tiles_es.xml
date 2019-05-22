@@ -36,8 +36,4 @@
 		<put-attribute name="body" value="/views/cashOrder/edit2.jsp" />
 	</definition>
 	
-	<definition name="cashOrder/dropdown" template="/views/cashOrder/dropdown.jsp" >
-	</definition>
-	
-	
 </tiles-definitions>

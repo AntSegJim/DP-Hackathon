@@ -102,7 +102,7 @@
 
 
 <form:label path="status"><spring:message code="cashOrder.status" />:</form:label>
-<form:select path="status" id="status" onchange="javascript: reloadDealers()">
+<form:select path="status" id="status">
 		<form:option value="1" label="Rejected" />	
 		<form:option value="3" label="Acceptance" />	
 	</form:select>
@@ -113,6 +113,7 @@
 	<spring:message code="cashOrder.dealer" />
 </form:label>
 <form:select id="dealers" path="dealer">
+		<form:option value="0" label="----" />	
 		<form:options items="${dealers}" itemValue="id"
 			itemLabel="name" />
 	</form:select>
@@ -170,7 +171,7 @@
 
 
 <form:label path="status"><spring:message code="cashOrder.status" />:</form:label>
-<form:select path="status" id="status" onchange="javascript: reloadDealers()">
+<form:select path="status" id="status" >
 		<form:option value="3" label="Acceptance" />
 		<form:option value="2" label="Delivered" />		
 	</form:select>
@@ -185,17 +186,6 @@
 
 
 </form:form>
-
-<script type="text/javascript">
-		function reloadDealers() {
-			var status = $('select#status').val();
-			
-			//var placeholder = $('select#dealers');
-			//placeholder.load("cashOrder/restaurant/reloadDealers.do?statusValue="+status);	
-			
-		}
-</script>
-
 
 </security:authorize>
 
