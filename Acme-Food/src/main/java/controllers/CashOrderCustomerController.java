@@ -188,7 +188,7 @@ public class CashOrderCustomerController extends AbstractController {
 
 		return result;
 	}
-	@RequestMapping(value = "/edit2", method = RequestMethod.POST)
+	@RequestMapping(value = "/edit2", method = RequestMethod.POST, params = "save")
 	public ModelAndView edit(final CashOrder cashOrder, final BindingResult binding) {
 		ModelAndView result;
 
@@ -250,14 +250,14 @@ public class CashOrderCustomerController extends AbstractController {
 				result.addObject("offers", offers);
 			}
 		} catch (final Exception e) {
-			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
+			final CashOrder pedido = this.cashOrderService.findOne(cashOrder.getId());
 
 			Collection<Offer> offers;
 			Collection<FoodDishes> foodDishes;
 			offers = this.offerService.getOffersByRestaurant(pedido.getRestaurant().getId());
 			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(pedido.getRestaurant().getId());
 			result = new ModelAndView("cashOrder/edit2");
-			result.addObject("cashOrder", cashOrder);
+			result.addObject("cashOrder", pedido);
 			result.addObject("foodDishes", foodDishes);
 			result.addObject("offers", offers);
 			result.addObject("exception", e);
