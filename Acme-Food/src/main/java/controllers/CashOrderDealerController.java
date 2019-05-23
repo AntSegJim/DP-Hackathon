@@ -18,6 +18,7 @@ import services.ActorService;
 import services.CashOrderService;
 import domain.Actor;
 import domain.CashOrder;
+import domain.Dealer;
 
 @Controller
 @RequestMapping("/cashOrder/dealer")
@@ -37,7 +38,8 @@ public class CashOrderDealerController {
 		final Collection<CashOrder> cashOrders;
 
 		final UserAccount user = LoginService.getPrincipal();
-		final Actor a = this.actorService.getActorByUserAccount(user.getId());
+		final Dealer a = (Dealer) this.actorService.getActorByUserAccount(user.getId());
+		this.cashOrderService.actualizarMinutosPedidos(a.getRestaurant().getId());
 
 		cashOrders = this.cashOrderService.findByDealer(a.getId());
 		Assert.notNull(cashOrders);

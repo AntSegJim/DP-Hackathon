@@ -40,6 +40,7 @@ public class CashOrder extends DomainEntity {
 	private Dealer					dealer;
 	private Collection<FoodDishes>	foodDisheses;
 	private Collection<Offer>		offers;
+	private Double					minutes;
 
 
 	@ManyToMany
@@ -164,6 +165,14 @@ public class CashOrder extends DomainEntity {
 
 	public void setTicker(final String ticker) {
 		this.ticker = ticker;
+	}
+
+	public Double getMinutes() {
+		return this.minutes;
+	}
+
+	public void setMinutes(final Double minutes) {
+		this.minutes = minutes;
 	}
 
 }

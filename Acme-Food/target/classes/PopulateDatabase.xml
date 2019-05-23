@@ -698,6 +698,8 @@
 				<ref bean="foodDishes1" />
 			</list>
 		</property>
+		<property name="minutes" value="10.0"/>
+		
 		
 	</bean>
 	
@@ -718,7 +720,8 @@
 				<ref bean="foodDishes1" />
 				<ref bean="foodDishes2" />
 			</list>
-		</property>
+		</property>		
+		<property name="minutes" value="2.0"/>
 		
 	</bean>
 
@@ -740,6 +743,7 @@
 				<ref bean="foodDishes2" />
 			</list>
 		</property>
+		<property name="minutes" value="20.0"/>
 		
 	</bean>
 
@@ -760,7 +764,7 @@
 				<ref bean="foodDishes4" />
 			</list>
 		</property>
-		
+		<property name="minutes" value="15.0"/>
 	</bean>
 	
 	<!-- Offer -->

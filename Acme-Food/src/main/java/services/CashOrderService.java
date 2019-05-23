@@ -58,6 +58,7 @@ public class CashOrderService {
 		cashOrder.setDealer(null);
 		cashOrder.setFoodDisheses(new ArrayList<FoodDishes>());
 		cashOrder.setOffers(new HashSet<Offer>());
+		cashOrder.setMinutes(0.0);
 
 		return cashOrder;
 	}
@@ -155,6 +156,8 @@ public class CashOrderService {
 			cashOrder.setMoment(new Date());
 			cashOrder.setDealer(null);
 			cashOrder.setTotalPrice(0.0);
+			cashOrder.setMinutes(0.0);
+
 			cashOrder.setRestaurant(this.restaurantRepository.findOne(id));
 
 			if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
@@ -175,6 +178,7 @@ public class CashOrderService {
 				copy.setCustomer(res.getCustomer());
 				copy.setRestaurant(res.getRestaurant());
 				copy.setDealer(res.getDealer());
+				copy.setMinutes(res.getMinutes());
 
 				copy.setFoodDisheses(cashOrder.getFoodDisheses());
 				copy.setOffers(cashOrder.getOffers());
@@ -205,6 +209,7 @@ public class CashOrderService {
 				copy.setSenderMoment(res.getSenderMoment());
 				copy.setChoice(res.getChoice());
 				copy.setOffers(res.getOffers());
+				copy.setMinutes(res.getMinutes());
 
 				if (copy.getChoice() == 1) {
 					if (cashOrder.getStatus() == 3 && cashOrder.getDealer() == null)
@@ -233,6 +238,7 @@ public class CashOrderService {
 				copy.setSenderMoment(res.getSenderMoment());
 				copy.setChoice(res.getChoice());
 				copy.setOffers(res.getOffers());
+				copy.setMinutes(res.getMinutes());
 
 				this.validator.validate(copy, binding);
 
@@ -294,5 +300,29 @@ public class CashOrderService {
 		//lo que más quieras sumar
 		final Date fechaSalida = calendar.getTime(); //Y ya tienes la fecha sumada.
 		return fechaSalida;
+	}
+
+	public void actualizarMinutosPedidos(final Integer idRestaurant) {
+		final Collection<CashOrder> cashOrders = this.findByRestaurant(idRestaurant);
+
+		for (final CashOrder pedido : cashOrders) {
+			final Double min = this.getMinutes(pedido.getSenderMoment(), new Date());
+			if (min <= 0) {
+				pedido.setMinutes(0.);
+				pedido.setStatus(1);
+				pedido.setSenderMoment(null);
+				this.cashOrderRepositoty.save(pedido);
+			} else {
+				pedido.setMinutes(min);
+				this.cashOrderRepositoty.save(pedido);
+			}
+
+		}
+	}
+	public Double getMinutes(final Date date1, final Date date2) {
+		Double res = 0.0;
+		res = (double) ((date1.getTime() - date2.getTime()) / 60000);
+		return res;
+
 	}
 }

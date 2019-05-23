@@ -43,7 +43,7 @@ public class CashOrderRestaurantController extends AbstractController {
 
 		final UserAccount user = LoginService.getPrincipal();
 		final Actor a = this.actorService.getActorByUserAccount(user.getId());
-
+		this.cashOrderService.actualizarMinutosPedidos(a.getId());
 		cashOrders = this.cashOrderService.findByRestaurant(a.getId());
 		Assert.notNull(cashOrders);
 

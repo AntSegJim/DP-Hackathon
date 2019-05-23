@@ -16,6 +16,19 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+<style type="text/css">
+.POCO_TIEMPO{
+  background-color: red;
+}
+.RECIEN_HECHO{
+  background-color: SpringGreen ;
+}
+.AUN_QUEDA{
+  background-color: orange;
+}
+</style>
+
+
 <security:authorize access="hasRole('CUSTOMER')">
 
 <display:table pagesize="5" name="cashOrders" id="row"
@@ -81,10 +94,24 @@ ${row.restaurant.comercialName}, ${row.restaurant.speciality}
 <display:table pagesize="5" name="cashOrders" id="row"
 requestURI="cashOrder/restaurant/list.do" >
 
+<jstl:choose>
+	<jstl:when test="${row.minutes < 20}">
+		<jstl:set var="css" value="POCO_TIEMPO"></jstl:set>
+	</jstl:when>
+	
+	<jstl:when test="${row.minutes < 30 and row.minutes >= 20}">
+			<jstl:set var="css" value="AUN_QUEDA"></jstl:set>
+	</jstl:when>
+	
+	<jstl:when test="${row.minutes >= 30}">
+			<jstl:set var="css" value="RECIEN_HECHO"></jstl:set>
+	</jstl:when>
+	
+</jstl:choose>
 
-<display:column property="moment" titleKey="cashOrder.moment" format="{0,date,dd/MM/yyyy hh:mm}"  />
+<display:column property="moment" titleKey="cashOrder.moment" format="{0,date,dd/MM/yyyy hh:mm}"  class="${css}"/>
 
-<display:column titleKey="cashOrder.status" >
+<display:column titleKey="cashOrder.status" class="${css}">
 
 	<jstl:choose>
 		<jstl:when test="${row.status eq 0}">
@@ -106,9 +133,9 @@ requestURI="cashOrder/restaurant/list.do" >
 	
 </display:column>
 
-<display:column property="totalPrice" titleKey="cashOrder.price"  />
+<display:column property="totalPrice" titleKey="cashOrder.price"  class="${css}"/>
 
-<display:column titleKey="cashOrder.choice" >
+<display:column titleKey="cashOrder.choice" class="${css}">
 
 	<jstl:choose>
 		<jstl:when test="${row.choice eq 0}">
@@ -122,7 +149,7 @@ requestURI="cashOrder/restaurant/list.do" >
 	
 </display:column>
 
-<display:column>
+<display:column class="${css}">
 	<jstl:if test="${row.status eq 0 }">
 	<a href="cashOrder/restaurant/edit.do?cashOrderId=${row.id}"><spring:message code="cashOrder.edit" /></a>
 	</jstl:if>
@@ -136,10 +163,24 @@ requestURI="cashOrder/restaurant/list.do" >
 <display:table pagesize="5" name="cashOrders" id="row"
 requestURI="cashOrder/dealer/list.do" >
 
+<jstl:choose>
+	<jstl:when test="${row.minutes < 20}">
+		<jstl:set var="css" value="POCO_TIEMPO"></jstl:set>
+	</jstl:when>
+	
+	<jstl:when test="${row.minutes < 30 and row.minutes >= 20}">
+			<jstl:set var="css" value="AUN_QUEDA"></jstl:set>
+	</jstl:when>
+	
+	<jstl:when test="${row.minutes >= 30}">
+			<jstl:set var="css" value="RECIEN_HECHO"></jstl:set>
+	</jstl:when>
+	
+</jstl:choose>
 
-<display:column property="moment" titleKey="cashOrder.moment" format="{0,date,dd/MM/yyyy hh:mm}"  />
+<display:column property="moment" titleKey="cashOrder.moment" format="{0,date,dd/MM/yyyy hh:mm}"  class="${css}"/>
 
-<display:column titleKey="cashOrder.status" >
+<display:column titleKey="cashOrder.status" class="${css}">
 
 	<jstl:choose>
 		<jstl:when test="${row.status eq 0}">
@@ -161,9 +202,9 @@ requestURI="cashOrder/dealer/list.do" >
 	
 </display:column>
 
-<display:column property="totalPrice" titleKey="cashOrder.price"  />
+<display:column property="totalPrice" titleKey="cashOrder.price"  class="${css}"/>
 
-<display:column titleKey="cashOrder.choice" >
+<display:column titleKey="cashOrder.choice" class="${css}">
 
 	<jstl:choose>
 		<jstl:when test="${row.choice eq 0}">
@@ -177,7 +218,7 @@ requestURI="cashOrder/dealer/list.do" >
 	
 </display:column>
 
-<display:column>	
+<display:column class="${css}">	
 	<a href="cashOrder/dealer/edit.do?cashOrderId=${row.id}"><spring:message code="cashOrder.edit" /></a>
 </display:column>
 
