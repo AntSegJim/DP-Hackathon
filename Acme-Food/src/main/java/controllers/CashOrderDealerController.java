@@ -85,6 +85,7 @@ public class CashOrderDealerController {
 				result = new ModelAndView("cashOrder/edit2");
 				result.addObject("cashOrder", pedido);
 			}
+
 		} catch (final Exception e) {
 			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
 

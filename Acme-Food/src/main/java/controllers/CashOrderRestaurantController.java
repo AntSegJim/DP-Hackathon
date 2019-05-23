@@ -97,6 +97,7 @@ public class CashOrderRestaurantController extends AbstractController {
 				result.addObject("dealers", dealers);
 
 			}
+
 		} catch (final Exception e) {
 			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
 			final Collection<Dealer> dealers = this.dealerService.getActiveDealersByRestaurant(pedido.getRestaurant().getId());

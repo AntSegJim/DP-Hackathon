@@ -100,11 +100,12 @@ public class CashOrderService {
 			if (cashOrder.getChoice() == 0)
 				Assert.isTrue(cashOrder.getDealer() == null);
 
-			//			if(cashOrder.getChoice()==1){
-			//				Assert.isTrue(cashOrder.getDealer() != null);
-			//				Assert.isTrue(cashOrder.getDealer().getRestaurant().equals(this.actorService.getActorByUserAccount(user.getId())));
-			//	
-			//			}
+			if (cashOrder.getChoice() == 1)
+				if (cashOrder.getStatus() == 3) {
+					Assert.isTrue(cashOrder.getDealer() != null);
+					Assert.isTrue(cashOrder.getDealer().getRestaurant().equals(this.actorService.getActorByUserAccount(user.getId())));
+				} else
+					Assert.isTrue(cashOrder.getDealer() == null);
 
 		} else if (cashOrder.getId() != 0 && user.getAuthorities().iterator().next().getAuthority().equals("DEALER")) {
 			final CashOrder older = this.cashOrderRepositoty.findOne(cashOrder.getId());
@@ -205,9 +206,13 @@ public class CashOrderService {
 				copy.setChoice(res.getChoice());
 				copy.setOffers(res.getOffers());
 
-				if (copy.getChoice() == 1)
+				if (copy.getChoice() == 1) {
 					if (cashOrder.getStatus() == 3 && cashOrder.getDealer() == null)
 						binding.rejectValue("dealer", "NoDealer");
+
+					if (cashOrder.getStatus() == 1 && cashOrder.getDealer() != null)
+						binding.rejectValue("dealer", "NoSelectedDealer");
+				}
 
 				this.validator.validate(copy, binding);
 
