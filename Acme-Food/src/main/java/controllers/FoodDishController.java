@@ -4,8 +4,6 @@ package controllers;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +15,8 @@ import services.FoodDishesService;
 import domain.FoodDishes;
 
 @Controller
-@RequestMapping("/foodDishes/customer")
-public class FoodDishCustomerController {
+@RequestMapping("/foodDishes")
+public class FoodDishController extends AbstractController {
 
 	@Autowired
 	private FoodDishesService	foodDishesService;
@@ -53,18 +51,6 @@ public class FoodDishCustomerController {
 		result.addObject("idRestaurant", foodDish.getRestaurant().getId());
 
 		return result;
-
-	}
-
-	@RequestMapping(value = "/getPrice", method = RequestMethod.GET)
-	public ResponseEntity<Double> getPrice(@RequestParam final Integer foodId) {
-		ResponseEntity<Double> res;
-		final FoodDishes foodDish = this.foodDishesService.findOne(foodId);
-
-		final Double price = foodDish.getPrice();
-		res = new ResponseEntity<Double>(price, HttpStatus.OK);
-
-		return res;
 
 	}
 

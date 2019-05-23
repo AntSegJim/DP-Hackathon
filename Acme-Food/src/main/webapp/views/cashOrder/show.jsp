@@ -54,11 +54,11 @@
 	<br/>
 <b><spring:message code="cashOrder.restaurant" /> : </b> <jstl:out value="${cashOrder.restaurant.comercialName}"></jstl:out>, <jstl:out value="${cashOrder.restaurant.speciality}"></jstl:out> <br/>
 <b><spring:message code="cashOrder.dealer" /> : </b> 
-<jstl:if test="${row.dealer.name eq null }">
+<jstl:if test="${cashOrder.dealer eq null }">
 -
 </jstl:if>
-<jstl:if test="${row.dealer.name ne null }">
-	<spring:message code="cashOrder.draftMode" /> 
+<jstl:if test="${cashOrder.dealer ne null }">
+	<jstl:out value="${cashOrder.dealer.name}"></jstl:out>
 </jstl:if>
  <br/>
 <b><spring:message code="cashOrder.foodDishes" /> : </b> 

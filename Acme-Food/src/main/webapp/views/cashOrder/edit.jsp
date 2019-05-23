@@ -58,13 +58,21 @@
 <script>
 	function myFunction() {
 		var platos = $('select#platos').val();
-		//var precio = 0;
-		var precio = "";
+		var precio = 0.0;
 		for (var x=0;x<platos.length;x++){
-			precio += platos[x] + "<br>";
+			
+			$.ajax({
+				type : 'GET',
+				url : 'foodDishes/customer/getPrice.do?foodId='+platos[x],
+				success : function(res) {
+					return res;
+				}
+			});
 		}
 		document.getElementById("precio").innerHTML = precio;
 	}
+	
+
 </script>
 
 </security:authorize>

@@ -74,6 +74,9 @@
 		 <security:intercept-url pattern="/restaurant/customer/list.do" access="hasRole('CUSTOMER')" /> 
 		 <security:intercept-url pattern="/foodDishes/customer/list.do" access="hasRole('CUSTOMER')" /> 
 		 <security:intercept-url pattern="/foodDishes/customer/show.do" access="hasRole('CUSTOMER')" /> 
+		 <security:intercept-url pattern="/foodDishes/customer/getPrice.do" access="hasRole('CUSTOMER')" /> 
+		 <security:intercept-url pattern="/foodDishes/list.do" access="permitAll" /> 
+		 <security:intercept-url pattern="/foodDishes/show.do" access="permitAll" /> 
 		 
 		 
 		 <security:intercept-url pattern="/cashOrder/restaurant/list.do" access="hasRole('RESTAURANT')" /> 
