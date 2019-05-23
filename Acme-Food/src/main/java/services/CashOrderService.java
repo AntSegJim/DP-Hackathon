@@ -154,7 +154,7 @@ public class CashOrderService {
 			cashOrder.setMoment(new Date());
 			cashOrder.setDealer(null);
 			cashOrder.setTotalPrice(0.0);
-			cashOrder.setRestaurant(new Restaurant());
+			cashOrder.setRestaurant(this.restaurantRepository.findOne(id));
 
 			if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
 				binding.rejectValue("foodDisheses", "NoFood");

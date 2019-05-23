@@ -150,8 +150,7 @@ public class CashOrderCustomerController extends AbstractController {
 		ModelAndView result;
 
 		try {
-			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, null);
-			pedido.setRestaurant(this.restaurantReposiroty.findOne(restaurantId));
+			final CashOrder pedido = this.cashOrderService.reconstruct(cashOrder, binding, restaurantId);
 
 			final Integer dealers = this.restaurantReposiroty.getFreeDealerByRestaurant(pedido.getRestaurant().getId());
 			if (dealers == 0 && pedido.getChoice() == 1)
@@ -176,15 +175,18 @@ public class CashOrderCustomerController extends AbstractController {
 				result.addObject("restaurant", r);
 			}
 		} catch (final Exception e) {
+			final Restaurant r = this.restaurantReposiroty.findOne(restaurantId);
+
 			Collection<FoodDishes> foodDishes;
 			Collection<Offer> offers;
 			offers = this.offerService.getOffersByRestaurant(restaurantId);
 			foodDishes = this.foodDishesService.findFoodDishesByRestaurant(restaurantId);
-			result = new ModelAndView("cashOrder/edit2");
+			result = new ModelAndView("cashOrder/edit");
 			result.addObject("cashOrder", cashOrder);
 			result.addObject("foodDishes", foodDishes);
 			result.addObject("offers", offers);
 			result.addObject("exception", e);
+			result.addObject("restaurant", r);
 
 		}
 
