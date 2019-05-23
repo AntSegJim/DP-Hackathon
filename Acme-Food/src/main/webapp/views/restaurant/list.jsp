@@ -20,7 +20,9 @@
 
 <display:table pagesize="5" name="restaurants" id="row"
 requestURI="restaurant/customer/list.do" >
-**ESTO ES TEMPORAL**
+<display:column class="${css}">
+	<a href="foodDishes/customer/list.do?idRestaurant=${row.id}"><spring:message code="restaurant.foodDishes" /></a>
+</display:column>
 <display:column>
 **ESTO ES TEMPORAL**
 </display:column>
