@@ -64,7 +64,7 @@
 		<security:intercept-url pattern="/rating/customer/show.do" access="hasRole('CUSTOMER')" />
 		<security:intercept-url pattern="/rating/customer/list.do" access="hasRole('CUSTOMER')" />
 		<security:intercept-url pattern="/rating/customer/create.do" access="hasRole('CUSTOMER')" />
-		<security:intercept-url pattern="/rating/restaurant/list.do" access="hasRole('CUSTOMER')" />
+		<security:intercept-url pattern="/rating/restaurant/list.do" access="hasRole('RESTAURANT')" />
 		<security:intercept-url pattern="/profile/edit-customer.do" access="hasRole('CUSTOMER')" /> 
 		
 		 <security:intercept-url pattern="/cashOrder/customer/list.do" access="hasRole('CUSTOMER')" /> 
