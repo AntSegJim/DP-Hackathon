@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.LoginService;
 import services.RatingService;
 import services.RestaurantService;
 
@@ -25,20 +26,9 @@ public class RatingRestaurantController {
 		final ModelAndView result;
 
 		result = new ModelAndView("rating/list");
-		result.addObject("ratings", this.restaurantService.getAllTheRatingsOfMyRestaurant());
+		result.addObject("ratings", this.restaurantService.getRestaurantByUserAccount(LoginService.getPrincipal().getId()).getRatings());
 		return result;
 
 	}
-
-	//	@RequestMapping(value = "/show", method = RequestMethod.GET)
-	//	public ModelAndView show(@RequestParam final Integer ratingId) {
-	//		final ModelAndView result;
-	//		final Rating rating = this.ratingService.findOne(ratingId);
-	//
-	//		result = new ModelAndView("rating/show");
-	//		result.addObject("rating", rating);
-	//		return result;
-	//
-	//	}
 
 }
