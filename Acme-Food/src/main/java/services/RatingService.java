@@ -57,6 +57,8 @@ public class RatingService {
 			restaurants.removeAll(this.restaurantService.getAllMyRatings());
 			Assert.isTrue(restaurants.contains(r.getRestaurant()));
 			saved = this.ratingRepository.save(r);
+			r.getRestaurant().getRatings().add(r);
+			this.restaurantService.save(r.getRestaurant());
 		} else {
 			final Rating savedRating = this.ratingRepository.findOne(r.getId());
 			savedRating.setComment(r.getComment());
