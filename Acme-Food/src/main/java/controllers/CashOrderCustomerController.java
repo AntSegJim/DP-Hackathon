@@ -156,8 +156,9 @@ public class CashOrderCustomerController extends AbstractController {
 			if (dealers == 0 && pedido.getChoice() == 1)
 				binding.rejectValue("choice", "NoFreeDealers");
 
-			if (!pedido.getSenderMoment().after(this.cashOrderService.fechaSumada(pedido.getRestaurant().getOrderTime())))
-				binding.rejectValue("senderMoment", "NoTime");
+			if (pedido.getSenderMoment() != null)
+				if (!pedido.getSenderMoment().after(this.cashOrderService.fechaSumada(pedido.getRestaurant().getOrderTime())))
+					binding.rejectValue("senderMoment", "NoTime");
 
 			if (!binding.hasErrors()) {
 				this.cashOrderService.save(pedido);
@@ -203,8 +204,9 @@ public class CashOrderCustomerController extends AbstractController {
 			if (dealers == 0 && pedido.getChoice() == 1)
 				binding.rejectValue("choice", "NoFreeDealers");
 
-			if (!pedido.getSenderMoment().after(this.cashOrderService.fechaSumada(pedido.getRestaurant().getOrderTime())))
-				binding.rejectValue("senderMoment", "NoTime");
+			if (pedido.getSenderMoment() != null)
+				if (!pedido.getSenderMoment().after(this.cashOrderService.fechaSumada(pedido.getRestaurant().getOrderTime())))
+					binding.rejectValue("senderMoment", "NoTime");
 
 			if (!binding.hasErrors()) {
 				this.cashOrderService.save(pedido);
