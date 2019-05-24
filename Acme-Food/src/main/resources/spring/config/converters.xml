@@ -62,6 +62,8 @@
 		<bean class="converters.StringToDealerConverter" />
 		<bean class="converters.DealerToStringConverter" />
 		
+		<bean class="converters.StringToComplainConverter" />
+		<bean class="converters.ComplainToStringConverter" />
 	</util:list>
 	
 </beans>
