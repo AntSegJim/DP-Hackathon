@@ -42,6 +42,9 @@ public class CashOrderService {
 	@Autowired
 	private Validator				validator;
 
+	@Autowired
+	private DealerService			dealerService;
+
 
 	public CashOrder create() {
 		final CashOrder cashOrder = new CashOrder();
@@ -163,6 +166,9 @@ public class CashOrderService {
 			if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
 				binding.rejectValue("foodDisheses", "NoFood");
 
+			if (cashOrder.getSenderMoment() == null)
+				binding.rejectValue("senderMoment", "NoDate");
+
 			this.validator.validate(res, binding);
 			return res;
 		} else {
@@ -189,6 +195,9 @@ public class CashOrderService {
 
 				if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
 					binding.rejectValue("foodDisheses", "NoFood");
+
+				if (cashOrder.getSenderMoment() == null)
+					binding.rejectValue("senderMoment", "NoDate");
 
 				this.validator.validate(copy, binding);
 
@@ -217,6 +226,10 @@ public class CashOrderService {
 
 					if (cashOrder.getStatus() == 1 && cashOrder.getDealer() != null)
 						binding.rejectValue("dealer", "NoSelectedDealer");
+
+					if (this.dealerService.getNumberCashOrderByDealer(cashOrder.getDealer().getId()) >= 3)
+						binding.rejectValue("dealer", "	ManyCashOrder");
+
 				}
 
 				this.validator.validate(copy, binding);

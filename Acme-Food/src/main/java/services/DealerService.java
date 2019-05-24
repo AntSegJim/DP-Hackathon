@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import repositories.DealerReposiroty;
+import repositories.DealerRepository;
 import domain.Dealer;
 
 @Service
@@ -15,10 +15,14 @@ import domain.Dealer;
 public class DealerService {
 
 	@Autowired
-	private DealerReposiroty	dealerRepository;
+	private DealerRepository	dealerRepository;
 
 
 	public Collection<Dealer> getActiveDealersByRestaurant(final Integer id) {
 		return this.dealerRepository.getActiveDealersByRestaurant(id);
+	}
+
+	public Integer getNumberCashOrderByDealer(final Integer id) {
+		return this.dealerRepository.getNumberCashOrderByDealer(id);
 	}
 }

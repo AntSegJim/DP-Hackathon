@@ -190,7 +190,6 @@
 		<property name="phone" value="654654654"/>
 		<property name="address" value="Sevilla"/>
 		<property name="userAccount" ref="userAccount10"/>
-		<property name="isDealing" value="0"/>	
 		<property name="restaurant" ref="restaurant1"/>	
 	</bean>
 	<bean id="dealer2" class="domain.Dealer">
@@ -202,7 +201,6 @@
 		<property name="phone" value="654654654"/>
 		<property name="address" value="Sevilla"/>
 		<property name="userAccount" ref="userAccount11"/>
-		<property name="isDealing" value="0"/>
 		<property name="restaurant" ref="restaurant1"/>
 	</bean>
 
