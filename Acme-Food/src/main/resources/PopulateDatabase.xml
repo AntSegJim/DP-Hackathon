@@ -314,6 +314,11 @@
 		<property name="userAccount" ref="userAccount5"/>
 		<property name="creditCard" ref="creditCard3"/>
 		<property name="finder" ref="finder1"/>
+		<property name="complains">
+			<list>
+				<ref bean="complain1" />
+			</list>
+		</property>
 	
 	</bean>
 		
@@ -697,6 +702,12 @@
 			</list>
 		</property>
 		<property name="minutes" value="10.0"/>
+		<property name="complains">
+			<list>
+				<ref bean="complain1" />
+			</list>
+		</property>
+	
 		
 		
 	</bean>
@@ -814,6 +825,13 @@
 		<property name="nameSocialNetwork" value="nameSocialNetwork4"/>
 		<property name="url" value="http://prueba4.com"/>
 		<property name="restaurant" ref="restaurant2"/>
+	</bean>
+	
+	<!-- Complain -->
+	<bean id="complain1" class="domain.Complain">
+		<property name="description" value="description1"/>
+		<property name="customer" ref="customer1"/>
+		<property name="cashOrder" ref="cashOrder1"/>
 	</bean>
 	
 	

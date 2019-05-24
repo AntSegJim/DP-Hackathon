@@ -15,10 +15,21 @@ import javax.validation.constraints.NotNull;
 @Access(AccessType.PROPERTY)
 public class Customer extends Actor {
 
-	private Collection<Rating>	ratings;
-	private Finder				finder;
-	private CreditCard			creditCard;
+	private Collection<Rating>		ratings;
+	private Finder					finder;
+	private CreditCard				creditCard;
+	private Collection<Complain>	complains;
 
+
+	@OneToMany
+	@Valid
+	public Collection<Complain> getComplains() {
+		return this.complains;
+	}
+
+	public void setComplains(final Collection<Complain> complains) {
+		this.complains = complains;
+	}
 
 	@OneToOne
 	@Valid

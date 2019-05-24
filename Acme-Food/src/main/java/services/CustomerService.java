@@ -21,6 +21,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
+import domain.Complain;
 import domain.CreditCard;
 import domain.Customer;
 import domain.Finder;
@@ -61,6 +62,7 @@ public class CustomerService {
 		res.setCreditCard(new CreditCard());
 		res.setRatings(new HashSet<Rating>());
 		res.setFinder(new Finder());
+		res.setComplains(new HashSet<Complain>());
 
 		//PREGUNTAR
 		final UserAccount user = new UserAccount();
@@ -152,6 +154,7 @@ public class CustomerService {
 			res.setSurnames(registrationForm.getSurnames());
 			res.setCreditCard(registrationForm.getCreditCard());
 			res.setRatings(registrationForm.getRatings());
+			res.setComplains(registrationForm.getComplains());
 
 			final Finder finder = this.finderService.create();
 			final Finder savedFinder = this.finderService.save(finder);
@@ -221,6 +224,7 @@ public class CustomerService {
 			p.setCreditCard(registrationForm.getCreditCard());
 			p.setRatings(res.getRatings());
 			p.setFinder(res.getFinder());
+			p.setComplains(res.getComplains());
 
 			if (p.getPhone().length() <= 5)
 				p.setPhone("");

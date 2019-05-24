@@ -21,6 +21,7 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
 import domain.CashOrder;
+import domain.Complain;
 import domain.Customer;
 import domain.FoodDishes;
 import domain.Offer;
@@ -62,6 +63,7 @@ public class CashOrderService {
 		cashOrder.setFoodDisheses(new ArrayList<FoodDishes>());
 		cashOrder.setOffers(new HashSet<Offer>());
 		cashOrder.setMinutes(0.0);
+		cashOrder.setComplains(new HashSet<Complain>());
 
 		return cashOrder;
 	}
@@ -192,6 +194,7 @@ public class CashOrderService {
 				copy.setTotalPrice(this.getTotalPrice(cashOrder));
 				copy.setSenderMoment(cashOrder.getSenderMoment());
 				copy.setChoice(cashOrder.getChoice());
+				copy.setComplains(cashOrder.getComplains());
 
 				if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
 					binding.rejectValue("foodDisheses", "NoFood");
@@ -212,6 +215,7 @@ public class CashOrderService {
 				copy.setRestaurant(res.getRestaurant());
 				copy.setDealer(cashOrder.getDealer());
 				copy.setFoodDisheses(res.getFoodDisheses());
+				copy.setComplains(res.getComplains());
 				copy.setOffers(res.getOffers());
 				copy.setDraftMode(res.getDraftMode());
 				copy.setTotalPrice(res.getTotalPrice());
@@ -245,6 +249,7 @@ public class CashOrderService {
 				copy.setRestaurant(res.getRestaurant());
 				copy.setDealer(res.getDealer());
 				copy.setFoodDisheses(res.getFoodDisheses());
+				copy.setComplains(res.getComplains());
 				copy.setOffers(res.getOffers());
 				copy.setDraftMode(res.getDraftMode());
 				copy.setTotalPrice(res.getTotalPrice());

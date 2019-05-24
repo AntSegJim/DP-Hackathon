@@ -22,6 +22,7 @@ import org.hibernate.validator.constraints.Range;
 
 import security.Authority;
 import security.UserAccount;
+import domain.Complain;
 import domain.CreditCard;
 import domain.Customer;
 import domain.Finder;
@@ -38,22 +39,33 @@ public class RegistrationFormCustomerAndCreditCard extends Customer {
 
 	// Properties -------------------------------------------------------------
 
-	private String				password;
+	private String					password;
 
-	private Boolean				check;
+	private Boolean					check;
 
-	private Boolean				patternPhone;
+	private Boolean					patternPhone;
 
-	private String				holderName;
-	private String				brandName;
-	private String				number;
-	private int					expirationMonth;
-	private int					expirationYear;
-	private int					CW;
+	private String					holderName;
+	private String					brandName;
+	private String					number;
+	private int						expirationMonth;
+	private int						expirationYear;
+	private int						CW;
 
-	private Collection<Rating>	ratings;
-	private Finder				finder;
+	private Collection<Rating>		ratings;
+	private Finder					finder;
+	private Collection<Complain>	complains;
 
+
+	@Override
+	public Collection<Complain> getComplains() {
+		return this.complains;
+	}
+
+	@Override
+	public void setComplains(final Collection<Complain> complains) {
+		this.complains = complains;
+	}
 
 	@Override
 	@OneToOne
@@ -179,6 +191,7 @@ public class RegistrationFormCustomerAndCreditCard extends Customer {
 		registrationForm.setExpirationYear(0);
 		registrationForm.setCW(0);
 		registrationForm.setRatings(new HashSet<Rating>());
+		registrationForm.setComplains(new HashSet<Complain>());
 		registrationForm.setFinder(new Finder());
 
 		//PREGUNTAR

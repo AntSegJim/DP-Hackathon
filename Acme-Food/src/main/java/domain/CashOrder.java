@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -41,7 +42,18 @@ public class CashOrder extends DomainEntity {
 	private Collection<FoodDishes>	foodDisheses;
 	private Collection<Offer>		offers;
 	private Double					minutes;
+	private Collection<Complain>	complains;
 
+
+	@OneToMany
+	@Valid
+	public Collection<Complain> getComplains() {
+		return this.complains;
+	}
+
+	public void setComplains(final Collection<Complain> complains) {
+		this.complains = complains;
+	}
 
 	@ManyToMany
 	@Valid
