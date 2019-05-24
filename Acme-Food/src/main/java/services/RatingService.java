@@ -57,18 +57,20 @@ public class RatingService {
 			restaurants.removeAll(this.restaurantService.getAllMyRatings());
 			Assert.isTrue(restaurants.contains(r.getRestaurant()));
 			saved = this.ratingRepository.save(r);
-			r.getRestaurant().getRatings().add(r);
-			this.restaurantService.save(r.getRestaurant());
+			saved.getRestaurant().getRatings().add(saved);
+			saved.getRestaurant().setMediumScore(0);
+			this.restaurantService.save(saved.getRestaurant());
 		} else {
 			final Rating savedRating = this.ratingRepository.findOne(r.getId());
 			savedRating.setComment(r.getComment());
 			savedRating.setValoration(r.getValoration());
 			Assert.isTrue(this.restaurantService.getAllMyRatings().contains(r.getRestaurant()));
 			saved = this.ratingRepository.save(savedRating);
+			saved.getRestaurant().setMediumScore(0);
+			this.restaurantService.save(saved.getRestaurant());
 		}
 		return saved;
 	}
-
 	//RECONSTRUCT
 	public Rating reconstruct(final Rating rating, final BindingResult binding) {
 		Rating res;
