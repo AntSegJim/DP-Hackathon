@@ -266,4 +266,8 @@ public class RestaurantService {
 	public Collection<Restaurant> getAllMyRatings() {
 		return this.restaurantRepository.getAllMyRatings(this.customerService.getCustomerUserAccount(LoginService.getPrincipal().getId()).getId());
 	}
+
+	public Collection<Restaurant> getAllTheRatingsOfMyRestaurant() {
+		return this.restaurantRepository.getAllTheRatingsOfMyRestaurant(this.restaurantRepository.getRestaurantByUserAccount(LoginService.getPrincipal().getId()).getId());
+	}
 }

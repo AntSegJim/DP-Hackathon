@@ -37,4 +37,15 @@
 </security:authorize>
 
 
+<security:authorize access="hasRole('RESTAURANT')">
+
+<display:table pagesize="5" name="ratings" id="row" requestURI="rating/restaurant/list.do" >
+
+<display:column property="valoration" titleKey="rating.valoration"/>
+<display:column property="comment" titleKey="rating.comment" />
+	
+</display:table>
+
+</security:authorize>
+
 
