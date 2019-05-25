@@ -50,6 +50,7 @@
 			<li><a href="cashOrder/customer/list.do"><spring:message code="master.page.cashOrder" /></a></li>
 			<li><a href="finder/customer/edit.do"><spring:message code="master.page.finder" /></a></li>
 			<li><a href="rating/customer/list.do"><spring:message code="master.page.rating" /></a></li>
+			<li><a href="complain/customer/list.do"><spring:message code="master.page.complain" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('DEALER')">

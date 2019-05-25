@@ -702,11 +702,6 @@
 			</list>
 		</property>
 		<property name="minutes" value="10.0"/>
-		<property name="complains">
-			<list>
-				<ref bean="complain1" />
-			</list>
-		</property>
 	
 		
 		
@@ -731,6 +726,11 @@
 			</list>
 		</property>		
 		<property name="minutes" value="2.0"/>
+		<property name="complains">
+			<list>
+				<ref bean="complain1" />
+			</list>
+		</property>
 		
 	</bean>
 
@@ -831,7 +831,7 @@
 	<bean id="complain1" class="domain.Complain">
 		<property name="description" value="description1"/>
 		<property name="customer" ref="customer1"/>
-		<property name="cashOrder" ref="cashOrder1"/>
+		<property name="cashOrder" ref="cashOrder2"/>
 	</bean>
 	
 	<!-- RATINGS -->

@@ -30,6 +30,7 @@
 <form:hidden path="version"/>
 
 <acme:textbox code="complain.description" path="description"/>
+<acme:select items="${cashOrders}" itemLabel="ticker" code="complain.cashOrder" path="cashOrder"/>
 
 <br/>
 <input type="submit" name="save" value="<spring:message code="save" />" />
@@ -37,7 +38,7 @@
 	<input type="submit" name="delete" value="<spring:message code="delete" />" />
 </jstl:if>
 <input type="button" name="cancel" value="<spring:message code="cancel" />"
-			onclick="javascript: relativeRedir('complain/customer/list.do?cashOrderId=${cashOrder.id}');" />
+			onclick="javascript: relativeRedir('complain/customer/list.do');" />
 </form:form>
 
 </security:authorize>

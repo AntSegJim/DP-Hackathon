@@ -12,7 +12,7 @@ import domain.Complain;
 @Repository
 public interface ComplainRepository extends JpaRepository<Complain, Integer> {
 
-	@Query("select c from Complain c where c.customer.id=?1 and c.cashOrder.id=?2")
-	public Collection<Complain> getComplainByCustomerAndCashOrder(Integer customerId, Integer cashOrderId);
+	@Query("select c from Complain c where c.customer.id=?1")
+	public Collection<Complain> getComplainByCustomer(Integer customerId);
 
 }

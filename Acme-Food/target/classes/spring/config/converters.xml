@@ -64,6 +64,9 @@
 		
 		<bean class="converters.StringToComplainConverter" />
 		<bean class="converters.ComplainToStringConverter" />
+		
+		<bean class="converters.StringToCashOrderConverter" />
+		<bean class="converters.CashOrderToStringConverter" />
 	</util:list>
 	
 </beans>

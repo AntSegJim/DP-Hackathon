@@ -96,8 +96,8 @@ public class ComplainService {
 		return res;
 	}
 
-	public Collection<Complain> getComplainsByCustomer(final int customerId, final int cashOrderId) {
-		return this.complainRepository.getComplainByCustomerAndCashOrder(customerId, cashOrderId);
+	public Collection<Complain> getComplainsByCustomer(final int customerId) {
+		return this.complainRepository.getComplainByCustomer(customerId);
 	}
 
 }

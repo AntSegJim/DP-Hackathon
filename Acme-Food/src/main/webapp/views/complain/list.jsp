@@ -21,12 +21,16 @@
 <display:table pagesize="5" name="complains" id="row"
 requestURI="complain/customer/list.do" >
 
+<display:column>
+	<a href="complain/customer/edit.do?complainId=${row.id}"><spring:message code="edit" /></a>
+</display:column>
 <display:column property="description" titleKey="complain.description"/>
+<display:column titleKey="complain.cashOrder">
+${row.cashOrder.ticker}, Precio total:${row.cashOrder.totalPrice}
+</display:column>
 </display:table>
 <input type="button" name="create" value="<spring:message code="create" />"
-			onclick="javascript: relativeRedir('complain/customer/create.do?cashOrderId=${cashOrder.id}');" />
-<input type="button" name="cancel" value="<spring:message code="cancel" />"
-			onclick="javascript: relativeRedir('cashOrder/customer/list.do');" />
+			onclick="javascript: relativeRedir('complain/customer/create.do');" />
 </security:authorize>
 
 

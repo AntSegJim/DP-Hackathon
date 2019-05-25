@@ -343,4 +343,8 @@ public class CashOrderService {
 		return res;
 
 	}
+
+	public Collection<CashOrder> getCashOrdersAccepted() {
+		return this.cashOrderRepositoty.getCashOrderAccepted();
+	}
 }
