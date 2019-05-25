@@ -216,7 +216,7 @@
 		<property name="userAccount" ref="userAccount3"/>
 			<property name="ratings">
 			<list>
-				<null></null>
+				<ref bean="rating1" />
 			</list>
 		</property>
 		<property name="comercialName" value="NombreComerdial1"/>
@@ -241,7 +241,7 @@
 	
 		<property name="ratings">
 			<list>
-				<null></null>
+				<ref bean="rating2" />
 			</list>
 		</property>
 		<property name="comercialName" value="NombreComerdial2"/>
@@ -834,6 +834,20 @@
 		<property name="cashOrder" ref="cashOrder1"/>
 	</bean>
 	
+	<!-- RATINGS -->
+	<bean id="rating1" class="domain.Rating">
+		<property name="valoration" value="10"/>
+		<property name="comment" value="Buena comida"/>
+		<property name="customer" ref="customer1"/>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	
+	<bean id="rating2" class="domain.Rating">
+		<property name="valoration" value="1"/>
+		<property name="comment" value="Personal mal educado"/>
+		<property name="customer" ref="customer1"/>
+		<property name="restaurant" ref="restaurant2"/>
+	</bean>
 	
 	
 </beans>
