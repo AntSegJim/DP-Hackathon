@@ -58,7 +58,7 @@ public class RatingService {
 			Assert.isTrue(restaurants.contains(r.getRestaurant()));
 			saved = this.ratingRepository.save(r);
 			saved.getRestaurant().getRatings().add(saved);
-			saved.getRestaurant().setMediumScore(0);
+			saved.getRestaurant().setMediumScore(this.ratingRepository.averageScore(r.getRestaurant().getId()));
 			this.restaurantService.save(saved.getRestaurant());
 		} else {
 			final Rating savedRating = this.ratingRepository.findOne(r.getId());
@@ -66,7 +66,7 @@ public class RatingService {
 			savedRating.setValoration(r.getValoration());
 			Assert.isTrue(this.restaurantService.getAllMyRatings().contains(r.getRestaurant()));
 			saved = this.ratingRepository.save(savedRating);
-			saved.getRestaurant().setMediumScore(0);
+			saved.getRestaurant().setMediumScore(this.ratingRepository.averageScore(r.getRestaurant().getId()));
 			this.restaurantService.save(saved.getRestaurant());
 		}
 		return saved;

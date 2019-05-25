@@ -44,6 +44,7 @@
 		<value>/views/rating/messages</value>
 		<value>/views/customer/messages</value>
 		<value>/views/complain/messages</value>
+		<value>/views/dealer/messages</value>
 				
 	</util:list>
 

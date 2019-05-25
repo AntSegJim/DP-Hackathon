@@ -44,16 +44,7 @@ public class ProfileController extends AbstractController {
 	//
 	@Autowired
 	private CustomerService			customerService;
-	//
-	//	@Autowired
-	//	private AuditorService			auditorService;
-	//
-	//	@Autowired
-	//	private HackerService			hackerService;
-	//
-	//	@Autowired
-	//	private ProviderService			providerService;
-	//
+
 	@Autowired
 	private CreditCardService		creditCardService;
 

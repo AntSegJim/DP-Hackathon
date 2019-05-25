@@ -40,6 +40,7 @@
 			<li><a href="cashOrder/restaurant/list.do"><spring:message code="master.page.cashOrder" /></a></li>
 			<li><a href="offer/restaurant/list.do"><spring:message code="master.page.restaurant.offer" /></a></li>
 			<li><a href="rating/restaurant/list.do"><spring:message code="master.page.rating" /></a></li>
+			<li><a href="dealer/restaurant/list.do"><spring:message code="master.page.restaurant.dealer" /></a></li>
 			<li><a href="socialProfile/restaurant/list.do"><spring:message code="master.page.restaurant.socialProfile" /></a></li>
 		</security:authorize>
 		

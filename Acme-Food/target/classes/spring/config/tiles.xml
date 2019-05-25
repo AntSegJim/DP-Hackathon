@@ -44,6 +44,7 @@
 		<value>/views/rating/tiles.xml</value>
 		<value>/views/customer/tiles.xml</value>
 		<value>/views/complain/tiles.xml</value>
+		<value>/views/dealer/tiles.xml</value>
 		
 	</util:list>
 
