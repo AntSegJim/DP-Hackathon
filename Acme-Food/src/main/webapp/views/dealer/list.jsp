@@ -34,7 +34,7 @@
 </display:column>		
 </display:table>
 
-<input type="button" name="create" value="<spring:message code="rating.create" />"
+<input type="button" name="create" value="<spring:message code="dealer.create" />"
 			onclick="javascript: relativeRedir('dealer/restaurant/create.do');" />
 
 </security:authorize>
