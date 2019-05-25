@@ -71,7 +71,7 @@ public class RegistrationFormDealer extends Actor {
 		final UserAccount user = new UserAccount();
 		user.setAuthorities(new HashSet<Authority>());
 		final Authority ad = new Authority();
-		//ad.setAuthority(Authority.RESTAURANT);
+		ad.setAuthority(Authority.DEALER);
 		user.getAuthorities().add(ad);
 
 		//NUEVO

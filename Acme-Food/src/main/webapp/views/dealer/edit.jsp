@@ -21,7 +21,7 @@
 
 
 <security:authorize access="hasRole('RESTAURANT')">
-<form:form  modelAttribute="actor" action="${action}">
+<form:form  modelAttribute="actor" action="dealer/restaurant/edit.do">
 
 <jstl:if test="${not empty exception}">
 		<p style="color:red"> <spring:message code="profile.member.error" /> </p>
