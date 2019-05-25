@@ -99,6 +99,13 @@
 				
 		<security:intercept-url pattern="/customizableSystem/administrator/edit.do" access="hasRole('ADMIN')" />
 		
+		
+		<security:intercept-url pattern="/customer/create.do" access="isAnonymous()" /> 
+		<security:intercept-url pattern="/customer/edit.do" access="isAnonymous()" /> 
+		<security:intercept-url pattern="/restaurant/create.do" access="isAnonymous()" /> 
+		<security:intercept-url pattern="/restaurant/edit.do" access="isAnonymous()" />
+		<security:intercept-url pattern="/profile/edit-restaurant.do" access="hasRole('RESTAURANT')" />
+			
 		<security:intercept-url pattern="/restaurant/**" access="permitAll" /> 
 		<security:intercept-url pattern="/offer/**" access="permitAll" /> 
 	

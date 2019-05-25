@@ -26,12 +26,11 @@ import security.UserAccount;
 import domain.Actor;
 import domain.Rating;
 
-public class RegistrationFormRestaurantAndCreditCard extends Actor {
+public class RegistrationFormRestaurant extends Actor {
 
-	// Constructors -----------------------------------------------------------
-
-	public RegistrationFormRestaurantAndCreditCard() {
+	public RegistrationFormRestaurant() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 
@@ -48,6 +47,7 @@ public class RegistrationFormRestaurantAndCreditCard extends Actor {
 	private String				speciality;
 	private int					isBanned;
 	private Integer				mediumScore;
+	private Integer				orderTime;
 
 
 	// Business methods -------------------------------------------------------
@@ -125,12 +125,21 @@ public class RegistrationFormRestaurantAndCreditCard extends Actor {
 	public void setPassword(final String password) {
 		this.password = password;
 	}
+	@Range(min = 0)
+	@NotNull
+	public Integer getOrderTime() {
+		return this.orderTime;
+	}
+
+	public void setOrderTime(final Integer orderTime) {
+		this.orderTime = orderTime;
+	}
 
 	// Business methods -------------------------------------------------------
 
-	public RegistrationFormRestaurantAndCreditCard createToCompanyAndCreditCard() {
+	public RegistrationFormRestaurant createToRestaurant() {
 
-		final RegistrationFormRestaurantAndCreditCard registrationForm = new RegistrationFormRestaurantAndCreditCard();
+		final RegistrationFormRestaurant registrationForm = new RegistrationFormRestaurant();
 		registrationForm.setCheck(false);
 		registrationForm.setPatternPhone(false);
 		registrationForm.setAddress("");
@@ -146,12 +155,13 @@ public class RegistrationFormRestaurantAndCreditCard extends Actor {
 		registrationForm.setSpeciality("");
 		registrationForm.setIsBanned(0);
 		registrationForm.setMediumScore(0);
+		registrationForm.setOrderTime(0);
 
 		//PREGUNTAR
 		final UserAccount user = new UserAccount();
 		user.setAuthorities(new HashSet<Authority>());
 		final Authority ad = new Authority();
-		//ad.setAuthority(Authority.RESTAURANT);
+		ad.setAuthority(Authority.RESTAURANT);
 		user.getAuthorities().add(ad);
 
 		//NUEVO

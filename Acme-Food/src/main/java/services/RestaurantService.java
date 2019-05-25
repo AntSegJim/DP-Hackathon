@@ -23,7 +23,7 @@ import security.UserAccount;
 import domain.Actor;
 import domain.Rating;
 import domain.Restaurant;
-import forms.RegistrationFormRestaurantAndCreditCard;
+import forms.RegistrationFormRestaurant;
 
 @Service
 @Transactional
@@ -139,7 +139,7 @@ public class RestaurantService {
 
 	}
 
-	public Restaurant reconstruct(final RegistrationFormRestaurantAndCreditCard registrationForm, final BindingResult binding) {
+	public Restaurant reconstruct(final RegistrationFormRestaurant registrationForm, final BindingResult binding) {
 		Restaurant res = new Restaurant();
 
 		if (registrationForm.getId() == 0) {
@@ -158,6 +158,7 @@ public class RestaurantService {
 			res.setSpeciality(registrationForm.getSpeciality());
 			res.setIsBanned(0);
 			res.setMediumScore(0);
+			res.setOrderTime(registrationForm.getOrderTime());
 
 			final Authority ad = new Authority();
 			final UserAccount user = new UserAccount();
@@ -226,6 +227,7 @@ public class RestaurantService {
 			p.setSpeciality(registrationForm.getSpeciality());
 			p.setIsBanned(res.getIsBanned());
 			p.setMediumScore(res.getMediumScore());
+			res.setOrderTime(registrationForm.getOrderTime());
 
 			if (p.getPhone().length() <= 5)
 				p.setPhone("");
