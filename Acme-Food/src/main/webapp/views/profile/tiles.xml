@@ -33,16 +33,7 @@
 		<put-attribute name="body" value="/views/profile/action-2.jsp" />
 	</definition>
 	
-	<definition name="profile/editRookie" extends="master.page">	
-		<put-attribute name="title" value="Profile: Edit personal datas" />
-		<put-attribute name="body" value="/views/profile/action-2.jsp" />
-	</definition>
-		<definition name="profile/editProvider" extends="master.page">	
-		<put-attribute name="title" value="Profile: Edit personal datas" />
-		<put-attribute name="body" value="/views/profile/action-2.jsp" />
-	</definition>
-	
-		<definition name="profile/editAuditor" extends="master.page">	
+	<definition name="profile/editRestaurant" extends="master.page">	
 		<put-attribute name="title" value="Profile: Edit personal datas" />
 		<put-attribute name="body" value="/views/profile/action-2.jsp" />
 	</definition>

@@ -50,24 +50,6 @@
 	<acme:textbox code="profile.action.3.address" path="address"/>
 	
 	
-	<security:authorize access="hasRole('COMPANY')">
-	
-
-	<acme:textbox code="company.nameCompany" path="nameCompany"/>
-	
-	</security:authorize>
-	
-	<security:authorize access="hasRole('PROVIDER')">
-	
-
-	<acme:textbox code="provider.make" path="make"/>
-	
-	</security:authorize>
-	
-		<security:authorize access="hasRole('AUDITOR')">
-	
-	<acme:multipleSelect items="${positions}" itemLabel="title" code="auditor.positions" path="positions"/>
-	</security:authorize>
 	</fieldset>
 	<br />
 	<security:authorize access="hasRole('CUSTOMER')">
@@ -82,6 +64,18 @@
 	<br />
 	</fieldset>
 		</security:authorize>
+		
+		<security:authorize access="hasRole('RESTAURANT')">
+	<fieldset>
+	 <legend><spring:message code="Datas.Restaurant" /></legend>
+	<acme:textbox code="edit.comercialName" path="comercialName"/>
+	<acme:textbox code="edit.speciality" path="Speciality"/>		
+	<acme:textbox code="edit.orderTime" path="orderTime"/>
+	<br />
+	</fieldset>
+		</security:authorize>
+		
+		
 	
 	<fieldset>
 	 <legend><spring:message code="actor.userAccount" /></legend>

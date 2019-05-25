@@ -39,6 +39,7 @@
 <b><spring:message code="profile.restaurant.orderTime" /></b> <jstl:out value="${actor.orderTime}"/> <br/>
 
 
+
 </security:authorize>
 
 </fieldset>
@@ -88,21 +89,12 @@
 </form>
 </security:authorize>
 
-<security:authorize access="hasRole('ROOKIE')">
-<form action="profile/edit-rookie.do">
+<security:authorize access="hasRole('RESTAURANT')">
+<form action="profile/edit-restaurant.do">
     <input type="submit" value="<spring:message code="profile.edit.profile" />" />
 </form>
 </security:authorize>
-<security:authorize access="hasRole('PROVIDER')">
-<form action="profile/edit-provider.do">
-    <input type="submit" value="<spring:message code="profile.edit.profile" />" />
-</form>
-</security:authorize>
-<security:authorize access="hasRole('AUDITOR')">
-<form action="profile/edit-auditor.do">
-    <input type="submit" value="<spring:message code="profile.edit.profile" />" />
-</form>
-</security:authorize>
+
 
 
 <security:authorize access="isAuthenticated()">

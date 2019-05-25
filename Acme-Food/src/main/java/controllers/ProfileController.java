@@ -25,12 +25,15 @@ import services.ActorService;
 import services.AdministratorService;
 import services.CreditCardService;
 import services.CustomerService;
+import services.RestaurantService;
 import domain.Actor;
 import domain.Administrator;
 import domain.CreditCard;
 import domain.Customer;
+import domain.Restaurant;
 import forms.RegistrationForm;
 import forms.RegistrationFormCustomerAndCreditCard;
+import forms.RegistrationFormRestaurant;
 
 @Controller
 @RequestMapping("/profile")
@@ -47,6 +50,9 @@ public class ProfileController extends AbstractController {
 
 	@Autowired
 	private CreditCardService		creditCardService;
+
+	@Autowired
+	private RestaurantService		restaurantService;
 
 
 	//
@@ -296,187 +302,78 @@ public class ProfileController extends AbstractController {
 		}
 		return result;
 
-		//	}
-		//	@RequestMapping(value = "/edit-provider", method = RequestMethod.GET)
-		//	public ModelAndView editProvider() {
-		//		ModelAndView result;
-		//		final RegistrationFormProviderAndCreditCard registrationForm = new RegistrationFormProviderAndCreditCard();
-		//		Provider provider;
-		//		CreditCard creditCard;
-		//		try {
-		//
-		//			provider = this.providerService.findOne(this.providerService.providerUserAccount(LoginService.getPrincipal().getId()).getId());
-		//			creditCard = provider.getCreditCard();
-		//			Assert.notNull(provider);
-		//			registrationForm.setId(provider.getId());
-		//			registrationForm.setVersion(provider.getVersion());
-		//			registrationForm.setMake(provider.getMake());
-		//			registrationForm.setName(provider.getName());
-		//			registrationForm.setVatNumber(provider.getVatNumber());
-		//			registrationForm.setSurnames(provider.getSurnames());
-		//			registrationForm.setPhoto(provider.getPhoto());
-		//			registrationForm.setEmail(provider.getEmail());
-		//			registrationForm.setPhone(provider.getPhone());
-		//			registrationForm.setCreditCard(provider.getCreditCard());
-		//			registrationForm.setAddress(provider.getAddress());
-		//			registrationForm.setPassword(provider.getUserAccount().getPassword());
-		//			registrationForm.setCheck(true);
-		//			registrationForm.setPatternPhone(false);
-		//			final UserAccount userAccount = new UserAccount();
-		//			userAccount.setUsername(provider.getUserAccount().getUsername());
-		//			userAccount.setPassword(provider.getUserAccount().getPassword());
-		//			registrationForm.setUserAccount(userAccount);
-		//			registrationForm.setBrandName(creditCard.getBrandName());
-		//			registrationForm.setHolderName(creditCard.getHolderName());
-		//			registrationForm.setNumber(creditCard.getNumber());
-		//			registrationForm.setExpirationMonth(creditCard.getExpirationMonth());
-		//			registrationForm.setExpirationYear(creditCard.getExpirationYear());
-		//			registrationForm.setCW(creditCard.getCW());
-		//
-		//			result = new ModelAndView("profile/editProvider");
-		//			result.addObject("actor", registrationForm);
-		//			result.addObject("action", "profile/edit-provider.do");
-		//
-		//		} catch (final Exception e) {
-		//			result = new ModelAndView("redirect:../../");
-		//		}
-		//
-		//		return result;
-		//
-		//	}
-		//
-		//	@RequestMapping(value = "/edit-provider", method = RequestMethod.POST, params = "save")
-		//	public ModelAndView editProvider(@ModelAttribute("actor") final RegistrationFormProviderAndCreditCard registrationForm, final BindingResult binding) {
-		//		ModelAndView result;
-		//
-		//		try {
-		//			final CreditCard creditCard = this.creditCardService.reconstruct(registrationForm, binding);
-		//			registrationForm.setCreditCard(creditCard);
-		//			final Provider provider = this.providerService.reconstruct(registrationForm, binding);
-		//			if (!binding.hasErrors()) {
-		//				final CreditCard creditCardSave = this.creditCardService.save(creditCard);
-		//				provider.setCreditCard(creditCardSave);
-		//				this.providerService.save(provider);
-		//
-		//				result = new ModelAndView("redirect:personal-datas.do");
-		//			} else {
-		//				result = new ModelAndView("profile/editProvider");
-		//				result.addObject("actor", registrationForm);
-		//
-		//			}
-		//		} catch (final Exception e) {
-		//
-		//			result = new ModelAndView("profile/editProvider");
-		//			result.addObject("actor", registrationForm);
-		//			result.addObject("exception", e);
-		//
-		//		}
-		//		return result;
-		//
-		//	}
-		//
-		//	@RequestMapping(value = "/edit-auditor", method = RequestMethod.GET)
-		//	public ModelAndView editAuditor() {
-		//		ModelAndView result;
-		//		final RegistrationFormAuditor registrationForm = new RegistrationFormAuditor();
-		//		Auditor auditor;
-		//		CreditCard creditCard;
-		//		Collection<Position> allPositions;
-		//		Collection<Position> positionAssing;
-		//		Collection<Position> positionsMe;
-		//
-		//		try {
-		//			allPositions = this.positionService.findAll();
-		//			positionAssing = this.positionService.getAllPositionAssing();
-		//			final boolean eliminar = allPositions.removeAll(positionAssing);
-		//
-		//			auditor = this.auditorService.findOne(this.auditorService.auditorUserAccount(LoginService.getPrincipal().getId()).getId());
-		//			positionsMe = auditor.getPositions();
-		//			final boolean añadir = allPositions.addAll(positionsMe);
-		//
-		//			creditCard = auditor.getCreditCard();
-		//			Assert.notNull(auditor);
-		//			registrationForm.setId(auditor.getId());
-		//			registrationForm.setVersion(auditor.getVersion());
-		//			registrationForm.setPositions(auditor.getPositions());
-		//			registrationForm.setName(auditor.getName());
-		//			registrationForm.setVatNumber(auditor.getVatNumber());
-		//			registrationForm.setSurnames(auditor.getSurnames());
-		//			registrationForm.setPhoto(auditor.getPhoto());
-		//			registrationForm.setEmail(auditor.getEmail());
-		//			registrationForm.setPhone(auditor.getPhone());
-		//			registrationForm.setCreditCard(auditor.getCreditCard());
-		//			registrationForm.setAddress(auditor.getAddress());
-		//			registrationForm.setPassword(auditor.getUserAccount().getPassword());
-		//			registrationForm.setPatternPhone(false);
-		//			final UserAccount userAccount = new UserAccount();
-		//			userAccount.setUsername(auditor.getUserAccount().getUsername());
-		//			userAccount.setPassword(auditor.getUserAccount().getPassword());
-		//			registrationForm.setUserAccount(userAccount);
-		//			registrationForm.setBrandName(creditCard.getBrandName());
-		//			registrationForm.setHolderName(creditCard.getHolderName());
-		//			registrationForm.setNumber(creditCard.getNumber());
-		//			registrationForm.setExpirationMonth(creditCard.getExpirationMonth());
-		//			registrationForm.setExpirationYear(creditCard.getExpirationYear());
-		//			registrationForm.setCW(creditCard.getCW());
-		//
-		//			result = new ModelAndView("profile/editAuditor");
-		//			result.addObject("actor", registrationForm);
-		//			result.addObject("action", "profile/edit-auditor.do");
-		//			result.addObject("positions", allPositions);
-		//
-		//		} catch (final Exception e) {
-		//			result = new ModelAndView("redirect:../../");
-		//		}
-		//		return result;
-		//
-		//	}
-		//
-		//	@RequestMapping(value = "/edit-auditor", method = RequestMethod.POST, params = "save")
-		//	public ModelAndView editAuditor(@ModelAttribute("actor") final RegistrationFormAuditor registrationForm, final BindingResult binding) {
-		//		ModelAndView result;
-		//
-		//		Collection<Position> allPositions;
-		//		Collection<Position> positionAssing;
-		//		Collection<Position> positionsMe;
-		//
-		//		allPositions = this.positionService.findAll();
-		//		positionAssing = this.positionService.getAllPositionAssing();
-		//		final boolean eliminar = allPositions.removeAll(positionAssing);
-		//
-		//		final Auditor auditor2 = this.auditorService.findOne(this.auditorService.auditorUserAccount(LoginService.getPrincipal().getId()).getId());
-		//		positionsMe = auditor2.getPositions();
-		//		final boolean añadir = allPositions.addAll(positionsMe);
-		//
-		//		try {
-		//
-		//			final CreditCard creditCard = this.creditCardService.reconstruct(registrationForm, binding);
-		//			registrationForm.setCreditCard(creditCard);
-		//			final Auditor auditor = this.auditorService.reconstruct(registrationForm, binding);
-		//
-		//			if (!binding.hasErrors()) {
-		//				final CreditCard creditCardSave = this.creditCardService.save(creditCard);
-		//				auditor.setCreditCard(creditCardSave);
-		//				this.auditorService.save(auditor);
-		//
-		//				result = new ModelAndView("redirect:personal-datas.do");
-		//			} else {
-		//				result = new ModelAndView("profile/editAuditor");
-		//				result.addObject("actor", registrationForm);
-		//				result.addObject("positions", allPositions);
-		//
-		//			}
-		//		} catch (final Exception e) {
-		//
-		//			result = new ModelAndView("profile/editAuditor");
-		//			result.addObject("actor", registrationForm);
-		//			result.addObject("exception", e);
-		//			result.addObject("positions", allPositions);
-		//
-		//		}
-		//		return result;
-		//
-		//	}
+	}
+	@RequestMapping(value = "/edit-restaurant", method = RequestMethod.GET)
+	public ModelAndView editProvider() {
+		ModelAndView result;
+		final RegistrationFormRestaurant registrationForm = new RegistrationFormRestaurant();
+		Restaurant restaurant;
+
+		try {
+
+			restaurant = this.restaurantService.findOne(this.restaurantService.getRestaurantByUserAccount(LoginService.getPrincipal().getId()).getId());
+
+			Assert.notNull(restaurant);
+			registrationForm.setId(restaurant.getId());
+			registrationForm.setVersion(restaurant.getVersion());
+			registrationForm.setName(restaurant.getName());
+			registrationForm.setVatNumber(restaurant.getVatNumber());
+			registrationForm.setSurnames(restaurant.getSurnames());
+			registrationForm.setPhoto(restaurant.getPhoto());
+			registrationForm.setEmail(restaurant.getEmail());
+			registrationForm.setPhone(restaurant.getPhone());
+			registrationForm.setAddress(restaurant.getAddress());
+			registrationForm.setComercialName(restaurant.getComercialName());
+			registrationForm.setSpeciality(restaurant.getSpeciality());
+			registrationForm.setIsBanned(restaurant.getIsBanned());
+			registrationForm.setMediumScore(restaurant.getMediumScore());
+			registrationForm.setRatings(restaurant.getRatings());
+			registrationForm.setOrderTime(restaurant.getOrderTime());
+			registrationForm.setPassword(restaurant.getUserAccount().getPassword());
+			registrationForm.setCheck(true);
+			registrationForm.setPatternPhone(false);
+			final UserAccount userAccount = new UserAccount();
+			userAccount.setUsername(restaurant.getUserAccount().getUsername());
+			userAccount.setPassword(restaurant.getUserAccount().getPassword());
+			registrationForm.setUserAccount(userAccount);
+
+			result = new ModelAndView("profile/editRestaurant");
+			result.addObject("actor", registrationForm);
+			result.addObject("action", "profile/edit-restaurant.do");
+
+		} catch (final Exception e) {
+			result = new ModelAndView("redirect:../../");
+		}
+
+		return result;
 
 	}
+
+	@RequestMapping(value = "/edit-restaurant", method = RequestMethod.POST, params = "save")
+	public ModelAndView editProvider(@ModelAttribute("actor") final RegistrationFormRestaurant registrationForm, final BindingResult binding) {
+		ModelAndView result;
+
+		try {
+
+			final Restaurant restaurant = this.restaurantService.reconstruct(registrationForm, binding);
+			if (!binding.hasErrors()) {
+				this.restaurantService.save(restaurant);
+
+				result = new ModelAndView("redirect:personal-datas.do");
+			} else {
+				result = new ModelAndView("profile/editRestaurant");
+				result.addObject("actor", registrationForm);
+
+			}
+		} catch (final Exception e) {
+
+			result = new ModelAndView("profile/editRestaurant");
+			result.addObject("actor", registrationForm);
+			result.addObject("exception", e);
+
+		}
+		return result;
+
+	}
+
 }

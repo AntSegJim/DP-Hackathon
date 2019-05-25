@@ -227,7 +227,7 @@ public class RestaurantService {
 			p.setSpeciality(registrationForm.getSpeciality());
 			p.setIsBanned(res.getIsBanned());
 			p.setMediumScore(res.getMediumScore());
-			res.setOrderTime(registrationForm.getOrderTime());
+			p.setOrderTime(registrationForm.getOrderTime());
 
 			if (p.getPhone().length() <= 5)
 				p.setPhone("");
