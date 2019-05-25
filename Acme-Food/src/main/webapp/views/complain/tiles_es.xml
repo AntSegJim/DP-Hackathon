@@ -20,6 +20,10 @@
 		<put-attribute name="title" value="Quejas" />
 		<put-attribute name="body" value="/views/complain/list.jsp" />
 	</definition>
+	<definition name="complain/edit" extends="master.page">	
+		<put-attribute name="title" value="Editar queja" />
+		<put-attribute name="body" value="/views/complain/edit.jsp" />
+	</definition>
 	
 
 	
