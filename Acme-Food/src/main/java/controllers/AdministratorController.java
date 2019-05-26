@@ -11,6 +11,7 @@
 package controllers;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.AdministratorService;
 import services.CreditCardService;
 import services.CustomizableSystemService;
+import services.FinderService;
 import services.RestaurantService;
 import domain.Administrator;
 import forms.RegistrationForm;
@@ -33,6 +35,9 @@ public class AdministratorController extends AbstractController {
 
 	@Autowired
 	private RestaurantService			restaurantService;
+
+	@Autowired
+	private FinderService				finderService;
 
 	@Autowired
 	private CreditCardService			creditCardService;
@@ -54,26 +59,27 @@ public class AdministratorController extends AbstractController {
 	public ModelAndView dashboard() {
 		final ModelAndView result;
 
-		//		final List<Object[]> getAvgMinMaxDesvAppByHackers = this.applicationService.getAvgMinMaxDesvAppByHackers();
-		//		final Double getAvgAppByHackers = (Double) getAvgMinMaxDesvAppByHackers.get(0)[0];
-		//		final Double getMinAppByHackers = (Double) getAvgMinMaxDesvAppByHackers.get(0)[1];
-		//		final Double getMaxAppByHackers = (Double) getAvgMinMaxDesvAppByHackers.get(0)[2];
-		//		final Double getDesvAppByHackers = (Double) getAvgMinMaxDesvAppByHackers.get(0)[3];
-
 		final Collection<String> getRestaurantWithMoreScore = this.restaurantService.getRestaurantWithMoreScore();
 		final Collection<String> getRestaurantWithLessScore = this.restaurantService.getRestaurantWithLessScore();
+
+		final List<Object[]> getAvgMinMaxDesvResultsByFinder = this.finderService.getAvgMinMaxDesvResultsByFinder();
+		final Double getAvgResultsByFinder = (Double) getAvgMinMaxDesvResultsByFinder.get(0)[0];
+		final Integer getMinResultsByFinder = (Integer) getAvgMinMaxDesvResultsByFinder.get(0)[1];
+		final Integer getMaxResultsByFinder = (Integer) getAvgMinMaxDesvResultsByFinder.get(0)[2];
+		final Double getDesvResultsByFinder = (Double) getAvgMinMaxDesvResultsByFinder.get(0)[3];
 
 		final Collection<String> getTop5RestaurantsWithMoreOrders = this.restaurantService.getTop5RestaurantsWithMoreOrders();
 
 		result = new ModelAndView("administrator/dashboard");
 
-		//		result.addObject("getAvgAppByHackers", getAvgAppByHackers);
-		//		result.addObject("getMinAppByHackers", getMinAppByHackers);
-		//		result.addObject("getMaxAppByHackers", getMaxAppByHackers);
-		//		result.addObject("getDesvAppByHackers", getDesvAppByHackers);
-
 		result.addObject("getRestaurantWithMoreScore", getRestaurantWithMoreScore);
 		result.addObject("getRestaurantWithLessScore", getRestaurantWithLessScore);
+
+		result.addObject("getAvgResultsByFinder", getAvgResultsByFinder);
+		result.addObject("getMinResultsByFinder", getMinResultsByFinder);
+		result.addObject("getMaxResultsByFinder", getMaxResultsByFinder);
+		result.addObject("getDesvResultsByFinder", getDesvResultsByFinder);
+
 		result.addObject("getTop5RestaurantsWithMoreOrders", getTop5RestaurantsWithMoreOrders);
 
 		return result;

@@ -4,6 +4,7 @@ package services;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -111,6 +112,10 @@ public class FinderService {
 		this.validator.validate(copy, binding);
 		return copy;
 
+	}
+
+	public List<Object[]> getAvgMinMaxDesvResultsByFinder() {
+		return this.finderRepository.getAvgMinMaxDesvResultsByFinder();
 	}
 
 }
