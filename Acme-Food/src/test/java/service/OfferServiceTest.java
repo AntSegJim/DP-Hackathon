@@ -81,7 +81,7 @@ public class OfferServiceTest extends AbstractTest {
 	 * b) Broken bussines rule: Un restaurante intenta mostrar una oferta que no le pertenece.
 	 * 
 	 * c) Sentence coverage:
-	 * Sentencias metodo findOne-> 6
+	 * Sentencias metodo findOne offer-> 6
 	 * Sentencias totales-> 6
 	 * Sentence covegare positive test -> 6 (100%)
 	 * Sentence covegare negative test -> 5 (83,33%)
@@ -127,8 +127,8 @@ public class OfferServiceTest extends AbstractTest {
 	 * b) Broken bussines rule: Un restaurante intenta eliminar una oferta que no le pertenece.
 	 * 
 	 * c) Sentence coverage:
-	 * Sentencias metodo findOne-> 6
-	 * Sentencias metodo delete-> 4
+	 * Sentencias metodo findOne offer-> 6
+	 * Sentencias metodo delete offer-> 4
 	 * Sentencias totales-> 10
 	 * Sentence covegare positive test -> 10 (100%)
 	 * Sentence covegare negative test -> 5 (50%)
