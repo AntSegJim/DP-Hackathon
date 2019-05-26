@@ -693,7 +693,7 @@
 		<property name="senderMoment" value="10/12/2019 13:00"/>
 		<property name="choice" value="0"/>
 		<property name="ticker" value="yuty-431432"/>
-		<property name="customer" ref="customer1"/>
+		<property name="customer" ref="customer2"/>
 		<property name="restaurant" ref="restaurant1"/>
 		<property name="dealer"> <null/> </property>
 		<property name="foodDisheses"> 
@@ -832,6 +832,11 @@
 		<property name="description" value="description1"/>
 		<property name="customer" ref="customer1"/>
 		<property name="cashOrder" ref="cashOrder2"/>
+	</bean>
+	<bean id="complain2" class="domain.Complain">
+		<property name="description" value="description2"/>
+		<property name="customer" ref="customer2"/>
+		<property name="cashOrder" ref="cashOrder1"/>
 	</bean>
 	
 	<!-- RATINGS -->
