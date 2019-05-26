@@ -33,4 +33,14 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 	@Query("select r.restaurant from Rating r where r.customer.id = ?1")
 	public Collection<Restaurant> getAllMyRatings(int customerId);
 
+	//DASHBOARD
+	@Query("select r.comercialName from Restaurant r where (select max(res.mediumScore) from Restaurant res) = r.mediumScore")
+	public Collection<String> getRestaurantWithMoreScore();
+
+	@Query("select r.comercialName from Restaurant r where (select min(res.mediumScore) from Restaurant res) = r.mediumScore")
+	public Collection<String> getRestaurantWithLessScore();
+
+	@Query(value = "select restaurant from `acme-food`.cash_order i group by i.restaurant order by count(i.restaurant) desc LIMIT 5", nativeQuery = true)
+	public Collection<Integer> getTop5RestaurantsWithMoreOrders();
+
 }

@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -267,5 +268,27 @@ public class RestaurantService {
 
 	public Collection<Restaurant> getAllMyRatings() {
 		return this.restaurantRepository.getAllMyRatings(this.customerService.getCustomerUserAccount(LoginService.getPrincipal().getId()).getId());
+	}
+
+	//Dashboard
+	public Collection<String> getRestaurantWithMoreScore() {
+		return this.restaurantRepository.getRestaurantWithMoreScore();
+	}
+
+	public Collection<String> getRestaurantWithLessScore() {
+		return this.restaurantRepository.getRestaurantWithLessScore();
+	}
+
+	public List<String> getTop5RestaurantsWithMoreOrders() {
+		final List<Integer> ls = (List<Integer>) this.restaurantRepository.getTop5RestaurantsWithMoreOrders();
+		final List<String> res = new ArrayList<String>();
+
+		for (int i = 0; i < ls.size(); i++) {
+			final Restaurant r = this.restaurantRepository.findOne(ls.get(i));
+			res.add(r.getComercialName());
+		}
+
+		return res;
+
 	}
 }

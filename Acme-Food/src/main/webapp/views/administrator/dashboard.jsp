@@ -20,27 +20,12 @@
 
 <security:authorize access="hasRole('ADMIN')">
 
-<fieldset>
-<legend><spring:message code="administrator.position.company" /></legend>
-<b><spring:message code="administrator.avg" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getAvgPositionByCompany}"></fmt:formatNumber><br/>
-<b><spring:message code="administrator.min" /></b>: <jstl:out value="${getMinPositionByCompany}"></jstl:out><br/>
-<b><spring:message code="administrator.max" /></b>: <jstl:out value="${getMaxPositionByCompany}"></jstl:out><br/>
-<b><spring:message code="administrator.desv" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getDesvPositionByCompany}"></fmt:formatNumber>
-</fieldset>
 
 <fieldset>
-<legend><spring:message code="administrator.application.hacker" /></legend>
-<b><spring:message code="administrator.avg" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getAvgAppByHackers}"></fmt:formatNumber> <br/>
-<b><spring:message code="administrator.min" /></b>: <jstl:out value="${getMinAppByHackers}"></jstl:out><br/>
-<b><spring:message code="administrator.max" /></b>: <jstl:out value="${getMaxAppByHackers}"></jstl:out><br/>
-<b><spring:message code="administrator.desv" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getDesvAppByHackers}"></fmt:formatNumber>
-</fieldset>
-
-<fieldset>
-<b><spring:message code="administrator.company.positions" /></b>:
+<b><spring:message code="administrator.restaurant.more.medium.score" /></b>:
 <br/>
-<jstl:if test="${fn:length(getCompaniesWithMorePositions) ne 0}">
-<jstl:forEach var="item" items="${getCompaniesWithMorePositions}">
+<jstl:if test="${fn:length(getRestaurantWithMoreScore) ne 0}">
+<jstl:forEach var="item" items="${getRestaurantWithMoreScore}">
 <jstl:out value="${item}"></jstl:out>
 <br/>
 </jstl:forEach>
@@ -48,10 +33,10 @@
 </fieldset>
 
 <fieldset>
-<b><spring:message code="administrator.hacker.applications" /></b>:
+<b><spring:message code="administrator.restaurant.less.medium.score" /></b>:
 <br/>
-<jstl:if test="${fn:length(getHackersWithMoreApplications) ne 0}">
-<jstl:forEach var="item" items="${getHackersWithMoreApplications}">
+<jstl:if test="${fn:length(getRestaurantWithLessScore) ne 0}">
+<jstl:forEach var="item" items="${getRestaurantWithLessScore}">
 <jstl:out value="${item}"></jstl:out>
 <br/>
 </jstl:forEach>
@@ -59,87 +44,10 @@
 </fieldset>
 
 <fieldset>
-<legend><spring:message code="administrator.position.salary" /></legend>
-<b><spring:message code="administrator.avg" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getAvgSalaryOfPositions}"></fmt:formatNumber> <br/>
-<b><spring:message code="administrator.min" /></b>: <jstl:out value="${getMinSalaryOfPositions}"></jstl:out><br/>
-<b><spring:message code="administrator.max" /></b>: <jstl:out value="${getMaxSalaryOfPositions}"></jstl:out><br/>
-<b><spring:message code="administrator.desv" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getDesvSalaryOfPositions}"></fmt:formatNumber>
-</fieldset>
-
-<fieldset>
-<legend><spring:message code="administrator.salary" /></legend>
-<b><spring:message code="administrator.best" /></b>: 
+<b><spring:message code="administrator.restaurant.cashOrder" /></b>:
 <br/>
-<jstl:forEach var="item" items="${getPositionWithBestSalary}">
-<jstl:out value="${item}"></jstl:out>
-<br/>
-</jstl:forEach>
-
-<b><spring:message code="administrator.worst" /></b>: <br/>
-<jstl:forEach var="item" items="${getPositionWithWorstSalary}">
-<jstl:out value="${item}"></jstl:out>
-<br/>
-</jstl:forEach>
-</fieldset>
-
-<fieldset>
-<legend><spring:message code="administrator.curricula-finder" /></legend>
-<b><spring:message code="administrator.curricula-finder.curricula" /></b>: <jstl:out value="Min: ${curricula[0][0]}, Max: ${curricula[0][1]}, Avg: ${curricula[0][2]}, Desv: ${curricula[0][3]}"></jstl:out><br/>
-<b><spring:message code="administrator.curricula-finder.finder1" /></b>: <jstl:out value="Min: ${resultsFinder[0][0]}, Max: ${resultsFinder[0][1]}, Avg: ${resultsFinder[0][2]}, Desv: ${resultsFinder[0][3]}"></jstl:out><br/>
-<b><spring:message code="administrator.curricula-finder.finder2" /></b>: <jstl:out value="Ratio: ${emptyVSnotEmpty}"></jstl:out><br/>
-</fieldset>
-
-<fieldset>
-<legend><spring:message code="administrator.audit.score" /></legend>
-<b><spring:message code="administrator.avg" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getAvgScoreOfAudit}"></fmt:formatNumber> <br/>
-<b><spring:message code="administrator.min" /></b>: <jstl:out value="${getMinScoreOfAudit}"></jstl:out><br/>
-<b><spring:message code="administrator.max" /></b>: <jstl:out value="${getMaxScoreOfAudit}"></jstl:out><br/>
-<b><spring:message code="administrator.desv" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getDesvScoreOfAudit}"></fmt:formatNumber>
-</fieldset>
-
-<fieldset>
-<legend><spring:message code="administrator.audit.score.company" /></legend>
-<b><spring:message code="administrator.avg" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getAvgScoreOfAuditByCompany}"></fmt:formatNumber> <br/>
-<b><spring:message code="administrator.min" /></b>: <jstl:out value="${getMinScoreOfAuditByCompany}"></jstl:out><br/>
-<b><spring:message code="administrator.max" /></b>: <jstl:out value="${getMaxScoreOfAuditByCompany}"></jstl:out><br/>
-<b><spring:message code="administrator.desv" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getDesvScoreOfAuditByCompany}"></fmt:formatNumber>
-</fieldset>
-
-<fieldset>
-<b><spring:message code="administrator.company.score" /></b>:
-<br/>
-<jstl:if test="${fn:length(getCompaniesWithHighestScore) ne 0}">
-<jstl:forEach var="item" items="${getCompaniesWithHighestScore}">
-<jstl:out value="${item}"></jstl:out>
-<br/>
-</jstl:forEach>
-</jstl:if>
-</fieldset>
-
-<fieldset>
-<b><spring:message code="administrator.company.highScore" /></b>:
-<br/>
-<jstl:if test="${fn:length(getAvgSalaryOfCompaniesWithHighScore) ne 0}">
-<jstl:forEach var="item" items="${getAvgSalaryOfCompaniesWithHighScore}">
-<jstl:out value="${item}"></jstl:out>
-<br/>
-</jstl:forEach>
-</jstl:if>
-</fieldset>
-
-<fieldset>
-<legend><spring:message code="administrator.item.provider" /></legend>
-<b><spring:message code="administrator.avg" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getAvgItemProvider}"></fmt:formatNumber> <br/>
-<b><spring:message code="administrator.min" /></b>: <jstl:out value="${getMinItemProvider}"></jstl:out><br/>
-<b><spring:message code="administrator.max" /></b>: <jstl:out value="${getMaxItemProvider}"></jstl:out><br/>
-<b><spring:message code="administrator.desv" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getDesvItemProvider}"></fmt:formatNumber>
-</fieldset>
-
-<fieldset>
-<b><spring:message code="administrator.top5.providers" /></b>:
-<br/>
-<jstl:if test="${fn:length(top5Providers) ne 0}">
-<jstl:forEach var="item" items="${top5Providers}">
+<jstl:if test="${fn:length(getTop5RestaurantsWithMoreOrders) ne 0}">
+<jstl:forEach var="item" items="${getTop5RestaurantsWithMoreOrders}">
 <jstl:out value="${item}"></jstl:out>
 <br/>
 </jstl:forEach>
