@@ -44,6 +44,17 @@
 </fieldset>
 
 <fieldset>
+<b><spring:message code="administrator.customer.cash.order" /></b>:
+<br/>
+<jstl:if test="${fn:length(getCustomerWithMoreCashThanAvg) ne 0}">
+<jstl:forEach var="item" items="${getCustomerWithMoreCashThanAvg}">
+<jstl:out value="${item}"></jstl:out>
+<br/>
+</jstl:forEach>
+</jstl:if>
+</fieldset>
+
+<fieldset>
 <legend><spring:message code="administrator.finder" /></legend>
 <b><spring:message code="administrator.avg" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getAvgResultsByFinder}"></fmt:formatNumber><br/>
 <b><spring:message code="administrator.min" /></b>: <jstl:out value="${getMinResultsByFinder}"></jstl:out><br/>

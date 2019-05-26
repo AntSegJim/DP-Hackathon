@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.AdministratorService;
 import services.CreditCardService;
+import services.CustomerService;
 import services.CustomizableSystemService;
 import services.FinderService;
 import services.RestaurantService;
@@ -38,6 +39,9 @@ public class AdministratorController extends AbstractController {
 
 	@Autowired
 	private FinderService				finderService;
+
+	@Autowired
+	private CustomerService				customerService;
 
 	@Autowired
 	private CreditCardService			creditCardService;
@@ -60,7 +64,10 @@ public class AdministratorController extends AbstractController {
 		final ModelAndView result;
 
 		final Collection<String> getRestaurantWithMoreScore = this.restaurantService.getRestaurantWithMoreScore();
+
 		final Collection<String> getRestaurantWithLessScore = this.restaurantService.getRestaurantWithLessScore();
+
+		final Collection<String> getCustomerWithMoreCashThanAvg = this.customerService.getCustomerWithMoreCashThanAvg();
 
 		final List<Object[]> getAvgMinMaxDesvResultsByFinder = this.finderService.getAvgMinMaxDesvResultsByFinder();
 		final Double getAvgResultsByFinder = (Double) getAvgMinMaxDesvResultsByFinder.get(0)[0];
@@ -73,7 +80,10 @@ public class AdministratorController extends AbstractController {
 		result = new ModelAndView("administrator/dashboard");
 
 		result.addObject("getRestaurantWithMoreScore", getRestaurantWithMoreScore);
+
 		result.addObject("getRestaurantWithLessScore", getRestaurantWithLessScore);
+
+		result.addObject("getCustomerWithMoreCashThanAvg", getCustomerWithMoreCashThanAvg);
 
 		result.addObject("getAvgResultsByFinder", getAvgResultsByFinder);
 		result.addObject("getMinResultsByFinder", getMinResultsByFinder);

@@ -246,4 +246,8 @@ public class CustomerService {
 
 	}
 
+	public Collection<String> getCustomerWithMoreCashThanAvg() {
+		return this.customerRepository.getCustomerWithMoreCashThanAvg();
+	}
+
 }
