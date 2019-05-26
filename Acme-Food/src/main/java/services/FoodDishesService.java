@@ -63,8 +63,7 @@ public class FoodDishesService {
 
 		final UserAccount user = LoginService.getPrincipal();
 		final Restaurant r = (Restaurant) this.actorService.getActorByUserAccount(user.getId());
-		Assert.notNull(r);
-		f.setRestaurant(r);
+		Assert.isTrue(f.getRestaurant().equals(r));
 
 		res = this.foodDishesRepository.save(f);
 

@@ -84,11 +84,11 @@ public class FoodDishServiceTest extends AbstractTest {
 	public void EditFoodDishService() {
 		final Object testingData[][] = {
 			{//Positive test
-				"restaurant1", super.getEntityId("foodDishes1"), 100.0, null
+				"restaurant", super.getEntityId("foodDishes1"), 100.0, null
 			}, {//Negative test: precio negativo
-				"restaurant1", super.getEntityId("foodDishes1"), -10.0, ConstraintViolationException.class
+				"restaurant", super.getEntityId("foodDishes1"), -10.0, ConstraintViolationException.class
 			}, {//Negative test: no es su restaurant
-				"restaurant2", super.getEntityId("foodDishes1"), 50.3, IllegalArgumentException.class
+				"restaurant1", super.getEntityId("foodDishes1"), 50.3, IllegalArgumentException.class
 			},
 
 		};
