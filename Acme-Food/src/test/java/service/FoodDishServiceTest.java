@@ -122,10 +122,9 @@ public class FoodDishServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{//Positive test
 				"restaurant", super.getEntityId("foodDishes1"), null
+			}, {//Negative test: Case 2
+				"restaurant2", super.getEntityId("foodDishes1"), IllegalArgumentException.class
 			}
-		//			, {//Negative test: Case 2
-		//				"restaurant2", super.getEntityId("foodDishes1"), IllegalArgumentException.class
-		//			}
 		};
 
 		for (int i = 0; i < testingData.length; i++)
