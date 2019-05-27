@@ -26,7 +26,8 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="administrator/dashboard.do"><spring:message code="master.page.administrator.action.1" /></a></li>
-					<li><a href="administrator/create.do"><spring:message code="master.page.administrator.Create" /></a></li>				
+					<li><a href="administrator/create.do"><spring:message code="master.page.administrator.Create" /></a></li>
+					<li><a href="restaurant/administrator/list.do"><spring:message code="master.page.administrator.ban" /></a></li>				
 				</ul>
 			</li>						
 		</security:authorize>

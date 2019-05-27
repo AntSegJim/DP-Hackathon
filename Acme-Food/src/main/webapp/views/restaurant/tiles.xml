@@ -21,19 +21,15 @@
 		<put-attribute name="body" value="/views/restaurant/list.jsp" />
 	</definition>
 	
-	<definition name="notification/show" extends="master.page">	
-		<put-attribute name="title" value="Notifications: See notifications" />
-		<put-attribute name="body" value="/views/notification/show.jsp" />
-	</definition>
 	
-	<definition name="notification/edit" extends="master.page">	
-		<put-attribute name="title" value="Notifications: New notification" />
-		<put-attribute name="body" value="/views/notification/edit.jsp" />
-	</definition>
 	
 	<definition name="restaurant/create" extends="master.page">	
 		<put-attribute name="title" value="Register new restaurant" />
 		<put-attribute name="body" value="/views/restaurant/edit.jsp" />
 	</definition>
 	
+	<definition name="restaurant/show" extends="master.page">	
+		<put-attribute name="title" value="Restaurant information" />
+		<put-attribute name="body" value="/views/restaurant/show.jsp" />
+	</definition>
 </tiles-definitions>
