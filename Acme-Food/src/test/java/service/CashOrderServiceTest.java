@@ -110,10 +110,9 @@ public class CashOrderServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{//Positive test
 				super.getEntityId("cashOrder1"), "customer1", 1, null
+			}, {//Negative test: draftMode out of range
+				super.getEntityId("cashOrder1"), "customer1", 9, null
 			}
-		//			, {//Negative test: status out of range
-		//				6, 1, new Date(), 12.0, this.getFutureDate(), 1, "tyrg-654387", super.getEntityId("customer1"), super.getEntityId("restaurant1"), super.getEntityId("foodDishes1"), 30.0, ConstraintViolationException.class
-		//			}
 
 		};
 
@@ -131,6 +130,76 @@ public class CashOrderServiceTest extends AbstractTest {
 			final CashOrder p = this.cashOrderService.findOne(idCashOrder);
 
 			p.setDraftMode(draftMode);
+			this.cashOrderService.save(p);
+			this.cashOrderRepository.flush();
+
+			super.authenticate(null);
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
+	}
+
+	public void EditCashOrderRestaurantService() {
+		final Object testingData[][] = {
+			{//Positive test
+				super.getEntityId("cashOrder1"), "restaurant", 3, null
+			}, {//Negative test: status out of range
+				super.getEntityId("cashOrder1"), "restaurant1", 3, IllegalArgumentException.class
+			}
+
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.EditCashOrderRestaurantTemplate((int) testingData[i][0], (String) testingData[i][1], (int) testingData[i][3], (Class<?>) testingData[i][4]);
+	}
+
+	protected void EditCashOrderRestaurantTemplate(final int idCashOrder, final String authority, final int status, final Class<?> expected) {
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(authority);
+
+			final CashOrder p = this.cashOrderService.findOne(idCashOrder);
+
+			p.setStatus(status);
+			this.cashOrderService.save(p);
+			this.cashOrderRepository.flush();
+
+			super.authenticate(null);
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
+	}
+
+	public void EditCashOrderDealerService() {
+		final Object testingData[][] = {
+			{//Positive test
+				super.getEntityId("cashOrder2"), "dealer", 2, null
+			}, {//Negative test: order without dealer
+				super.getEntityId("cashOrder1"), "dealer", 2, IllegalArgumentException.class
+			}
+
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.EditCashOrderRestaurantTemplate((int) testingData[i][0], (String) testingData[i][1], (int) testingData[i][3], (Class<?>) testingData[i][4]);
+	}
+
+	protected void EditCashOrderDealerService(final int idCashOrder, final String authority, final int status, final Class<?> expected) {
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(authority);
+
+			final CashOrder p = this.cashOrderService.findOne(idCashOrder);
+
+			p.setStatus(status);
 			this.cashOrderService.save(p);
 			this.cashOrderRepository.flush();
 

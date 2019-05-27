@@ -187,6 +187,7 @@ public class CashOrderService {
 				copy.setRestaurant(res.getRestaurant());
 				copy.setDealer(res.getDealer());
 				copy.setMinutes(res.getMinutes());
+				copy.setComplains(res.getComplains());
 
 				copy.setFoodDisheses(cashOrder.getFoodDisheses());
 				copy.setOffers(cashOrder.getOffers());
@@ -194,7 +195,6 @@ public class CashOrderService {
 				copy.setTotalPrice(this.getTotalPrice(cashOrder));
 				copy.setSenderMoment(cashOrder.getSenderMoment());
 				copy.setChoice(cashOrder.getChoice());
-				copy.setComplains(cashOrder.getComplains());
 
 				if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
 					binding.rejectValue("foodDisheses", "NoFood");
