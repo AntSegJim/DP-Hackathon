@@ -247,7 +247,7 @@
 		<property name="comercialName" value="NombreComerdial2"/>
 		<property name="speciality" value="Especialidad2"/>
 		<property name="isBanned" value="0"/>
-		<property name="mediumScore" value="6"/>
+		<property name="mediumScore" value="2"/>
 		<property name="orderTime" value="60"/>
 		
 	

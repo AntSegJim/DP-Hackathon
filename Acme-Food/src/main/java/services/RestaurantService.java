@@ -86,6 +86,14 @@ public class RestaurantService {
 		Assert.isTrue(restaurant.equals(a));
 		return this.restaurantRepository.findOne(restaurantId);
 	}
+
+	public Restaurant findOneAdmin(final int restaurantId) {
+
+		final UserAccount userLoged = LoginService.getPrincipal();
+		Assert.isTrue(userLoged.getAuthorities().iterator().next().getAuthority().equals("ADMIN"));
+
+		return this.restaurantRepository.findOne(restaurantId);
+	}
 	public Restaurant findOneSinAutenticar(final int restaurantId) {
 		return this.restaurantRepository.findOne(restaurantId);
 	}
@@ -291,4 +299,69 @@ public class RestaurantService {
 		return res;
 
 	}
+
+	public Collection<Restaurant> getRestaurantBan() {
+		return this.restaurantRepository.getRestaurantBan();
+	}
+	public Restaurant reconstruct(final Restaurant restaurant, final BindingResult binding) {
+		Restaurant res;
+
+		if (restaurant.getId() == 0) {
+			res = restaurant;
+			final Authority ad = new Authority();
+			final UserAccount user = new UserAccount();
+			user.setAuthorities(new HashSet<Authority>());
+			ad.setAuthority(Authority.RESTAURANT);
+			user.getAuthorities().add(ad);
+			res.setUserAccount(user);
+			user.setUsername(restaurant.getUserAccount().getUsername());
+			user.setPassword(restaurant.getUserAccount().getPassword());
+
+			this.validator.validate(res, binding);
+			return res;
+		} else {
+			res = this.restaurantRepository.findOne(restaurant.getId());
+			final Restaurant p = new Restaurant();
+			p.setId(res.getId());
+			p.setVersion(res.getVersion());
+			p.setAddress(res.getAddress());
+			p.setEmail(res.getEmail());
+			p.setVatNumber(res.getVatNumber());
+			p.setName(res.getName());
+			p.setPhone(res.getPhone());
+			p.setPhoto(res.getPhoto());
+			p.setSurnames(res.getSurnames());
+			p.setUserAccount(res.getUserAccount());
+
+			p.setRatings(res.getRatings());
+			p.setComercialName(res.getComercialName());
+			p.setSpeciality(res.getSpeciality());
+			p.setIsBanned(restaurant.getIsBanned());
+			p.setMediumScore(res.getMediumScore());
+			p.setOrderTime(res.getOrderTime());
+
+			if (p.getIsBanned() == 1) {
+				final Collection<Authority> result = new ArrayList<Authority>();
+				Authority authority;
+				authority = new Authority();
+				authority.setAuthority(Authority.BANNED);
+				result.add(authority);
+				p.getUserAccount().setAuthorities(result);
+				//--------------------------------------------
+
+			} else if (p.getIsBanned() == 0) {
+				final Collection<Authority> result = new ArrayList<Authority>();
+				Authority authority;
+				authority = new Authority();
+				authority.setAuthority(Authority.RESTAURANT);
+				result.add(authority);
+				p.getUserAccount().setAuthorities(result);
+			}
+
+			this.validator.validate(p, binding);
+			return p;
+		}
+
+	}
+
 }

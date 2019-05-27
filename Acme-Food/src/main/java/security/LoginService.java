@@ -43,11 +43,12 @@ public class LoginService implements UserDetailsService {
 		Assert.notNull(result);
 		// WARNING: The following sentences prevent lazy initialisation problems!
 		Assert.notNull(result.getAuthorities());
+		Assert.isTrue(!result.getAuthorities().iterator().next().getAuthority().equals("BANNED"));
+
 		result.getAuthorities().size();
 
 		return result;
 	}
-
 	public static UserAccount getPrincipal() {
 		UserAccount result;
 		SecurityContext context;
