@@ -17,4 +17,8 @@ public interface OfferRepository extends JpaRepository<Offer, Integer> {
 
 	@Query("select sum(d.price) from Offer f join f.foodDisheses d where f.id=?1")
 	public Double getPrecioPlatosOferta(Integer offerId);
+
+	//DashBoard
+	@Query("select x.comercialName from Restaurant x where (select sum(u.totalPrice) from Offer u where u.restaurant.id=x.id) < ( select avg(1.0*(select sum(r.totalPrice) from Offer r where r.restaurant.id=a.id)) from Restaurant a)")
+	public Collection<String> getRestaurantWithOffersLessThanAvg();
 }
