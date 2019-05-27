@@ -17,7 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import repositories.CashOrderRepository;
 import repositories.CustomerRepository;
-import repositories.DealerRepository;
 import repositories.RestaurantRepository;
 import services.CashOrderService;
 import services.FoodDishesService;
@@ -40,8 +39,6 @@ public class CashOrderServiceTest extends AbstractTest {
 	private CashOrderRepository		cashOrderRepository;
 	@Autowired
 	private CustomerRepository		customerRepository;
-	@Autowired
-	private DealerRepository		dealerRepository;
 	@Autowired
 	private FoodDishesService		foodDishService;
 
@@ -201,6 +198,42 @@ public class CashOrderServiceTest extends AbstractTest {
 
 			p.setStatus(status);
 			this.cashOrderService.save(p);
+			this.cashOrderRepository.flush();
+
+			super.authenticate(null);
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
+	}
+
+	public void DeleteCashOrderService() {
+		final Object testingData[][] = {
+			{//Positive test
+				super.getEntityId("cashOrder1"), "customer1", null
+			}, {//Negative test: is not the same customer to make the order
+				super.getEntityId("cashOrder1"), "customer2", IllegalArgumentException.class
+			}, {//Negative test: order in safe mode
+				super.getEntityId("cashOrder2"), "customer2", IllegalArgumentException.class
+			}
+
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.DeleteCashOrderTemplate((int) testingData[i][0], (String) testingData[i][1], (Class<?>) testingData[i][3]);
+	}
+
+	protected void DeleteCashOrderTemplate(final int idCashOrder, final String authority, final Class<?> expected) {
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(authority);
+
+			final CashOrder p = this.cashOrderService.findOne(idCashOrder);
+
+			this.cashOrderService.delete(p);
 			this.cashOrderRepository.flush();
 
 			super.authenticate(null);
