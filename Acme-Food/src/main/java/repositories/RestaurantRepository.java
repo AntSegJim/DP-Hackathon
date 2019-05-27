@@ -2,6 +2,7 @@
 package repositories;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -42,5 +43,8 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 
 	@Query(value = "select restaurant from `acme-food`.cash_order i group by i.restaurant order by count(i.restaurant) desc LIMIT 5", nativeQuery = true)
 	public Collection<Integer> getTop5RestaurantsWithMoreOrders();
+
+	@Query("select avg(1.0*(select count(c.restaurant) from CashOrder c where c.status != 1 and c.restaurant.id = r.id)), min(1.0*(select count(c.restaurant) from CashOrder c where c.status != 1 and c.restaurant.id = r.id)), max(1.0*(select count(c.restaurant) from CashOrder c where c.status != 1 and c.restaurant.id = r.id)), sqrt(1.0*sum(1.0*(select count(c.restaurant) from CashOrder c where c.status != 1 and c.restaurant.id = r.id) * (select count(c.restaurant) from CashOrder c where c.status != 1 and c.restaurant.id = r.id)) / count(r) - avg(1.0*(select count(c.restaurant) from CashOrder c where c.status != 1 and c.restaurant.id = r.id)) * avg(1.0*(select count(c.restaurant) from CashOrder c where c.status != 1 and c.restaurant.id = r.id))) from Restaurant r")
+	public List<Object[]> getAvgMinMaxDesvNumbersOfOrdersByRestaurant();
 
 }
