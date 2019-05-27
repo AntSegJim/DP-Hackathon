@@ -15,15 +15,23 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<security:authorize access="isAuthenticated()">
+<security:authorize access="hasRole('ADMINISTRATOR')">
+<b><spring:message code="profile.restaurant.comercialName" /></b> <jstl:out value="${actor.comercialName}"/> <br/>
+<b><spring:message code="profile.restaurant.speciality" /></b> <jstl:out value="${actor.speciality}"/> <br/>
+<b><spring:message code="profile.restaurant.mediumScore" /></b> <jstl:out value="${actor.mediumScore}"/> <br/>
+<b><spring:message code="profile.restaurant.orderTime" /></b> <jstl:out value="${actor.orderTime}"/> <br/>
+<b><spring:message code="profile.restaurant.orderTime" /></b> <jstl:out value="${actor.orderTime}"/> <br/>
 
-<b><spring:message code="notification.subject" /> : </b> <jstl:out value="${notification.subject}"></jstl:out> <br/>
-<b><spring:message code="notification.body" /> : </b> <jstl:out value="${notification.body}"></jstl:out>
+<form:label path="isBanned"><spring:message code="restaurant.isBanned" />:</form:label>
+	<form:select path="isBanned">
+		<form:option value="0" label=<spring:message code="No.isBanned" /> />	
+		<form:option value="1" label=<spring:message code="Yes.isBanned" />/>	
+	</form:select>
+	<form:errors path="isBanned"/>
+	<
 
-<br/>
-<br/>
-<input type="button" name="cancel" value="<spring:message code="notification.cancel" />"
-			onclick="javascript: relativeRedir('notification/actor/list.do');" />
+
 
 </security:authorize>

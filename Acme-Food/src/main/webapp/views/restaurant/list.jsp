@@ -50,4 +50,18 @@ requestURI="restaurant/list.do" >
 </display:table>
 </security:authorize>
 
+<security:authorize access="hasRole('ADMINISTRATOR')">
+<display:table pagesize="5" name="restaurants" id="row"
+requestURI="restaurant/administrator/list.do" >
+
+<display:column property="comercialName" titleKey="restaurant.comercialName"/>
+<display:column property="speciality" titleKey="restaurant.speciality"/>
+<display:column property="mediumScore" titleKey="restaurant.mediumScore"/>
+
+<display:column>
+	<a href="restaurant/administrator/show.do?idRestaurant=${row.id}"><spring:message code="restaurant.show"/></a>
+</display:column>
+</display:table>
+</security:authorize>
+
 
