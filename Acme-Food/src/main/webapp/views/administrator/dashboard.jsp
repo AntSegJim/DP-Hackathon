@@ -63,6 +63,38 @@
 </fieldset>
 
 <fieldset>
+<legend><spring:message code="administrator.restaurat.numbers.order" /></legend>
+<b><spring:message code="administrator.avg" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getAvgNumbersOfOrdersByRestaurant}"></fmt:formatNumber><br/>
+<b><spring:message code="administrator.min" /></b>: <jstl:out value="${getMinNumbersOfOrdersByRestaurant}"></jstl:out><br/>
+<b><spring:message code="administrator.max" /></b>: <jstl:out value="${getMaxNumbersOfOrdersByRestaurant}"></jstl:out><br/>
+<b><spring:message code="administrator.desv" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getDesvNumbersOfOrdersByRestaurant}"></fmt:formatNumber>
+</fieldset>
+
+<fieldset>
+<legend><spring:message code="administrator.customer.numbers.order" /></legend>
+<b><spring:message code="administrator.avg" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getAvgNumbersOfOrdersByCustomer}"></fmt:formatNumber><br/>
+<b><spring:message code="administrator.min" /></b>: <jstl:out value="${getMinNumbersOfOrdersByCustomer}"></jstl:out><br/>
+<b><spring:message code="administrator.max" /></b>: <jstl:out value="${getMaxNumbersOfOrdersByCustomer}"></jstl:out><br/>
+<b><spring:message code="administrator.desv" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "3" value ="${getDesvNumbersOfOrdersByCustomer}"></fmt:formatNumber>
+</fieldset>
+
+<fieldset>
+<legend><spring:message code="administrator.ratio.complain" /></legend>
+<jstl:out value="${ratioOfRestaurantsWithComplain}"></jstl:out><br/>
+</fieldset>
+
+<fieldset>
+<b><spring:message code="administrator.restaurant.offer" /></b>:
+<br/>
+<jstl:if test="${fn:length(getRestaurantWithOffersLessThanAvg) ne 0}">
+<jstl:forEach var="item" items="${getRestaurantWithOffersLessThanAvg}">
+<jstl:out value="${item}"></jstl:out>
+<br/>
+</jstl:forEach>
+</jstl:if>
+</fieldset>
+
+<fieldset>
 <b><spring:message code="administrator.restaurant.cashOrder" /></b>:
 <br/>
 <jstl:if test="${fn:length(getTop5RestaurantsWithMoreOrders) ne 0}">

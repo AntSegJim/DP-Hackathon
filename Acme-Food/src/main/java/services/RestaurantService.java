@@ -368,4 +368,8 @@ public class RestaurantService {
 
 	}
 
+	public List<Object[]> getAvgMinMaxDesvNumbersOfOrdersByRestaurant() {
+		return this.restaurantRepository.getAvgMinMaxDesvNumbersOfOrdersByRestaurant();
+	}
+
 }

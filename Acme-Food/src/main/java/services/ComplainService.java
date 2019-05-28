@@ -100,4 +100,8 @@ public class ComplainService {
 		return this.complainRepository.getComplainByCustomer(customerId);
 	}
 
+	public Double ratioOfRestaurantsWithComplain() {
+		return this.complainRepository.ratioOfRestaurantsWithComplain();
+	}
+
 }
