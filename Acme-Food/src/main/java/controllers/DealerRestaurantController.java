@@ -115,7 +115,9 @@ public class DealerRestaurantController {
 				result.addObject("actor", r);
 			}
 		} catch (final Exception e) {
-			result = new ModelAndView("redirect:list.do");
+			result = new ModelAndView("dealer/edit");
+			result.addObject("exception", e);
+			result.addObject("actor", r);
 		}
 
 		return result;
