@@ -37,11 +37,11 @@ public class FinderServiceTest extends AbstractTest {
 	 * a) Requeriment: Create a finder.
 	 * 
 	 * b) Broken bussines rule:
-	 * create a finder with moment null
+	 * create a finder with bad score
 	 * 
-	 * c) Sentence coverage: 62.4%
+	 * c) Sentence coverage: 13/23=56.52%
 	 * 
-	 * d) Data coverage: 14.28% (1 atributo incorrecto/7 atributos)
+	 * d) Data coverage: 20% (1 atributo incorrecto/5 atributos)
 	 */
 
 	@Test
@@ -86,12 +86,13 @@ public class FinderServiceTest extends AbstractTest {
 	 * a) Requeriment: Edit a finder.
 	 * 
 	 * b) Broken bussines rule:
-	 * edit a finder with moment null
+	 * edit a finder with date null
 	 * 
-	 * c) Sentence coverage: 82.35%
+	 * c) Sentence coverage: 17/23=73.91%
 	 * 
-	 * d) Data coverage: 14.28% (1 atributo incorrecto/7 atributos)
+	 * d) Data coverage: 20% (1 atributo incorrecto/5 atributos)
 	 */
+
 	@Test
 	public void EditFinderService() {
 		final Object testingData[][] = {

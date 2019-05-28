@@ -27,16 +27,16 @@ public class DealerServiceTest extends AbstractTest {
 
 
 	/*
-	 * a) Requeriment: An actor who is authenticated as an administrator
-	 * must be able to create user acconunts for new administrators.
+	 * a) Requeriment: An actor who is authenticated as an restaurant
+	 * must be able to create user acconunts for new dealers.
 	 * 
 	 * b) Broken bussines rule:
-	 * Se intenta crear un nuevo administrador sin email
+	 * Se intenta crear un nuevo repartidor sin email
 	 * 
-	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save tando del AdministratorService como de CreditCardService,
-	 * el total de lineas sumando estos metodos es de 133, de las cuales este test recorrer 77 , es decir un 57'89%.
+	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save de DealerService,
+	 * el total de lineas sumando estos metodos es de 106, de las cuales este test recorre 62 , es decir un 58'49%.
 	 * 
-	 * d) Data coverage: 7.69% (1 atributo incorrecto/13 atributos)
+	 * d) Data coverage: 14.29% (1 atributo incorrecto/7 atributos)
 	 */
 
 	@Test
@@ -95,12 +95,12 @@ public class DealerServiceTest extends AbstractTest {
 	 * must be able to edit his or her personal data.
 	 * 
 	 * b) Broken bussines rule:
-	 * Un administrador intenta editar la informacion de otro.
+	 * Un restaurant inetenta editar la informacion de uno de sus repartidores.
 	 * 
-	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save tando del AdministratorService como del CreditCardService, y al findOne de AdministratorService,
-	 * el total de lineas sumando estos metodos es de 139, de las cuales este test recorrer 81 , es decir un 58'27%.
+	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save de DealerService,
+	 * el total de lineas sumando estos metodos es de 106, de las cuales este test recorre 31 , es decir un 29'24%.
 	 * 
-	 * d) Data coverage:
+	 * d) Data coverage: 14.29% (1 atributo incorrecto/7 atributos)
 	 */
 
 	@Test

@@ -51,14 +51,14 @@ public class RatingServiceTest extends AbstractTest {
 
 
 	/*
-	 * a) Requeriment: Create a finder.
+	 * a) Requeriment: Create a rating.
 	 * 
 	 * b) Broken bussines rule:
-	 * create a finder with moment null
+	 * create a rating with bad score
 	 * 
-	 * c) Sentence coverage: 62.4%
+	 * c) Sentence coverage: 17/24 =70.83% (Only create & save Rating)
 	 * 
-	 * d) Data coverage: 14.28% (1 atributo incorrecto/7 atributos)
+	 * d) Data coverage: 33.33% (1 atributo incorrecto/3 atributos)
 	 */
 
 	@Test
@@ -123,14 +123,14 @@ public class RatingServiceTest extends AbstractTest {
 	}
 
 	/*
-	 * a) Requeriment: Edit a finder.
+	 * a) Requeriment: Edit a rating.
 	 * 
 	 * b) Broken bussines rule:
-	 * edit a finder with moment null
+	 * edit a rating with emptu comment
 	 * 
-	 * c) Sentence coverage: 82.35%
+	 * c) Sentence coverage: 14/24 =58.33% (Only findOne & save Rating)
 	 * 
-	 * d) Data coverage: 14.28% (1 atributo incorrecto/7 atributos)
+	 * d) Data coverage: 33.33% (1 atributo incorrecto/3 atributos)
 	 */
 	@Test
 	public void EditRatingService() {
