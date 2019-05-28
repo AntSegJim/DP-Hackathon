@@ -15,6 +15,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
 <style type="text/css">
@@ -151,6 +152,8 @@ requestURI="foodDishes/customer/list.do?idRestaurant=${idRestaurant}" >
 <input type="button" name="cancel" value="<spring:message code="foodDishes.cancel" />"
 			onclick="javascript: relativeRedir('restaurant/customer/list.do');" />
 
+<acme:cancel url="finder/customer/show.do" code="finder.back.results"/>
+
 </security:authorize>
 
 <security:authorize access="isAnonymous()">
@@ -209,6 +212,7 @@ requestURI="foodDishes/list.do?idRestaurant=${idRestaurant}" >
 
 <input type="button" name="cancel" value="<spring:message code="foodDishes.cancel" />"
 			onclick="javascript: relativeRedir('restaurant/list.do');" />
+
 
 </security:authorize>
 

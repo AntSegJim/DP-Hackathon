@@ -16,7 +16,6 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<script src="scripts/ajax.js"></script>
 
 
 <security:authorize access="hasRole('CUSTOMER')">
@@ -31,18 +30,6 @@
 	<button type="button" onclick="watchMore(${row.id})"><b><spring:message code="restaurant.info" /></b></button>
 </display:column>
 </display:table>-->
-
-	<script type="text/javascript">
-		function watchMore(restaurantId) {
-			$.ajax({
-				type : 'GET',
-				url : 'finder/customer/watch-more.do?restaurantId='+restaurantId,
-				success : function(res) {
-					alert(res);
-				}
-			});
-		}
-	</script>
 
 	<jstl:if test="${fn:length(restaurants) eq 0 }">
 		<table>
@@ -67,7 +54,10 @@
 				<th><spring:message code="restaurant.nameRestaurant" /></th>
 				<th><spring:message code="restaurant.speciality" /></th>
 				<th><spring:message code="restaurant.mediumScore" /></th>
-				<th><spring:message code="restaurant.info" /></th>
+				<th><spring:message code="restaurant.phone.list" /></th>
+				<th><spring:message code="restaurant.offer" /></th>
+				<th><spring:message code="restaurant.foodDishes"/></th>
+				<th><spring:message code="cashOrder.do"/></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -78,7 +68,10 @@
 						<td><jstl:out value="${r.comercialName}" /></td>
 						<td><jstl:out value="${r.speciality}" /></td>
 						<td><jstl:out value="${r.mediumScore}" /></td>
-						<td><button type="button" onclick="watchMore(${r.id})"><b><spring:message code="restaurant.info" /></b></button></td>
+						<td><jstl:out value="${r.phone}" /></td>
+						<td><a href="offer/customer/list.do?restaurantId=${r.id}"><spring:message code="restaurant.offer" /></a></td>
+						<td><a href="foodDishes/customer/list.do?idRestaurant=${r.id}"><spring:message code="restaurant.foodDishes" /></a></td>
+						<td><a href="cashOrder/customer/create.do?restaurantId=${r.id}"><spring:message code="cashOrder.do" /></a></td>
 					</tr>
 				</jstl:if>
 				<jstl:if test="${loopCounter.count%2 != 0 }">
@@ -86,7 +79,10 @@
 						<td><jstl:out value="${r.comercialName}" /></td>
 						<td><jstl:out value="${r.speciality}" /></td>
 						<td><jstl:out value="${r.mediumScore}" /></td>
-						<td><button type="button" onclick="javascript:watchMore(${r.id})"><b><spring:message code="restaurant.info" /></b></button></td>
+						<td><jstl:out value="${r.phone}" /></td>
+						<td><a href="offer/customer/list.do?restaurantId=${r.id}"><spring:message code="restaurant.offer" /></a></td>
+						<td><a href="foodDishes/customer/list.do?idRestaurant=${r.id}"><spring:message code="restaurant.foodDishes" /></a></td>
+						<td><a href="cashOrder/customer/create.do?restaurantId=${r.id}"><spring:message code="cashOrder.do" /></a></td>
 					</tr>
 				</jstl:if>
 			</jstl:forEach>

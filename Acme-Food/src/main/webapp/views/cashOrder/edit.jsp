@@ -75,4 +75,7 @@
 
 </script>
 
+<acme:cancel url="finder/customer/show.do" code="finder.back.results"/>
+
+
 </security:authorize>
