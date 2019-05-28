@@ -67,8 +67,11 @@ requestURI="restaurant/administrator/list.do" >
 <display:column property="mediumScore" titleKey="restaurant.mediumScore"/>
 
 <display:column>
+<jstl:if test="${row.mediumScore<=3 }">
 	<a href="restaurant/administrator/show.do?restaurantId=${row.id}"><spring:message code="restaurant.show"/></a>
+	</jstl:if>
 </display:column>
+
 </display:table>
 <a href="restaurant/administrator/list2.do"><spring:message code="restaurant.banned"/></a>
 </security:authorize>
