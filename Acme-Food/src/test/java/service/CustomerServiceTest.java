@@ -33,13 +33,13 @@ public class CustomerServiceTest extends AbstractTest {
 
 	/*
 	 * a) Requeriment: An actor who is not authenticated must be able to
-	 * register to the system as hacker.
+	 * register to the system as customer.
 	 * 
 	 * b) Broken bussines rule:
-	 * Se intenta registratar un usuario como company con un patrón de VatNumber incorrecto
+	 * Se intenta registratar un usuario como customer con un patrón de VatNumber incorrecto
 	 * 
-	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save tanto del HackerService como de CreditCardService,
-	 * el total de lineas sumando estos metodos es de 134, de las cuales este test recorrer 76 , es decir un 56'72%.
+	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save tanto del CustomerService como de CreditCardService,
+	 * el total de lineas sumando estos metodos es de 147, de las cuales este test recorrer 78 , es decir un 53'06%.
 	 * 
 	 * d) Data coverage: 7.69% (1 atributo incorrecto/13atributos)
 	 */
@@ -113,10 +113,10 @@ public class CustomerServiceTest extends AbstractTest {
 	 * must be able to edit his or her personal data.
 	 * 
 	 * b) Broken bussines rule:
-	 * Un hacker intenta editar la informacion de otro.
+	 * Un customer intenta editar la informacion de otro.
 	 * 
-	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save tando del HackerService como del CreditCardService, y al findOne de HackerService,
-	 * el total de lineas sumando estos metodos es de 140, de las cuales este test recorrer 83 , es decir un 59'29%.
+	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save tando del CustomerService como del CreditCardService, y al findOne de CustomerService,
+	 * el total de lineas sumando estos metodos es de 153, de las cuales este test recorrer 99 , es decir un 64'71%.
 	 * 
 	 * d) Data coverage:
 	 */

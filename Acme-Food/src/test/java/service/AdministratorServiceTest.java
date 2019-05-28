@@ -33,10 +33,10 @@ public class AdministratorServiceTest extends AbstractTest {
 	 * b) Broken bussines rule:
 	 * Se intenta crear un nuevo administrador sin email
 	 * 
-	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save tando del AdministratorService como de CreditCardService,
-	 * el total de lineas sumando estos metodos es de 133, de las cuales este test recorrer 77 , es decir un 57'89%.
+	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save del AdministratorService
+	 * el total de lineas sumando estos metodos es de 98, de las cuales este test recorrer 59 , es decir un 60'20%.
 	 * 
-	 * d) Data coverage: 7.69% (1 atributo incorrecto/13 atributos)
+	 * d) Data coverage: 14.28% (1 atributo incorrecto/7 atributos)
 	 */
 
 	@Test
@@ -97,10 +97,10 @@ public class AdministratorServiceTest extends AbstractTest {
 	 * b) Broken bussines rule:
 	 * Un administrador intenta editar la informacion de otro.
 	 * 
-	 * c) Sentence coverage:Este caso de uso engloba el recontructor y el save tando del AdministratorService como del CreditCardService, y al findOne de AdministratorService,
-	 * el total de lineas sumando estos metodos es de 139, de las cuales este test recorrer 81 , es decir un 58'27%.
+	 * c) Sentence coverage:Este caso de uso engloba el recontructor , el save y el findOne del AdministratorService
+	 * el total de lineas sumando estos metodos es de 104, de las cuales este test recorrer 70 , es decir un 67'31%.
 	 * 
-	 * d) Data coverage:
+	 * d) Data coverage:-
 	 */
 
 	@Test
