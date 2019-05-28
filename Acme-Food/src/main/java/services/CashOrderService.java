@@ -164,6 +164,7 @@ public class CashOrderService {
 			cashOrder.setMinutes(0.0);
 
 			cashOrder.setRestaurant(this.restaurantRepository.findOne(id));
+			Assert.isTrue(cashOrder.getRestaurant().getIsBanned() == 0);
 
 			if (cashOrder.getFoodDisheses() == null && cashOrder.getOffers() == null)
 				binding.rejectValue("foodDisheses", "NoFood");
