@@ -47,7 +47,10 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 	@Query("select avg(1.0*(select count(c.restaurant) from CashOrder c where c.status != 1 and c.restaurant.id = r.id)), min(1.0*(select count(c.restaurant) from CashOrder c where c.status != 1 and c.restaurant.id = r.id)), max(1.0*(select count(c.restaurant) from CashOrder c where c.status != 1 and c.restaurant.id = r.id)), sqrt(1.0*sum(1.0*(select count(c.restaurant) from CashOrder c where c.status != 1 and c.restaurant.id = r.id) * (select count(c.restaurant) from CashOrder c where c.status != 1 and c.restaurant.id = r.id)) / count(r) - avg(1.0*(select count(c.restaurant) from CashOrder c where c.status != 1 and c.restaurant.id = r.id)) * avg(1.0*(select count(c.restaurant) from CashOrder c where c.status != 1 and c.restaurant.id = r.id))) from Restaurant r")
 	public List<Object[]> getAvgMinMaxDesvNumbersOfOrdersByRestaurant();
 
-	@Query("select r from Restaurant r where  r.mediumScore <= 3")
+	@Query("select r from Restaurant r where  r.mediumScore <= 3 and r.isBanned = 0")
 	public Collection<Restaurant> getRestaurantBan();
+
+	@Query("select r from Restaurant r where  r.mediumScore <= 3 and r.isBanned = 1")
+	public Collection<Restaurant> getRestaurantBanned();
 
 }

@@ -17,16 +17,18 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('CUSTOMER')">
-
+<h1><spring:message code="restaurant.title" /></h1>
 <display:table pagesize="5" name="restaurants" id="row"
 requestURI="restaurant/customer/list.do" >
+<h1><spring:message code="restaurant.title" /></h1>
 <display:column class="${css}">
 	<a href="foodDishes/customer/list.do?idRestaurant=${row.id}"><spring:message code="restaurant.foodDishes" /></a>
 </display:column>
-<display:column>
-**ESTO ES TEMPORAL**
-</display:column>
-<display:column property="comercialName" titleKey="restaurant.comercialName" />
+<display:column property="comercialName" titleKey="restaurant.comercialName"/>
+<display:column property="speciality" titleKey="restaurant.speciality"/>
+<display:column property="mediumScore" titleKey="restaurant.mediumScore"/>
+<display:column property="phone" titleKey="restaurant.phone.list"/>
+
 <display:column>
 	<a href="cashOrder/customer/create.do?restaurantId=${row.id}"><spring:message code="cashOrder.do" /></a>
 </display:column>
@@ -35,6 +37,9 @@ requestURI="restaurant/customer/list.do" >
 
 
 <security:authorize access="isAnonymous()">
+
+<h1><spring:message code="restaurant.title" /></h1>
+
 <display:table pagesize="5" name="restaurants" id="row"
 requestURI="restaurant/list.do" >
 <display:column>
@@ -52,6 +57,8 @@ requestURI="restaurant/list.do" >
 
 <security:authorize access="hasRole('ADMIN')">
 
+<h1><spring:message code="restaurant.title.baneo" /></h1>
+
 <display:table pagesize="5" name="restaurants" id="row"
 requestURI="restaurant/administrator/list.do" >
 
@@ -63,6 +70,7 @@ requestURI="restaurant/administrator/list.do" >
 	<a href="restaurant/administrator/show.do?restaurantId=${row.id}"><spring:message code="restaurant.show"/></a>
 </display:column>
 </display:table>
+<a href="restaurant/administrator/list2.do"><spring:message code="restaurant.banned"/></a>
 </security:authorize>
 
 

@@ -303,6 +303,10 @@ public class RestaurantService {
 	public Collection<Restaurant> getRestaurantBan() {
 		return this.restaurantRepository.getRestaurantBan();
 	}
+
+	public Collection<Restaurant> getRestaurantBanned() {
+		return this.restaurantRepository.getRestaurantBanned();
+	}
 	public Restaurant reconstruct(final Restaurant restaurant, final BindingResult binding) {
 		Restaurant res;
 

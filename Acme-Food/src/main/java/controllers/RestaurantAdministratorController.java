@@ -46,6 +46,19 @@ public class RestaurantAdministratorController extends AbstractController {
 
 		result = new ModelAndView("restaurant/list");
 		result.addObject("restaurants", restaurants);
+
+		return result;
+	}
+	@RequestMapping(value = "/list2", method = RequestMethod.GET)
+	public ModelAndView list2() {
+		final ModelAndView result;
+		final Collection<Restaurant> restaurants;
+
+		restaurants = this.restaurantService.getRestaurantBanned();
+
+		result = new ModelAndView("restaurant/list2");
+		result.addObject("restaurants", restaurants);
+
 		return result;
 	}
 

@@ -121,7 +121,7 @@
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="RESTAURANT" />
+					<property name="authority" value="BANNED" />
 				</bean>
 			</list>
 		</property>
@@ -293,8 +293,8 @@
 		</property>
 		<property name="comercialName" value="NombreComerdial4"/>
 		<property name="speciality" value="Especialidad4"/>
-		<property name="isBanned" value="0"/>
-		<property name="mediumScore" value="8"/>
+		<property name="isBanned" value="1"/>
+		<property name="mediumScore" value="1"/>
 		<property name="orderTime" value="30"/>
 	
 	</bean>

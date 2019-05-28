@@ -34,19 +34,20 @@
 	<form:hidden path="version" />
 <form:label path="isBanned"><spring:message code="restaurant.isBanned" />:</form:label>
 	<form:select path="isBanned">
-		<form:option value="0" label=" ----"/>
-	
-		<form:option value="1" label="yes"/>
-	
-			
+		<form:option value="0" label=" No"/>
+		<form:option value="1" label="yes"/>	
 	</form:select>
 	<form:errors path="isBanned"/>
 	
 	<input type="submit" name="save"  value="<spring:message code="restaurant.save" />" />
-	
+	<jstl:if test="${restaurant.isBanned eq 0 }">
 <input type="button" name="cancel" value="<spring:message code="restaurant.cancel" />"
 			onclick="javascript: relativeRedir('restaurant/administrator/list.do');" />
-	
+	</jstl:if>
+	<jstl:if test="${restaurant.isBanned eq 1 }">
+<input type="button" name="cancel" value="<spring:message code="restaurant.cancel" />"
+			onclick="javascript: relativeRedir('restaurant/administrator/list2.do');" />
+	</jstl:if>
 	
 	</form:form>
 
