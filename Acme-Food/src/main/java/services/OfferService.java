@@ -118,4 +118,8 @@ public class OfferService {
 	public Double getSumaPrecioPlatosByOffer(final Integer offerId) {
 		return this.offerRepository.getPrecioPlatosOferta(offerId);
 	}
+
+	public Collection<String> getRestaurantWithOffersLessThanAvg() {
+		return this.offerRepository.getRestaurantWithOffersLessThanAvg();
+	}
 }

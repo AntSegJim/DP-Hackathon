@@ -22,10 +22,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AdministratorService;
+import services.ComplainService;
 import services.CreditCardService;
 import services.CustomerService;
 import services.CustomizableSystemService;
 import services.FinderService;
+import services.OfferService;
 import services.RestaurantService;
 import domain.Administrator;
 import forms.RegistrationForm;
@@ -52,6 +54,12 @@ public class AdministratorController extends AbstractController {
 	@Autowired
 	private AdministratorService		administratorService;
 
+	@Autowired
+	private ComplainService				complainService;
+
+	@Autowired
+	private OfferService				offerService;
+
 
 	//	// Constructors -----------------------------------------------------------
 	//
@@ -75,6 +83,22 @@ public class AdministratorController extends AbstractController {
 		final Integer getMaxResultsByFinder = (Integer) getAvgMinMaxDesvResultsByFinder.get(0)[2];
 		final Double getDesvResultsByFinder = (Double) getAvgMinMaxDesvResultsByFinder.get(0)[3];
 
+		final List<Object[]> getAvgMinMaxDesvNumbersOfOrdersByRestaurant = this.restaurantService.getAvgMinMaxDesvNumbersOfOrdersByRestaurant();
+		final Double getAvgNumbersOfOrdersByRestaurant = (Double) getAvgMinMaxDesvNumbersOfOrdersByRestaurant.get(0)[0];
+		final Double getMinNumbersOfOrdersByRestaurant = (Double) getAvgMinMaxDesvNumbersOfOrdersByRestaurant.get(0)[1];
+		final Double getMaxNumbersOfOrdersByRestaurant = (Double) getAvgMinMaxDesvNumbersOfOrdersByRestaurant.get(0)[2];
+		final Double getDesvNumbersOfOrdersByRestaurant = (Double) getAvgMinMaxDesvNumbersOfOrdersByRestaurant.get(0)[3];
+
+		final List<Object[]> getAvgMinMaxDesvNumbersOfOrdersByCustomer = this.customerService.getAvgMinMaxDesvNumbersOfOrdersByCustomer();
+		final Double getAvgNumbersOfOrdersByCustomer = (Double) getAvgMinMaxDesvNumbersOfOrdersByCustomer.get(0)[0];
+		final Double getMinNumbersOfOrdersByCustomer = (Double) getAvgMinMaxDesvNumbersOfOrdersByCustomer.get(0)[1];
+		final Double getMaxNumbersOfOrdersByCustomer = (Double) getAvgMinMaxDesvNumbersOfOrdersByCustomer.get(0)[2];
+		final Double getDesvNumbersOfOrdersByCustomer = (Double) getAvgMinMaxDesvNumbersOfOrdersByCustomer.get(0)[3];
+
+		final Double ratioOfRestaurantsWithComplain = this.complainService.ratioOfRestaurantsWithComplain();
+
+		final Collection<String> getRestaurantWithOffersLessThanAvg = this.offerService.getRestaurantWithOffersLessThanAvg();
+
 		final Collection<String> getTop5RestaurantsWithMoreOrders = this.restaurantService.getTop5RestaurantsWithMoreOrders();
 
 		result = new ModelAndView("administrator/dashboard");
@@ -90,17 +114,25 @@ public class AdministratorController extends AbstractController {
 		result.addObject("getMaxResultsByFinder", getMaxResultsByFinder);
 		result.addObject("getDesvResultsByFinder", getDesvResultsByFinder);
 
+		result.addObject("getAvgNumbersOfOrdersByRestaurant", getAvgNumbersOfOrdersByRestaurant);
+		result.addObject("getMinNumbersOfOrdersByRestaurant", getMinNumbersOfOrdersByRestaurant);
+		result.addObject("getMaxNumbersOfOrdersByRestaurant", getMaxNumbersOfOrdersByRestaurant);
+		result.addObject("getDesvNumbersOfOrdersByRestaurant", getDesvNumbersOfOrdersByRestaurant);
+
+		result.addObject("getAvgNumbersOfOrdersByCustomer", getAvgNumbersOfOrdersByCustomer);
+		result.addObject("getMinNumbersOfOrdersByCustomer", getMinNumbersOfOrdersByCustomer);
+		result.addObject("getMaxNumbersOfOrdersByCustomer", getMaxNumbersOfOrdersByCustomer);
+		result.addObject("getDesvNumbersOfOrdersByCustomer", getDesvNumbersOfOrdersByCustomer);
+
+		result.addObject("ratioOfRestaurantsWithComplain", ratioOfRestaurantsWithComplain);
+
+		result.addObject("getRestaurantWithOffersLessThanAvg", getRestaurantWithOffersLessThanAvg);
+
 		result.addObject("getTop5RestaurantsWithMoreOrders", getTop5RestaurantsWithMoreOrders);
 
 		return result;
 	}
 
-	//	//	-------------------------------------------------------
-	//	//	+ The best and the worst position in terms of salary 
-	//	//
-	//	//	select p.title from Position p where p.salary=(select max(p.salary) from Position p)
-	//	//	select p.title from Position p where p.salary=(select min(p.salary) from Position p)
-	//
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView createForm() {
 		ModelAndView result;

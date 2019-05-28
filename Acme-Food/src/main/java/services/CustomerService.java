@@ -250,4 +250,8 @@ public class CustomerService {
 		return this.customerRepository.getCustomerWithMoreCashThanAvg();
 	}
 
+	public List<Object[]> getAvgMinMaxDesvNumbersOfOrdersByCustomer() {
+		return this.customerRepository.getAvgMinMaxDesvNumbersOfOrdersByCustomer();
+	}
+
 }
