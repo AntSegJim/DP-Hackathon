@@ -59,7 +59,7 @@
 	<acme:textbox code="creditCard.holderName" path="holderName"/>		
 	<acme:textbox code="creditCard.number" path="number"/>
 	<acme:textbox code="creditCard.expirationMonth" path="expirationMonth"/>
-	<acme:textbox code="creditCard.expirationYear" path="ExpirationYear"/>
+	<acme:textbox code="creditCard.expirationYear" path="expirationYear"/>
 	<acme:textbox code="creditCard.CW" path="CW"/>
 	<br />
 	</fieldset>

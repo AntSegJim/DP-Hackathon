@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.Calendar;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -98,6 +99,13 @@ public class CreditCardService {
 			if (creditCardsNumbers.contains(res.getNumber()))
 				binding.rejectValue("number", "NumeroRepetido");
 
+			final Calendar cal = Calendar.getInstance();
+			final int añoActual = cal.get(Calendar.YEAR);
+			final int mesActual = cal.get(Calendar.MONTH);
+
+			if (res.getExpirationYear() < añoActual || (res.getExpirationMonth() <= mesActual && res.getExpirationYear() == añoActual))
+				binding.rejectValue("expirationYear", "FechaNoValida");
+
 			this.validator.validate(res, binding);
 
 		} else {
@@ -120,6 +128,12 @@ public class CreditCardService {
 			creditCardsNumbers.remove(number);
 			if (creditCardsNumbers.contains(p.getNumber()))
 				binding.rejectValue("number", "NumeroRepetido");
+
+			final Calendar cal = Calendar.getInstance();
+			final int añoActual = cal.get(Calendar.YEAR);
+			final int mesActual = cal.get(Calendar.MONTH);
+			if (p.getExpirationYear() < añoActual || (p.getExpirationMonth() <= mesActual && p.getExpirationYear() == añoActual))
+				binding.rejectValue("expirationYear", "FechaNoValida");
 
 			this.validator.validate(p, binding);
 			res = p;
