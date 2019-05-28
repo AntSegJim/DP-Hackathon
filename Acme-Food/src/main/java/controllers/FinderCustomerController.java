@@ -67,7 +67,7 @@ public class FinderCustomerController {
 				result = new ModelAndView("redirect:show.do");
 			} else {
 				result = new ModelAndView("finder/edit");
-				result.addObject("finder", finder);
+				result.addObject("finder", f);
 			}
 		} catch (final Exception e) {
 			result = new ModelAndView("finder/edit");
