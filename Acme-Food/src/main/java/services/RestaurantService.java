@@ -162,7 +162,7 @@ public class RestaurantService {
 			res.setPhoto(registrationForm.getPhoto());
 			res.setSurnames(registrationForm.getSurnames());
 
-			res.setRatings(registrationForm.getRatings());
+			res.setRatings(new HashSet<Rating>());
 			res.setComercialName(registrationForm.getComercialName());
 			res.setSpeciality(registrationForm.getSpeciality());
 			res.setIsBanned(0);
