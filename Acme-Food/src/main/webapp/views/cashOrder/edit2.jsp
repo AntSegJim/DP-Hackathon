@@ -97,6 +97,10 @@
 		<p style="color:red"> <spring:message code="cashOrder.error" /> </p>
 </jstl:if>
 
+<jstl:if test="${not empty binding}">
+		<p style="color:red"> <spring:message code="cashOrder.dealers.message" /> </p>
+</jstl:if>
+
 <form:hidden path="id"/>
 <form:hidden path="version"/>
 

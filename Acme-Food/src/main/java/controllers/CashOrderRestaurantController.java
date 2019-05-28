@@ -96,6 +96,7 @@ public class CashOrderRestaurantController extends AbstractController {
 				result = new ModelAndView("cashOrder/edit2");
 				result.addObject("cashOrder", pedido);
 				result.addObject("dealers", dealers);
+				result.addObject("binding", binding);
 
 			}
 
