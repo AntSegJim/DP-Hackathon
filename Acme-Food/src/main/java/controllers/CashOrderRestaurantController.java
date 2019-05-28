@@ -63,6 +63,7 @@ public class CashOrderRestaurantController extends AbstractController {
 
 			cashOrder = this.cashOrderService.findOne(cashOrderId);
 			Assert.notNull(cashOrder);
+			Assert.isTrue(cashOrder.getStatus() == 0);
 			dealers = this.dealerService.getActiveDealersByRestaurant(cashOrder.getRestaurant().getId());
 
 			final UserAccount user = LoginService.getPrincipal();

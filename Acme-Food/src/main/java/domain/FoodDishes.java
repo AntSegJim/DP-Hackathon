@@ -52,6 +52,7 @@ public class FoodDishes extends DomainEntity {
 		this.description = description;
 	}
 
+	@NotBlank
 	@URL
 	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getPictures() {
