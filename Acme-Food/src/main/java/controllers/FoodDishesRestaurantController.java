@@ -79,7 +79,7 @@ public class FoodDishesRestaurantController extends AbstractController {
 		Assert.notNull(foodDishe);
 
 		result = new ModelAndView("foodDishes/edit");
-		result.addObject("foodDishe", foodDishe);
+		result.addObject("foodDishes", foodDishe);
 		return result;
 
 	}
@@ -98,7 +98,7 @@ public class FoodDishesRestaurantController extends AbstractController {
 			Assert.isTrue(foodDishe.getRestaurant().equals(r));
 
 			result = new ModelAndView("foodDishes/edit");
-			result.addObject("foodDishe", foodDishe);
+			result.addObject("foodDishes", foodDishe);
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:list.do");
 		}
@@ -117,16 +117,16 @@ public class FoodDishesRestaurantController extends AbstractController {
 				result = new ModelAndView("redirect:list.do");
 			} else {
 				result = new ModelAndView("foodDishes/edit");
-				result.addObject("foodDishe", foodDishe);
+				result.addObject("foodDishes", foodDishe);
 			}
 		} catch (final ValidationException opps) {
 			result = new ModelAndView("foodDishes/edit");
-			result.addObject("foodDishe", foodDishe);
+			result.addObject("foodDishes", foodDishe);
 
 		} catch (final Exception e) {
 			result = new ModelAndView("foodDishes/edit");
 			result.addObject("exception", e);
-			result.addObject("foodDishe", foodDishe);
+			result.addObject("foodDishes", foodDishe);
 		}
 
 		return result;
@@ -144,12 +144,12 @@ public class FoodDishesRestaurantController extends AbstractController {
 				result = new ModelAndView("redirect:list.do");
 			} else {
 				result = new ModelAndView("foodDishes/edit");
-				result.addObject("foodDishe", food);
+				result.addObject("foodDishes", food);
 			}
 		} catch (final Exception e) {
 			result = new ModelAndView("foodDishes/edit");
 			result.addObject("exception", e);
-			result.addObject("foodDishe", food);
+			result.addObject("foodDishes", food);
 		}
 
 		return result;

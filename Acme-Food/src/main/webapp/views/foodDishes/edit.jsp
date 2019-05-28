@@ -20,7 +20,7 @@
 
 
 <security:authorize access="hasRole('RESTAURANT')">
-<form:form action="foodDishes/restaurant/edit.do" modelAttribute="foodDishe">
+<form:form action="foodDishes/restaurant/edit.do" modelAttribute="foodDishes">
 
 <jstl:if test="${not empty exception}">
 		<p style="color:red"> <spring:message code="foodDishes.error" /> </p>
@@ -28,7 +28,7 @@
 
 <form:hidden path="id"/>
 <form:hidden path="version"/>
-${binding}
+
 <acme:textbox code="foodDishes.name" path="name"/>
 <acme:textarea code="foodDishes.description" path="description"/>
 <acme:textbox code="foodDishes.picture" path="pictures"/>
@@ -46,7 +46,7 @@ ${binding}
 <br/>
 <input type="submit" name="save" 
 	value="<spring:message code="foodDishes.save" />" />
-<jstl:if test="${foodDishe.id ne 0 }">	
+<jstl:if test="${foodDishes.id ne 0 }">	
 <input type="submit" name="delete" 
 	value="<spring:message code="foodDishes.delete" />" />
 </jstl:if>	
