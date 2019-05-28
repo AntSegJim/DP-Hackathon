@@ -108,10 +108,10 @@ public class AdministratorServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{
 				//Positive test
-				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("administrator1"), null
+				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("administrator2"), null
 			}, {
 				//Negative test: UN administrador intenta modificar los datos de otro
-				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("administrator2"), IllegalArgumentException.class
+				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("administrator1"), IllegalArgumentException.class
 
 			},
 
@@ -119,7 +119,7 @@ public class AdministratorServiceTest extends AbstractTest {
 
 		for (int i = 0; i < testingData.length; i++)
 			this.EditAdministradorTemplate((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5], (String) testingData[i][6],
-				(int) testingData[i][13], (Class<?>) testingData[i][14]);
+				(int) testingData[i][7], (Class<?>) testingData[i][8]);
 	}
 	protected void EditAdministradorTemplate(final String name, final String surnames, final String vatNumber, final String email, final String username, final String password, final String confirmPassword, final int administratoriId,
 		final Class<?> expected) {
