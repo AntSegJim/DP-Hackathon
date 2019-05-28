@@ -114,9 +114,9 @@ public class RestaurantServiceTest extends AbstractTest {
 			{
 				//Positive test
 				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("restaurant1"), null
-			//			}, {
-			//				//Negative test: UN restaurant intenta modificar los datos de otro
-			//				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("restaurant2"), IllegalArgumentException.class
+			}, {
+				//Negative test: UN restaurant intenta modificar los datos de otro
+				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("restaurant2"), IllegalArgumentException.class
 
 			},
 
