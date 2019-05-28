@@ -44,8 +44,8 @@ public class RestaurantServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{//Positive test
 				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", "NuevoComercialName", "NuevaEspecialidad", 30, null
-			//			}, {//Negative test: email vacio
-			//				"Nuevo Nombre", "Apellido", "ES12345678X", "", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", NullPointerException.class
+			}, {//Negative test: email vacio
+				"Nuevo Nombre", "Apellido", "ES12345678X", "", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", "NuevoComercialName", "NuevaEspecialidad", 30, NullPointerException.class
 
 			},
 
@@ -108,62 +108,65 @@ public class RestaurantServiceTest extends AbstractTest {
 	 * d) Data coverage:
 	 */
 
-	//	@Test
-	//	public void EditAdmnistratorService() {
-	//		final Object testingData[][] = {
-	//			{
-	//				//Positive test
-	//				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("administrator2"), null
-	//			}, {
-	//				//Negative test: UN administrador intenta modificar los datos de otro
-	//				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("administrator1"), IllegalArgumentException.class
-	//
-	//			},
-	//
-	//		};
-	//
-	//		for (int i = 0; i < testingData.length; i++)
-	//			this.EditAdministradorTemplate((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5], (String) testingData[i][6],
-	//				(int) testingData[i][7], (Class<?>) testingData[i][8]);
-	//	}
-	//	protected void EditAdministradorTemplate(final String name, final String surnames, final String vatNumber, final String email, final String username, final String password, final String confirmPassword, final int administratoriId,
-	//		final Class<?> expected) {
-	//		Class<?> caught;
-	//		Administrator admin = null;
-	//		;
-	//		caught = null;
-	//		try {
-	//			super.authenticate("admin1");
-	//			RegistrationForm registrationForm = new RegistrationForm();
-	//
-	//			registrationForm = registrationForm.createToAdmin();
-	//
-	//			admin = this.administratorService.findOne(administratoriId);
-	//			registrationForm.setId(admin.getId());
-	//			registrationForm.setVersion(admin.getVersion());
-	//
-	//			registrationForm.setName(name);
-	//			registrationForm.setSurnames(surnames);
-	//			registrationForm.setVatNumber(vatNumber);
-	//			registrationForm.setEmail(email);
-	//			registrationForm.getUserAccount().setUsername(admin.getUserAccount().getUsername());
-	//			registrationForm.getUserAccount().setPassword(password);
-	//			registrationForm.setPassword(confirmPassword);
-	//			registrationForm.setPhone("");
-	//			registrationForm.setAddress("");
-	//			registrationForm.setPhoto("");
-	//
-	//			final BindingResult binding = null;
-	//
-	//			admin = this.administratorService.reconstruct(registrationForm, binding);
-	//
-	//			this.administratorService.save(admin);
-	//
-	//		} catch (final Throwable oops) {
-	//			caught = oops.getClass();
-	//		}
-	//
-	//		this.checkExceptions(expected, caught);
-	//	}
+	@Test
+	public void EditRestaurantService() {
+		final Object testingData[][] = {
+			{
+				//Positive test
+				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("restaurant1"), null
+			//			}, {
+			//				//Negative test: UN restaurant intenta modificar los datos de otro
+			//				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("restaurant2"), IllegalArgumentException.class
+
+			},
+
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.EditAdministradorTemplate((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5], (String) testingData[i][6],
+				(int) testingData[i][7], (Class<?>) testingData[i][8]);
+	}
+	protected void EditAdministradorTemplate(final String name, final String surnames, final String vatNumber, final String email, final String username, final String password, final String confirmPassword, final int administratoriId,
+		final Class<?> expected) {
+		Class<?> caught;
+		Restaurant restaurant = null;
+
+		caught = null;
+		try {
+			super.authenticate("restaurant");
+			RegistrationFormRestaurant registrationForm = new RegistrationFormRestaurant();
+
+			registrationForm = registrationForm.createToRestaurant();
+
+			restaurant = this.restaurantService.findOne(administratoriId);
+			registrationForm.setId(restaurant.getId());
+			registrationForm.setVersion(restaurant.getVersion());
+
+			registrationForm.setName(name);
+			registrationForm.setSurnames(surnames);
+			registrationForm.setVatNumber(vatNumber);
+			registrationForm.setEmail(email);
+			registrationForm.getUserAccount().setUsername(restaurant.getUserAccount().getUsername());
+			registrationForm.getUserAccount().setPassword(password);
+			registrationForm.setPassword(confirmPassword);
+			registrationForm.setPhone("");
+			registrationForm.setAddress("");
+			registrationForm.setPhoto("");
+			registrationForm.setComercialName(restaurant.getComercialName());
+			registrationForm.setSpeciality(restaurant.getSpeciality());
+			registrationForm.setMediumScore(restaurant.getMediumScore());
+			registrationForm.setOrderTime(restaurant.getOrderTime());
+			final BindingResult binding = null;
+
+			restaurant = this.restaurantService.reconstruct(registrationForm, binding);
+
+			this.restaurantService.save(restaurant);
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		this.checkExceptions(expected, caught);
+	}
 
 }
