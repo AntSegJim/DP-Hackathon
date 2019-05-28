@@ -86,13 +86,13 @@ public class RatingCustomerController {
 				result = new ModelAndView("redirect:list.do");
 			} else if (r.getId() == 0) {
 				result = new ModelAndView("rating/edit");
-				result.addObject("rating", rating);
+				result.addObject("rating", r);
 				final Collection<Restaurant> restaurants = this.restaurantService.getAllRestaurantWhereIHaveDoneAOrder();
 				restaurants.removeAll(this.restaurantService.getAllMyRatings());
 				result.addObject("restaurants", restaurants);
 			} else {
 				result = new ModelAndView("rating/edit");
-				result.addObject("rating", rating);
+				result.addObject("rating", r);
 			}
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:list.do");
