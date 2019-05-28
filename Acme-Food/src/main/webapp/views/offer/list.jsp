@@ -51,3 +51,19 @@ requestURI="offer/list.do" >
 
 
 
+
+<security:authorize access="hasRole('CUSTOMER')">
+<display:table pagesize="5" name="offers" id="row"
+requestURI="offer/customer/list.do" >
+<display:column>
+	<a href="offer/customer/show.do?offerId=${row.id}&restaurantId=${restaurant.id}"><spring:message code="moreDetails" /></a>
+</display:column>
+<display:column property="title" titleKey="offer.title"/>
+<display:column property="totalPrice" titleKey="offer.totalPrice"/>
+</display:table>
+<acme:cancel url="restaurant/customer/list.do" code="cancel"/>
+</security:authorize>
+
+
+
+

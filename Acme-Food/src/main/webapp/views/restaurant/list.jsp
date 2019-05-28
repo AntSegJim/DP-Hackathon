@@ -17,10 +17,15 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('CUSTOMER')">
-<h1><spring:message code="restaurant.title" /></h1>
+
 <display:table pagesize="5" name="restaurants" id="row"
 requestURI="restaurant/customer/list.do" >
 <h1><spring:message code="restaurant.title" /></h1>
+
+
+<display:column class="${css}">
+	<a href="offer/customer/list.do?restaurantId=${row.id}"><spring:message code="restaurant.offer" /></a>
+</display:column>
 <display:column class="${css}">
 	<a href="foodDishes/customer/list.do?idRestaurant=${row.id}"><spring:message code="restaurant.foodDishes" /></a>
 </display:column>

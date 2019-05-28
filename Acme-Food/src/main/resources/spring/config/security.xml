@@ -110,6 +110,7 @@
 			
 		<security:intercept-url pattern="/restaurant/**" access="permitAll" /> 
 		<security:intercept-url pattern="/offer/**" access="permitAll" /> 
+		<security:intercept-url pattern="/offer/customer/**" access="hasRole('CUSTOMER')" /> 
 	
 		<security:intercept-url pattern="/termsAndConditions/show.do" access="permitAll" />
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
