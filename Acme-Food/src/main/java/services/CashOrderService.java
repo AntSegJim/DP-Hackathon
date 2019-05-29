@@ -232,8 +232,9 @@ public class CashOrderService {
 					if (cashOrder.getStatus() == 1 && cashOrder.getDealer() != null)
 						binding.rejectValue("dealer", "NoSelectedDealer");
 
-					if (this.dealerService.getNumberCashOrderByDealer(cashOrder.getDealer().getId()) >= 3)
-						binding.rejectValue("dealer", "	ManyCashOrder");
+					if (cashOrder.getStatus() == 3)
+						if (this.dealerService.getNumberCashOrderByDealer(cashOrder.getDealer().getId()) >= 3)
+							binding.rejectValue("dealer", "	ManyCashOrder");
 
 				}
 
