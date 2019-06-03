@@ -36,12 +36,11 @@
 		<property name="name" value="Cristian"/>
 		<property name="surnames" value="Lorca"/>
 		<property name="vatNumber" value="ES12345678S"/>
-		<property name="photo" value="https://www.tu-app.net/blog/wp-content/uploads/2016/09/APPS-restaurantes-1.jpg"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
 		<property name="email" value="cristian@hotmail.com"/>
 		<property name="phone" value="654654654"/>
 		<property name="address" value="Sevilla"/>
 		<property name="userAccount" ref="userAccount1"/>
-		<property name="creditCard" ref="creditCard1"/>
 	
 	</bean>
 	
