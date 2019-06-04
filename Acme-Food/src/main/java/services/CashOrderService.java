@@ -271,7 +271,7 @@ public class CashOrderService {
 		final int tamLetras = 4;
 		final int tam = 6;
 		String d = "";
-		final String letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
+		final String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
 		for (int i = 0; i < tamLetras; i++) {
 			final Integer random = (int) (Math.floor(Math.random() * letras.length()) % letras.length());
