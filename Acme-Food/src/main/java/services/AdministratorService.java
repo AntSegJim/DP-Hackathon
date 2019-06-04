@@ -168,6 +168,25 @@ public class AdministratorService {
 				Assert.isTrue(matcherTelefono.find() == true, "BrotherhoodService.save -> Telefono no valido");
 			}
 
+			final String regexEmail1 = "[^@]+@[^@]+\\.[a-zA-Z]{2,}";
+			final Pattern patternEmail1 = Pattern.compile(regexEmail1);
+			final Matcher matcherEmail1 = patternEmail1.matcher(res.getEmail());
+
+			final String regexEmail2 = "^[A-z0-9]+\\s*[A-z0-9\\s]*\\s\\<[A-z0-9]+\\@[A-z0-9]+\\.[A-z0-9.]+\\>";
+			final Pattern patternEmail2 = Pattern.compile(regexEmail2);
+			final Matcher matcherEmail2 = patternEmail2.matcher(res.getEmail());
+
+			final String regexEmail3 = "^[A-z0-9]+\\@$";
+			final Pattern patternEmail3 = Pattern.compile(regexEmail3);
+			final Matcher matcherEmail3 = patternEmail3.matcher(res.getEmail());
+
+			final String regexEmail4 = "^[A-z0-9]+\\s*[A-z0-9\\s]*\\s\\<[A-z0-9]+\\@\\>$";
+			final Pattern patternEmail4 = Pattern.compile(regexEmail4);
+			final Matcher matcherEmail4 = patternEmail4.matcher(res.getEmail());
+
+			if (!(matcherEmail1.matches() == true || matcherEmail2.matches() == true || matcherEmail3.matches() == true || matcherEmail4.matches() == true))
+				binding.rejectValue("email", "PatternNoValido");
+
 			this.validator.validate(res, binding);
 
 		} else {
@@ -219,6 +238,25 @@ public class AdministratorService {
 				final Matcher matcherTelefono = patternTelefono.matcher(a.getPhone());
 				Assert.isTrue(matcherTelefono.find() == true, "BrotherhoodService.save -> Telefono no valido");
 			}
+
+			final String regexEmail1 = "[^@]+@[^@]+\\.[a-zA-Z]{2,}";
+			final Pattern patternEmail1 = Pattern.compile(regexEmail1);
+			final Matcher matcherEmail1 = patternEmail1.matcher(a.getEmail());
+
+			final String regexEmail2 = "^[A-z0-9]+\\s*[A-z0-9\\s]*\\s\\<[A-z0-9]+\\@[A-z0-9]+\\.[A-z0-9.]+\\>";
+			final Pattern patternEmail2 = Pattern.compile(regexEmail2);
+			final Matcher matcherEmail2 = patternEmail2.matcher(a.getEmail());
+
+			final String regexEmail3 = "^[A-z0-9]+\\@$";
+			final Pattern patternEmail3 = Pattern.compile(regexEmail3);
+			final Matcher matcherEmail3 = patternEmail3.matcher(a.getEmail());
+
+			final String regexEmail4 = "^[A-z0-9]+\\s*[A-z0-9\\s]*\\s\\<[A-z0-9]+\\@\\>$";
+			final Pattern patternEmail4 = Pattern.compile(regexEmail4);
+			final Matcher matcherEmail4 = patternEmail4.matcher(a.getEmail());
+
+			if (!(matcherEmail1.matches() == true || matcherEmail2.matches() == true || matcherEmail3.matches() == true || matcherEmail4.matches() == true))
+				binding.rejectValue("email", "PatternNoValido");
 
 			a.getUserAccount().setUsername(registrationForm.getUserAccount().getUsername());
 

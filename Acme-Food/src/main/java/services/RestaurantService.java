@@ -189,6 +189,18 @@ public class RestaurantService {
 				final Matcher matcherTelefono = patternTelefono.matcher(res.getPhone());
 				Assert.isTrue(matcherTelefono.find() == true, "CompanyService.save -> Telefono no valido");
 			}
+
+			final String regexEmail1 = "[^@]+@[^@]+\\.[a-zA-Z]{2,}";
+			final Pattern patternEmail1 = Pattern.compile(regexEmail1);
+			final Matcher matcherEmail1 = patternEmail1.matcher(res.getEmail());
+
+			final String regexEmail2 = "^[A-z0-9]+\\s*[A-z0-9\\s]*\\s\\<[A-z0-9]+\\@[A-z0-9]+\\.[A-z0-9.]+\\>";
+			final Pattern patternEmail2 = Pattern.compile(regexEmail2);
+			final Matcher matcherEmail2 = patternEmail2.matcher(res.getEmail());
+
+			if (!(matcherEmail1.find() == true || matcherEmail2.find() == true))
+				binding.rejectValue("email", "PatternNoValido");
+
 			this.validator.validate(res, binding);
 
 			Assert.isTrue(registrationForm.getCheck() == true);
@@ -247,6 +259,17 @@ public class RestaurantService {
 				final Matcher matcherTelefono = patternTelefono.matcher(p.getPhone());
 				Assert.isTrue(matcherTelefono.find() == true, "CompanyService.save -> Telefono no valido");
 			}
+
+			final String regexEmail1 = "[^@]+@[^@]+\\.[a-zA-Z]{2,}";
+			final Pattern patternEmail1 = Pattern.compile(regexEmail1);
+			final Matcher matcherEmail1 = patternEmail1.matcher(p.getEmail());
+
+			final String regexEmail2 = "^[A-z0-9]+\\s*[A-z0-9\\s]*\\s\\<[A-z0-9]+\\@[A-z0-9]+\\.[A-z0-9.]+\\>";
+			final Pattern patternEmail2 = Pattern.compile(regexEmail2);
+			final Matcher matcherEmail2 = patternEmail2.matcher(p.getEmail());
+
+			if (!(matcherEmail1.find() == true || matcherEmail2.find() == true))
+				binding.rejectValue("email", "PatternNoValido");
 
 			p.getUserAccount().setUsername(registrationForm.getUserAccount().getUsername());
 
