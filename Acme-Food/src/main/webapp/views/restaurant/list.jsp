@@ -43,8 +43,6 @@ requestURI="restaurant/customer/list.do" >
 
 <security:authorize access="isAnonymous()">
 
-<h1><spring:message code="restaurant.title" /></h1>
-
 <display:table pagesize="5" name="restaurants" id="row"
 requestURI="restaurant/list.do" >
 <display:column>

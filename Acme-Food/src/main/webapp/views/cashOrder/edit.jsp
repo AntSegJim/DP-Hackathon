@@ -30,8 +30,8 @@
 <form:hidden path="version"/>
 
 <acme:textbox code="cashOrder.SenderMoment" path="senderMoment"/>
-<acme:selectWithoutNullOption id="platos" items="${foodDishes}" itemLabel="name" code="cashOrder.foodDishes" path="foodDisheses" onchange="myFunction()"/>
-<acme:multipleSelect id="ofertas" items="${offers}" itemLabel="title" code="cashOrder.offer" path="offers" onchange="myFunction()"/>
+<acme:selectWithoutNullOption id="platos" items="${foodDishes}" itemLabel="name" code="cashOrder.foodDishes" path="foodDisheses" />
+<acme:multipleSelect id="ofertas" items="${offers}" itemLabel="title" code="cashOrder.offer" path="offers" />
 <form:label path="choice"><spring:message code="cashOrder.choice" />:</form:label>
 <form:select path="choice">
 		<form:option value="0" label="Take away" />	
@@ -54,26 +54,6 @@
 			onclick="javascript: relativeRedir('restaurant/customer/list.do');" />
 
 </form:form>
-<h1 id="precio"></h1>
-<script>
-	function myFunction() {
-		var platos = $('select#platos').val();
-		var precio = 0.0;
-		for (var x=0;x<platos.length;x++){
-			
-			$.ajax({
-				type : 'GET',
-				url : 'foodDishes/customer/getPrice.do?foodId='+platos[x],
-				success : function(res) {
-					return res;
-				}
-			});
-		}
-		document.getElementById("precio").innerHTML = precio;
-	}
-	
-
-</script>
 
 <acme:cancel url="finder/customer/show.do" code="finder.back.results"/>
 
