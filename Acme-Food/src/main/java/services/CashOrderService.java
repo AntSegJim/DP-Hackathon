@@ -346,11 +346,15 @@ public class CashOrderService {
 	}
 	public Double getMinutes(final Date date1, final Date date2) {
 		Double res = 0.0;
-		res = (double) ((date1.getTime() - date2.getTime()) / 60000);
+		try {
+
+			res = (double) ((date1.getTime() - date2.getTime()) / 60000);
+		} catch (final NullPointerException opps) {
+			res = 0.0;
+		}
 		return res;
 
 	}
-
 	public Collection<CashOrder> getCashOrdersAccepted() {
 		return this.cashOrderRepositoty.getCashOrderAccepted();
 	}
