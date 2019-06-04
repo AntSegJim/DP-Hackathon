@@ -329,7 +329,12 @@ public class CashOrderService {
 			final Double min = this.getMinutes(pedido.getSenderMoment(), new Date());
 			if (min <= 0) {
 				pedido.setMinutes(0.);
-				pedido.setStatus(1);
+				if (pedido.getStatus() == 0)
+					pedido.setStatus(1);
+				else if (pedido.getStatus() == 3)
+					pedido.setStatus(3);
+				else
+					pedido.setStatus(2);
 				pedido.setSenderMoment(null);
 				this.cashOrderRepositoty.save(pedido);
 			} else {
