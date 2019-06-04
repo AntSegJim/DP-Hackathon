@@ -60,6 +60,7 @@
 	<acme:textbox code="restaurant.registro.comercialName" path="comercialName"/>	
 	<acme:textbox code="restaurant.registro.speciality" path="speciality"/>
 	<acme:textbox code="restaurant.orderTime" path="orderTime"/>
+	<p><spring:message code="restaurant.explicacion" /></p>
 	</fieldset>
 
 
