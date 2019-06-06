@@ -50,6 +50,8 @@ public class CashOrderServiceTest extends AbstractTest {
 				0, 1, new Date(), 12.0, this.getFutureDate(), 1, "tyrg-654387", super.getEntityId("customer1"), super.getEntityId("restaurant1"), super.getEntityId("foodDishes1"), 30.0, null
 			}, {//Negative test: status out of range
 				6, 1, new Date(), 12.0, this.getFutureDate(), 1, "tyrg-654387", super.getEntityId("customer1"), super.getEntityId("restaurant1"), super.getEntityId("foodDishes1"), 30.0, ConstraintViolationException.class
+			}, {//Negative test: ticket don't match the pattern
+				6, 1, new Date(), 12.0, this.getFutureDate(), 1, "tyrg-387", super.getEntityId("customer1"), super.getEntityId("restaurant1"), super.getEntityId("foodDishes1"), 30.0, ConstraintViolationException.class
 			}
 
 		};
@@ -108,7 +110,9 @@ public class CashOrderServiceTest extends AbstractTest {
 			{//Positive test
 				super.getEntityId("cashOrder1"), "customer1", 1, null
 			}, {//Negative test: draftMode out of range
-				super.getEntityId("cashOrder1"), "customer1", 9, null
+				super.getEntityId("cashOrder1"), "customer1", 9, ConstraintViolationException.class
+			}, {//Negative test: draftMode out of range
+				super.getEntityId("cashOrder1"), "customer2", 1, IllegalArgumentException.class
 			}
 
 		};
