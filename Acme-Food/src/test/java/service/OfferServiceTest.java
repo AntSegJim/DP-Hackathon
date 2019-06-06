@@ -63,6 +63,8 @@ public class OfferServiceTest extends AbstractTest {
 				"title1", 4.0, super.getEntityId("foodDishes1"), super.getEntityId("foodDishes2"), null
 			}, {//Negative test
 				"", 4.0, super.getEntityId("foodDishes1"), super.getEntityId("foodDishes2"), ConstraintViolationException.class
+			}, {//Negative test
+				"a", -4.0, super.getEntityId("foodDishes1"), super.getEntityId("foodDishes2"), ConstraintViolationException.class
 			}
 		};
 
@@ -120,6 +122,8 @@ public class OfferServiceTest extends AbstractTest {
 				"restaurant", super.getEntityId("offer1"), null
 			}, {//Positive test
 				"restaurant", super.getEntityId("offer2"), IllegalArgumentException.class
+			}, {//Positive test
+				"restaurant1", super.getEntityId("offer1"), IllegalArgumentException.class
 			}
 
 		};
@@ -166,8 +170,10 @@ public class OfferServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{//Positive test
 				"restaurant", super.getEntityId("offer1"), "newTitle", 4.0, super.getEntityId("foodDishes1"), super.getEntityId("foodDishes2"), null
-			}, {//Positive test
+			}, {//Negative test
 				"restaurant1", super.getEntityId("offer1"), "newTitle", 4.0, super.getEntityId("foodDishes1"), super.getEntityId("foodDishes2"), IllegalArgumentException.class
+			}, {//Negative test
+				"restaurant", super.getEntityId("offer1"), "<script>alert('hola');</script>", 4.0, super.getEntityId("foodDishes1"), super.getEntityId("foodDishes2"), ConstraintViolationException.class
 			}
 		};
 
@@ -228,6 +234,8 @@ public class OfferServiceTest extends AbstractTest {
 				"restaurant", super.getEntityId("offer1"), null
 			}, {//Positive test
 				"restaurant", super.getEntityId("offer2"), IllegalArgumentException.class
+			}, {//Positive test
+				"restaurant1", super.getEntityId("offer1"), NullPointerException.class
 			}
 
 		};

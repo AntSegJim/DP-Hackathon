@@ -56,6 +56,8 @@ public class SocialProfileServiceTest extends AbstractTest {
 				"nickName1", "nameSocialNetwork1", "http://lol.com", super.getEntityId("restaurant1"), null
 			}, {//Negative test
 				"", "nameSocialProfile1", "http://lol.com", super.getEntityId("restaurant1"), ConstraintViolationException.class
+			}, {//Negative test
+				"<script>alert('hola');</script>", "nameSocialProfile1", "http://lol.com", super.getEntityId("restaurant1"), ConstraintViolationException.class
 			}
 		};
 
@@ -107,8 +109,10 @@ public class SocialProfileServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{//Positive test
 				"restaurant", super.getEntityId("socialProfile1"), null
-			}, {//Positive test
+			}, {//Negative test
 				"restaurant", super.getEntityId("socialProfile3"), IllegalArgumentException.class
+			}, {//Negative test
+				"restaurant1", super.getEntityId("socialProfile1"), IllegalArgumentException.class
 			}
 
 		};
@@ -152,8 +156,10 @@ public class SocialProfileServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{//Positive test
 				"restaurant", super.getEntityId("socialProfile1"), "nickName1", "nameSocialNetwork1", "http://lol.com", null
-			}, {//Positive test
+			}, {//Negative test
 				"restaurant1", super.getEntityId("socialProfile1"), "nickName1", "nameSocialNetwork1", "http://lol.com", IllegalArgumentException.class
+			}, {//Negative test
+				"restaurant", super.getEntityId("socialProfile1"), "<script>alert('hola');</script>", "nameSocialNetwork1", "http://lol.com", ConstraintViolationException.class
 			}
 		};
 
@@ -205,8 +211,10 @@ public class SocialProfileServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{//Positive test
 				"restaurant", super.getEntityId("socialProfile1"), null
-			}, {//Positive test
+			}, {//Negative test
 				"restaurant", super.getEntityId("socialProfile3"), IllegalArgumentException.class
+			}, {//Negative test
+				"restaurant1", super.getEntityId("socialProfile2"), IllegalArgumentException.class
 			}
 
 		};

@@ -58,6 +58,8 @@ public class ComplainServiceTest extends AbstractTest {
 				"description1", super.getEntityId("cashOrder1"), null
 			}, {//Negative test
 				"", super.getEntityId("cashOrder1"), ConstraintViolationException.class
+			}, {//Negative test
+				"<script>alert('hola');</script>", super.getEntityId("cashOrder1"), ConstraintViolationException.class
 			}
 		};
 
@@ -108,8 +110,10 @@ public class ComplainServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{//Positive test
 				"customer1", super.getEntityId("complain1"), null
-			}, {//Positive test
+			}, {//Negative test
 				"customer1", super.getEntityId("complain2"), IllegalArgumentException.class
+			}, {//Negative test
+				"customer2", super.getEntityId("complain1"), IllegalArgumentException.class
 			}
 
 		};
@@ -155,8 +159,10 @@ public class ComplainServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{//Positive test
 				"customer1", super.getEntityId("complain1"), "newDescription", super.getEntityId("cashOrder1"), null
-			}, {//Positive test
+			}, {//Negative test
 				"customer2", super.getEntityId("complain1"), "newDescription", super.getEntityId("cashOrder1"), IllegalArgumentException.class
+			}, {//Negative test
+				"customer2", super.getEntityId("complain1"), "<script>alert('hola');</script>", super.getEntityId("cashOrder1"), IllegalArgumentException.class
 			}
 		};
 
@@ -208,8 +214,10 @@ public class ComplainServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{//Positive test
 				"customer1", super.getEntityId("complain1"), null
-			}, {//Positive test
+			}, {//Negative test
 				"customer1", super.getEntityId("complain2"), IllegalArgumentException.class
+			}, {//Negative test
+				"customer2", super.getEntityId("complain1"), NullPointerException.class
 			}
 
 		};
