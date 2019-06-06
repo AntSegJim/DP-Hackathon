@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -57,9 +58,13 @@ public class FinderService {
 
 	public Finder save(final Finder f) {
 		Finder saved;
-		if (f.getId() == 0)
+		if (f.getId() == 0) {
+			final Calendar calendar = Calendar.getInstance();
+			calendar.setTime(f.getMoment());
+			calendar.add(Calendar.DAY_OF_YEAR, -2);
+			f.setMoment(calendar.getTime());
 			saved = this.finderRepository.save(f);
-		else {
+		} else {
 			final Finder savedFinder = this.findOne();
 			savedFinder.setKeyWord(f.getKeyWord());
 			savedFinder.setRestaurants(f.getRestaurants());
