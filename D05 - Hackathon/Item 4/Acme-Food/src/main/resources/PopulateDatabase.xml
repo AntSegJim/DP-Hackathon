@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2019 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="admin1" />
+		<property name="password" value="e00cf25ad42683b3df678c61f42c6bda" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="restaurant" />
+		<property name="password" value="6d4b62960a6aa2b1fff43a9c1d95f7b2" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="RESTAURANT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="restaurant1" />
+		<property name="password" value="fe5cdff0df7935c31f7c51987bdb4d78" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="RESTAURANT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="customer1" />
+		<property name="password" value="ffbc4675f864e0e9aab8bdf7a0437010" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="customer2" />
+		<property name="password" value="5ce4d191fd14ac85a1469fb8c29b7a7b" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="customer3" />
+		<property name="password" value="033f7f6121501ae98285ad77f216d5e7" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="userAccount8" class="security.UserAccount">
+		<property name="username" value="restaurant3" />
+		<property name="password" value="719fa3c09631067e10f1c9e494b90d6d" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="RESTAURANT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="restaurant4" />
+		<property name="password" value="b38b79836bd3a497401a3a3e28683a9c" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="BANNED" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount10" class="security.UserAccount">
+		<property name="username" value="dealer1" />
+		<property name="password" value="edefb1af4daf6c5facb8aba92e13f4b0" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="DEALER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount11" class="security.UserAccount">
+		<property name="username" value="dealer2" />
+		<property name="password" value="4c7e001a4be55733348f9a828508c3fc" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="DEALER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- ADMINISTRATOR -->
+	
+	<bean id="administrator1" class="domain.Administrator">
+		<property name="name" value="Cristian"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES12345678S"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="cristian@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount1"/>
+		
+	
+	</bean>
+	
+	<bean id="administrator2" class="domain.Administrator">
+		<property name="name" value="Antonio"/>
+		<property name="surnames" value="Segura"/>
+		<property name="vatNumber" value="ES12345678T"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="antonio@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount2"/>
+	
+	
+	</bean>
+	
+	<!-- DEALER -->
+	<bean id="dealer1" class="domain.Dealer">
+		<property name="name" value="Antonio"/>
+		<property name="surnames" value="Segura"/>
+		<property name="vatNumber" value="ES12345678T"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="antonio2@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount10"/>
+		<property name="restaurant" ref="restaurant1"/>	
+	</bean>
+	<bean id="dealer2" class="domain.Dealer">
+		<property name="name" value="Antonio"/>
+		<property name="surnames" value="Segura"/>
+		<property name="vatNumber" value="ES12345678T"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="antonio3@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount11"/>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+
+	<!-- RESTAURANT -->
+	<bean id="restaurant1" class="domain.Restaurant">
+		<property name="name" value="Manolo"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES87654321A"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="manolo@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount3"/>
+			<property name="ratings">
+			<list>
+				<ref bean="rating1" />
+			</list>
+		</property>
+		<property name="comercialName" value="NombreComerdial1"/>
+		<property name="speciality" value="Especialidad1"/>
+		<property name="isBanned" value="0"/>
+		<property name="mediumScore" value="5"/>
+		<property name="orderTime" value="30"/>
+		
+	
+	
+	</bean>
+	
+		<bean id="restaurant2" class="domain.Restaurant">
+		<property name="name" value="Araceli"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES87654321B"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="araceli@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount4"/>
+	
+		<property name="ratings">
+			<list>
+				<ref bean="rating2" />
+			</list>
+		</property>
+		<property name="comercialName" value="NombreComerdial2"/>
+		<property name="speciality" value="Especialidad2"/>
+		<property name="isBanned" value="0"/>
+		<property name="mediumScore" value="2"/>
+		<property name="orderTime" value="60"/>
+		
+	
+	</bean>
+	
+			<bean id="restaurant3" class="domain.Restaurant">
+		<property name="name" value="Carlos"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES87654321C"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="carlos@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount8"/>
+		
+		<property name="ratings">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="comercialName" value="NombreComerdial3"/>
+		<property name="speciality" value="Especialidad3"/>
+		<property name="isBanned" value="0"/>
+		<property name="mediumScore" value="7"/>
+		<property name="orderTime" value="30"/>
+	
+	</bean>
+	
+			<bean id="restaurant4" class="domain.Restaurant">
+		<property name="name" value="Manuel"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES87654321D"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="manuel@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount9"/>
+		
+		<property name="ratings">
+			<list>
+				<null></null>
+			</list>
+		</property>
+		<property name="comercialName" value="NombreComerdial4"/>
+		<property name="speciality" value="Especialidad4"/>
+		<property name="isBanned" value="1"/>
+		<property name="mediumScore" value="1"/>
+		<property name="orderTime" value="30"/>
+	
+	</bean>
+	
+	
+	
+		<!-- Customer -->
+
+<bean id="customer1" class="domain.Customer">
+		<property name="name" value="Pedro"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES12345679S"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="pedro@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount5"/>
+		<property name="creditCard" ref="creditCard3"/>
+		<property name="finder" ref="finder1"/>
+		<property name="complains">
+			<list>
+				<ref bean="complain1" />
+			</list>
+		</property>
+	
+	</bean>
+		
+		<bean id="customer2" class="domain.Customer">
+		<property name="name" value="Ana"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES12345678Z"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="ana@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount6"/>
+		<property name="creditCard" ref="creditCard4"/>
+		<property name="finder" ref="finder2"/>
+	
+	</bean>
+	
+		<bean id="customer3" class="domain.Customer">
+		<property name="name" value="Pablo"/>
+		<property name="surnames" value="Lorca"/>
+		<property name="vatNumber" value="ES12345678X"/>
+		<property name="photo" value="https://www.imagen.com.mx/assets/img/imagen_share.png"/>
+		<property name="email" value="pablo@hotmail.com"/>
+		<property name="phone" value="654654654"/>
+		<property name="address" value="Sevilla"/>
+		<property name="userAccount" ref="userAccount7"/>
+		<property name="creditCard" ref="creditCard5"/>
+		<property name="finder" ref="finder3"/>
+	
+	</bean>
+	<!-- NOTIFICATION -->
+	
+	<bean id="notification1" class="domain.Notification">
+		<property name="subject" value="Actualización del sistema" />
+		<property name="body" value="Update" />
+	</bean>
+	
+	<bean id="notification2" class="domain.Notification">
+		<property name="subject" value="Actualización del sistema" />
+		<property name="body" value="Update2" />
+	</bean>
+	
+	<!-- CustomizableSystem -->
+
+	<bean id="customizableSystem1" class="domain.CustomizableSystem">
+
+		<property name="nameSystem" value="Acme Food" />
+		<property name="banner" value="https://www.tu-app.net/blog/wp-content/uploads/2016/09/APPS-restaurantes-1.jpg" />
+		<property name="messageWelcomePage" value="Welcome to Acme Food! ! We are the customers’ favorite food distribution market!" />
+		<property name="spanishMessageWelcomePage" value="¡Bienvenidos a Acme Food!  ¡Somos el mercado de distribución de comida favorito de los clientes!" />
+		<property name="telephoneCode" value="+34" />
+		<property name="timeCache" value="1" />
+		<property name="maxResults" value="10" />
+		
+	</bean>
+	
+	
+	<bean id="creditCard1" class="domain.CreditCard">
+  	<property name="holderName" value="nombre1" /> 
+  	<property name="brandName" value="VISA" /> 
+  	<property name="number" value="5325065299416578" /> 
+  	<property name="expirationMonth" value="3" /> 
+  	<property name="expirationYear" value="2019" /> 
+  	<property name="CW" value="101" /> 
+  </bean>
+  
+  <bean id="creditCard2" class="domain.CreditCard">
+ 	<property name="holderName" value="nombre2" /> 
+ 	<property name="brandName" value="CARD" /> 
+  	<property name="number" value="5536973139301709" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="362" /> 
+  </bean>
+  
+   <bean id="creditCard3" class="domain.CreditCard">
+  	<property name="holderName" value="nombre3" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5141210625716091" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="784" /> 
+  </bean>
+  
+    
+   <bean id="creditCard4" class="domain.CreditCard">
+  	<property name="holderName" value="nombre4" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5390389640123794" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="784" /> 
+  </bean>
+  
+    
+   <bean id="creditCard5" class="domain.CreditCard">
+  	<property name="holderName" value="nombre5" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5315450935154035" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="784" /> 
+  </bean>
+  
+    
+   <bean id="creditCard6" class="domain.CreditCard">
+  	<property name="holderName" value="nombre6" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5158721409256120" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="784" /> 
+  </bean>
+  
+    
+   <bean id="creditCard7" class="domain.CreditCard">
+  	<property name="holderName" value="nombre7" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5528797798964477" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="784" /> 
+  </bean>
+  
+  
+    <bean id="creditCard8" class="domain.CreditCard">
+  	<property name="holderName" value="nombre8" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5179497409957950" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="784" /> 
+  </bean>
+  
+  <bean id="creditCard9" class="domain.CreditCard">
+  	<property name="holderName" value="nombre9" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5123654819117073" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2027" /> 
+  	<property name="CW" value="784" /> 
+  </bean>
+  
+  <bean id="creditCard10" class="domain.CreditCard">
+  	<property name="holderName" value="nombre10" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="5555555555554444" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2097" /> 
+  	<property name="CW" value="781" /> 
+  </bean>
+  <bean id="creditCard11" class="domain.CreditCard">
+  	<property name="holderName" value="nombre11" /> 
+  	<property name="brandName" value="MASTER" /> 
+  	<property name="number" value="3566002020360505" /> 
+  	<property name="expirationMonth" value="8" /> 
+  	<property name="expirationYear" value="2087" /> 
+  	<property name="CW" value="786" /> 
+  </bean>
+  
+  
+  <!-- Finder-->
+	
+		<bean id="finder1" class="domain.Finder">
+	<property name="keyWord" value="Prueba1" />
+	<property name="minScore" value="5" />
+	<property name="maxScore" value="10" />
+	<property name="moment" value="01/01/2019 12:12" />
+	<property name="restaurants">
+		<list>
+			<ref bean="restaurant1" />
+			<ref bean="restaurant2" />
+		</list>
+	</property>
+
+</bean>
+
+
+	<bean id="finder2" class="domain.Finder">
+		<property name="keyWord" value="Prueba2" />
+		<property name="minScore" value="5" />
+		<property name="maxScore" value="10" />
+		<property name="moment" value="01/01/2019 12:12" />
+		<property name="restaurants">
+			<list>
+				<ref bean="restaurant3" />
+			</list>
+		</property>
+
+	</bean>
+
+
+	<bean id="finder3" class="domain.Finder">
+		<property name="keyWord" value="Prueba3" />
+		<property name="minScore" value="5" />
+		<property name="maxScore" value="10" />
+		<property name="moment" value="01/01/2019 12:12" />
+		<property name="restaurants">
+			<list>
+				<ref bean="restaurant4" />
+			</list>
+		</property>
+
+	</bean>
+	
+	<!-- FOOD DISHES -->
+	<bean id="foodDishes1" class="domain.FoodDishes">
+		<property name="name" value="Papas fritas"/>
+		<property name="description" value="Papas fritas con huevo"/>
+		<property name="pictures" value="https://www.paulinacocina.net/wp-content/uploads/2017/10/frenchfries.jpg"/>
+		<property name="price" value="4.5"/>
+		<property name="type" value="1"/>
+		<property name="ingredients">
+			<list>
+				<value>Papas</value>
+				<value>Huevo</value>
+				<value>Sal</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
+	
+	</bean>
+	
+	<bean id="foodDishes2" class="domain.FoodDishes">
+		<property name="name" value="Copa de helado"/>
+		<property name="description" value="Copa de helado con nata y chocolate"/>
+		<property name="pictures" value="https://images.fibraclim.com/697-large_default/copa-helado-15-cl-veneto-3-151068-caja-2-uds.jpg"/>
+		<property name="price" value="3.5"/>
+		<property name="type" value="3"/>
+		<property name="ingredients">
+			<list>
+				<value>Helado</value>
+				<value>Nata</value>
+				<value>Chocolate</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	
+	
+	<bean id="foodDishes3" class="domain.FoodDishes">
+		<property name="name" value="Batido"/>
+		<property name="description" value="Batido de chocolate"/>
+		<property name="pictures" value="http://www.recetasdiarias.com/wp-content/uploads/2010/01/batido-de-chocolate.jpg"/>
+		<property name="price" value="3.0"/>
+		<property name="type" value="3"/>
+		<property name="ingredients">
+			<list>
+				<value>Nata</value>
+				<value>Chocolate</value>
+				<value>Leche</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
+		
+		
+	</bean>
+	
+	<bean id="foodDishes4" class="domain.FoodDishes">
+		<property name="name" value="Tostada con aceite"/>
+		<property name="description" value="Pan tostado con aceite"/>
+		<property name="pictures" value="http://static.consumer.es/www/imgs/recetas/1/101099_g.jpg"/>
+		<property name="price" value="1.5"/>
+		<property name="type" value="0"/>
+		<property name="ingredients">
+			<list>
+				<value>Pan</value>
+				<value>Aceite</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant2"/>
+	</bean>
+	
+	<bean id="foodDishes5" class="domain.FoodDishes">
+		<property name="name" value="Arroz con carne"/>
+		<property name="description" value="Plato de azzor con carne de conejo y guisantes"/>
+		<property name="pictures" value="https://okdiario.com/img/recetas/2017/06/20/arroz-con-carne.jpg"/>
+		<property name="price" value="4.0"/>
+		<property name="type" value="1"/>
+		<property name="ingredients">
+			<list>
+				<value>Arroz</value>
+				<value>Carne de pollo</value>
+				<value>Guisantes</value>
+				<value>Aceite</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant2"/>
+	</bean>
+	
+	<bean id="foodDishes6" class="domain.FoodDishes">
+		<property name="name" value="Albondigas con patatas"/>
+		<property name="description" value="Albondigas con patatas al jack daniels"/>
+		<property name="pictures" value="https://sevilla.abc.es/gurme//wp-content/uploads/2010/01/1035_albondigaspatatas_1262654889.jpg"/>
+		<property name="price" value="6.5"/>
+		<property name="type" value="1"/>
+		<property name="ingredients">
+			<list>
+				<value>Patatas</value>
+				<value>Carne de cerdo picada</value>
+				<value>aceite</value>
+				<value>Pan rallado</value>
+				<value>Perejil</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	
+	<bean id="foodDishes7" class="domain.FoodDishes">
+		<property name="name" value="Hamburguesa club"/>
+		<property name="description" value="Hamburguesa de carne de buey con tomate a rodajas, huevo y bacon a la plancha."/>
+		<property name="pictures" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxRsH1-afd0XrtMmux0j8IQ4634chQNORvztW4iKQCyBicNcXZ"/>
+		<property name="price" value="5.5"/>
+		<property name="type" value="1"/>
+		<property name="ingredients">
+			<list>
+				<value>Pan de hamburguesa</value>
+				<value>Carne de buey picada</value>
+				<value>bacon</value>
+				<value>huevo</value>
+				<value>Queso</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	
+	<bean id="foodDishes8" class="domain.FoodDishes">
+		<property name="name" value="Sandwich mixto"/>
+		<property name="description" value="Triple sandwich de jamon york y queso con patatas fritas"/>
+		<property name="pictures" value="https://www.b2in.es/308-large_default/sandwich-mixto.jpg"/>
+		<property name="price" value="3.5"/>
+		<property name="type" value="1"/>
+		<property name="ingredients">
+			<list>
+				<value>Pan de molde</value>
+				<value>Jamon york</value>
+				<value>Queso</value>
+				<value>Patatas</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	
+	<bean id="foodDishes9" class="domain.FoodDishes">
+		<property name="name" value="Ensalada cesar"/>
+		<property name="description" value="Ensala con tomate, lechuga, tiras de pollo, queso, picatostes y salsa cesar."/>
+		<property name="pictures" value="https://www.rebanando.com/media/caesar-salad-source-thinkstock-jpg_crop.jpeg/rh/ensalada-cesar.jpg"/>
+		<property name="price" value="3.0"/>
+		<property name="type" value="1"/>
+		<property name="ingredients">
+			<list>
+				<value>Picatostes</value>
+				<value>Carne de pollo</value>
+				<value>Queso</value>
+				<value>Tomate</value>
+				<value>Lechuga</value>
+				<value>Salsa cesar</value>
+			</list>
+		</property>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	
+	
+	<!-- CASH ORDER -->
+
+	<bean id="cashOrder1" class="domain.CashOrder">
+	
+		<property name="status" value="0"/>
+		<property name="draftMode" value="1"/>
+		<property name="moment" value="05/12/2019 12:00"/>
+		<property name="totalPrice" value="56.2"/>
+		<property name="senderMoment" value="10/12/2019 13:00"/>
+		<property name="choice" value="0"/>
+		<property name="ticker" value="yuty-431432"/>
+		<property name="customer" ref="customer2"/>
+		<property name="restaurant" ref="restaurant1"/>
+		<property name="dealer"> <null/> </property>
+		<property name="foodDisheses"> 
+			<list>
+				<ref bean="foodDishes1" />
+			</list>
+		</property>
+		<property name="minutes" value="10.0"/>
+	
+		
+		
+	</bean>
+	
+	<bean id="cashOrder2" class="domain.CashOrder">
+	
+		<property name="status" value="3"/>
+		<property name="draftMode" value="0"/>
+		<property name="moment" value="05/12/2019 12:00"/>
+		<property name="totalPrice" value="56.2"/>
+		<property name="senderMoment" value="11/12/2019 13:00"/>
+		<property name="choice" value="1"/>
+		<property name="ticker" value="yuty-431413"/>
+		<property name="customer" ref="customer1"/>
+		<property name="restaurant" ref="restaurant1"/>
+		<property name="dealer" ref="dealer1" />
+		<property name="foodDisheses"> 
+			<list>
+				<ref bean="foodDishes1" />
+				<ref bean="foodDishes2" />
+			</list>
+		</property>		
+		<property name="minutes" value="2.0"/>
+		<property name="complains">
+			<list>
+				<ref bean="complain1" />
+			</list>
+		</property>
+		
+	</bean>
+
+	<bean id="cashOrder3" class="domain.CashOrder">
+	
+		<property name="status" value="0"/>
+		<property name="draftMode" value="1"/>
+		<property name="moment" value="04/12/2019 12:00"/>
+		<property name="totalPrice" value="56.2"/>
+		<property name="senderMoment" value="12/16/2019 13:00"/>
+		<property name="choice" value="1"/>
+		<property name="ticker" value="yuty-431532"/>
+		<property name="customer" ref="customer1"/>
+		<property name="restaurant" ref="restaurant1"/>
+		<property name="dealer"> <null/> </property>
+		<property name="foodDisheses"> 
+			<list>
+				<ref bean="foodDishes1" />
+				<ref bean="foodDishes2" />
+			</list>
+		</property>
+		<property name="minutes" value="20.0"/>
+		
+	</bean>
+
+	<bean id="cashOrder4" class="domain.CashOrder">
+	
+		<property name="status" value="0"/>
+		<property name="draftMode" value="1"/>
+		<property name="moment" value="05/12/2019 12:00"/>
+		<property name="totalPrice" value="56.2"/>
+		<property name="senderMoment" value="12/12/2019 13:00"/>
+		<property name="choice" value="0"/>
+		<property name="ticker" value="yuty-431152"/>
+		<property name="customer" ref="customer1"/>
+		<property name="restaurant" ref="restaurant2"/>
+		<property name="dealer"> <null/> </property>
+		<property name="foodDisheses"> 
+			<list>
+				<ref bean="foodDishes4" />
+			</list>
+		</property>
+		<property name="minutes" value="15.0"/>
+	</bean>
+	
+	<!-- Offer -->
+	<bean id="offer1" class="domain.Offer">
+		<property name="title" value="title1"/>
+		<property name="totalPrice" value="6.0"/>
+		<property name="restaurant" ref="restaurant1"/>
+		<property name="foodDisheses">
+			<list>
+				<ref bean="foodDishes1" />
+				<ref bean="foodDishes2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="offer2" class="domain.Offer">
+		<property name="title" value="title2"/>
+		<property name="totalPrice" value="3.0"/>
+		<property name="restaurant" ref="restaurant2"/>
+		<property name="foodDisheses">
+			<list>
+				<ref bean="foodDishes4" />
+				<ref bean="foodDishes5" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Social Profile -->
+	<bean id="socialProfile1" class="domain.SocialProfile">
+		<property name="nickName" value="nickName1"/>
+		<property name="nameSocialNetwork" value="nameSocialNetwork1"/>
+		<property name="url" value="http://prueba1.com"/>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	<bean id="socialProfile2" class="domain.SocialProfile">
+		<property name="nickName" value="nickName2"/>
+		<property name="nameSocialNetwork" value="nameSocialNetwork2"/>
+		<property name="url" value="http://prueba2.com"/>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	<bean id="socialProfile3" class="domain.SocialProfile">
+		<property name="nickName" value="nickName3"/>
+		<property name="nameSocialNetwork" value="nameSocialNetwork3"/>
+		<property name="url" value="http://prueba3.com"/>
+		<property name="restaurant" ref="restaurant2"/>
+	</bean>
+	<bean id="socialProfile4" class="domain.SocialProfile">
+		<property name="nickName" value="nickName4"/>
+		<property name="nameSocialNetwork" value="nameSocialNetwork4"/>
+		<property name="url" value="http://prueba4.com"/>
+		<property name="restaurant" ref="restaurant2"/>
+	</bean>
+	
+	<!-- Complain -->
+	<bean id="complain1" class="domain.Complain">
+		<property name="description" value="description1"/>
+		<property name="customer" ref="customer1"/>
+		<property name="cashOrder" ref="cashOrder2"/>
+	</bean>
+	<bean id="complain2" class="domain.Complain">
+		<property name="description" value="description2"/>
+		<property name="customer" ref="customer2"/>
+		<property name="cashOrder" ref="cashOrder1"/>
+	</bean>
+	
+	<!-- RATINGS -->
+	<bean id="rating1" class="domain.Rating">
+		<property name="valoration" value="10"/>
+		<property name="comment" value="Buena comida"/>
+		<property name="customer" ref="customer1"/>
+		<property name="restaurant" ref="restaurant1"/>
+	</bean>
+	
+	<bean id="rating2" class="domain.Rating">
+		<property name="valoration" value="1"/>
+		<property name="comment" value="Personal mal educado"/>
+		<property name="customer" ref="customer1"/>
+		<property name="restaurant" ref="restaurant2"/>
+	</bean>
+	
+	
+</beans>
