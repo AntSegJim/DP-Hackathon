@@ -42,6 +42,8 @@ public class FoodDishServiceTest extends AbstractTest {
 				"Nueva comida1", "Decription1", "https://www.imagen.com.mx/assets/img/imagen_share.png", 12.0, 0, super.getEntityId("restaurant1"), null
 			}, {//Negative test: name vacio
 				"", "Decription2", "https://www.imagen.com.mx/assets/img/imagen_share.png", 10.0, 1, super.getEntityId("restaurant1"), ConstraintViolationException.class
+			}, {//Negative test: description vacio
+				"Nueva comida1", "", "https://www.imagen.com.mx/assets/img/imagen_share.png", 10.0, 1, super.getEntityId("restaurant1"), ConstraintViolationException.class
 			},
 
 		};
@@ -122,8 +124,10 @@ public class FoodDishServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{//Positive test
 				"restaurant", super.getEntityId("foodDishes1"), null
-			}, {//Negative test: Case 2
+			}, {//Negative test: try to delete food dish how restaurant2
 				"restaurant2", super.getEntityId("foodDishes1"), IllegalArgumentException.class
+			}, {//Negative test: try to delete food dish how dealer
+				"dealer", super.getEntityId("foodDishes1"), IllegalArgumentException.class
 			}
 		};
 
