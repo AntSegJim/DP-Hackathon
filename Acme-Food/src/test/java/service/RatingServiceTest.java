@@ -12,7 +12,6 @@ import javax.validation.ConstraintViolationException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -65,17 +64,19 @@ public class RatingServiceTest extends AbstractTest {
 	public void CreateRatingService() {
 		final Object testingData[][] = {
 			{//Positive test
-				10, "Comentario", super.getEntityId("restaurant3"), null
+				10, "Comentario", super.getEntityId("restaurant3"), "tyrg-654387", null
 			}, {//Negative test: Valoration bigger than 10
-				11, "Comentario", super.getEntityId("restaurant3"), DataIntegrityViolationException.class
+				11, "Comentario", super.getEntityId("restaurant3"), "tyrg-654354", IllegalArgumentException.class
+			}, {//Negative test: Negative valoration
+				-1, "Comentario", super.getEntityId("restaurant3"), "tyrg-654334", IllegalArgumentException.class
 			}
 
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.CreateRatingTemplate((int) testingData[i][0], (String) testingData[i][1], (int) testingData[i][2], (Class<?>) testingData[i][3]);
+			this.CreateRatingTemplate((int) testingData[i][0], (String) testingData[i][1], (int) testingData[i][2], (String) testingData[i][3], (Class<?>) testingData[i][4]);
 	}
-	protected void CreateRatingTemplate(final Integer valoration, final String comentario, final Integer restaurantId, final Class<?> expected) {
+	protected void CreateRatingTemplate(final Integer valoration, final String comentario, final Integer restaurantId, final String ticker, final Class<?> expected) {
 		Class<?> caught;
 
 		caught = null;
@@ -94,7 +95,7 @@ public class RatingServiceTest extends AbstractTest {
 			p.setTotalPrice(10.);
 			p.setSenderMoment(fechaSalida);
 			p.setChoice(1);
-			p.setTicker("tyrg-654387");
+			p.setTicker(ticker);
 			p.setCustomer(this.customerService.getCustomerUserAccount(LoginService.getPrincipal().getId()));
 			p.setRestaurant(this.restaurantRepository.findOne(super.getEntityId("restaurant3")));
 
@@ -139,6 +140,8 @@ public class RatingServiceTest extends AbstractTest {
 				4, "Comentario", super.getEntityId("rating1"), null
 			}, {//Negative test: Comment empty
 				2, "", super.getEntityId("rating2"), ConstraintViolationException.class
+			}, {//Negative test: Negative valoration
+				-2, "", super.getEntityId("rating2"), ConstraintViolationException.class
 			}
 
 		};

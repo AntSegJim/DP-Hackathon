@@ -28,7 +28,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 	@Query("select count(d) from Dealer d where d.restaurant.id=?1 and (select count(c) from CashOrder c where c.dealer.id=d.id and c.status=3 and c.choice=1 and c.draftMode=0) < 3")
 	public Integer getFreeDealerByRestaurant(Integer id);
 
-	@Query("select distinct c.restaurant from CashOrder c where c.customer.id = ?1 and c.draftMode = 0 and c.status = 3")
+	@Query("select distinct c.restaurant from CashOrder c where c.customer.id = ?1 and c.draftMode = 0 and (c.status = 3 or c.status = 2)")
 	public Collection<Restaurant> getAllRestaurantWhereIHaveDoneAOrder(int customerId);
 
 	@Query("select r.restaurant from Rating r where r.customer.id = ?1")
