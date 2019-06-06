@@ -148,6 +148,8 @@ public class CashOrderServiceTest extends AbstractTest {
 				super.getEntityId("cashOrder1"), "restaurant", 3, null
 			}, {//Negative test: status out of range
 				super.getEntityId("cashOrder1"), "restaurant1", 3, IllegalArgumentException.class
+			}, {//Negative test: status out of range
+				super.getEntityId("cashOrder2"), "restaurant", 3, IllegalArgumentException.class
 			}
 
 		};
