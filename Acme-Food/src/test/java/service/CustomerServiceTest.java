@@ -50,7 +50,10 @@ public class CustomerServiceTest extends AbstractTest {
 			{//Positive test
 				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", "NuevoBrandName", "NuevoholderName", "5182901911816096", 8, 2020, 876, null
 			}, {//Negative test: VatNumber con patrón incorrecto
-				"Nuevo Nombre", "Apellido", "ES123456789X", "prueba2@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", "NuevoBrandName", "NuevoholderName", "5182901911816096", 8, 2020, 876, NullPointerException.class
+				"Nuevo Nombre", "Apellido", "ES123456789X", "prueba2@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", "NuevoBrandName", "NuevoholderName", "5266536466638393", 8, 2020, 876, NullPointerException.class
+
+			}, {//Negative test: La fecha de expiracion de la tarjeta de credito no es valida (ya esta caducada la tarjeta)
+				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba2@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", "NuevoBrandName", "NuevoholderName", "5475864771062860", 8, 2018, 876, NullPointerException.class
 
 			},
 
@@ -128,8 +131,12 @@ public class CustomerServiceTest extends AbstractTest {
 				//Positive test
 				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevaPassWord", "NuevaPassWord", "NuevoBrandName", "NuevoholderName", "5182901911816096", 8, 2020, 876, super.getEntityId("customer1"), null
 			}, {
-				//Negative test: Un hacker intenta modificar los datos de otra
-				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevaPassWord", "NuevaPassWord", "NuevoBrandName", "NuevoholderName", "5182901911816096", 8, 2020, 876, super.getEntityId("customer2"), IllegalArgumentException.class
+				//Negative test: Un customer intenta modificar los datos de otra
+				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevaPassWord", "NuevaPassWord", "NuevoBrandName", "NuevoholderName", "5266536466638393", 8, 2020, 876, super.getEntityId("customer2"), IllegalArgumentException.class
+
+			}, {
+				//Negative test: Un customer se equivoca introduciendo su email 
+				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba.email,com", "NuevaPassWord", "NuevaPassWord", "NuevoBrandName", "NuevoholderName", "5475864771062860", 8, 2020, 876, super.getEntityId("customer1"), NullPointerException.class
 
 			},
 

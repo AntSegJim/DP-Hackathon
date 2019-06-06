@@ -47,6 +47,9 @@ public class RestaurantServiceTest extends AbstractTest {
 			}, {//Negative test: email vacio
 				"Nuevo Nombre", "Apellido", "ES12345678X", "", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", "NuevoComercialName", "NuevaEspecialidad", 30, NullPointerException.class
 
+			}, {//Negative test: Restaurante introduce las contraseñas diferentes
+				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "PassWord", "NuevoComercialName", "NuevaEspecialidad", 30, IllegalArgumentException.class
+
 			},
 
 		};
@@ -117,6 +120,10 @@ public class RestaurantServiceTest extends AbstractTest {
 			}, {
 				//Negative test: UN restaurant intenta modificar los datos de otro
 				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("restaurant2"), IllegalArgumentException.class
+
+			}, {
+				//Negative test: Se equivoca introduciendo un vatNumber no valido
+				"Nuevo Nombre", "Apellido", "ES12345678X9", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("restaurant1"), NullPointerException.class
 
 			},
 

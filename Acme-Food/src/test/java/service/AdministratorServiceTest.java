@@ -47,6 +47,9 @@ public class AdministratorServiceTest extends AbstractTest {
 			}, {//Negative test: email vacio
 				"Nuevo Nombre", "Apellido", "ES12345678X", "", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", NullPointerException.class
 
+			}, {//Negative test: Se intenta registrar un admin pero se equivoca poniendo la contraseña y el confirmar contraseña mal
+				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWor", IllegalArgumentException.class
+
 			},
 
 		};
@@ -112,6 +115,10 @@ public class AdministratorServiceTest extends AbstractTest {
 			}, {
 				//Negative test: UN administrador intenta modificar los datos de otro
 				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("administrator1"), IllegalArgumentException.class
+
+			}, {
+				//Negative test: Un final administrador modifica su final nombre dejandolo en blanco
+				"", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", super.getEntityId("administrator2"), NullPointerException.class
 
 			},
 
