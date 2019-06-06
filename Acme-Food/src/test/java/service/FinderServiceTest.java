@@ -49,8 +49,10 @@ public class FinderServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 			{//Positive test
 				"keyword", 1, 6, new HashSet<Restaurant>(), new Date(), null
-			}, {//Negative test: Moment null
+			}, {//Negative test: maxScore bigger than 10
 				"i7", 1, 11, new HashSet<Restaurant>(), new Date(), ConstraintViolationException.class
+			}, {//Negative test: minScore is negative
+				"i7", -1, 10, new HashSet<Restaurant>(), new Date(), ConstraintViolationException.class
 			}
 
 		};
@@ -100,6 +102,8 @@ public class FinderServiceTest extends AbstractTest {
 				super.getEntityId("finder1"), "i7", 0, 1, new HashSet<Restaurant>(), new Date(), null
 			}, {//Negative test: Moment null
 				super.getEntityId("finder2"), "i7", 0, 1, new HashSet<Restaurant>(), null, IllegalArgumentException.class
+			}, {//Negative test: Script in keyword
+				super.getEntityId("finder2"), "<script>alert('hola');</script>", 0, -1, new HashSet<Restaurant>(), null, IllegalArgumentException.class
 			}
 
 		};

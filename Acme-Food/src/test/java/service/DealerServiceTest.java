@@ -47,6 +47,9 @@ public class DealerServiceTest extends AbstractTest {
 			}, {//Negative test: email vacio
 				"Nuevo Nombre", "Apellido", "ES12345678X", "", "NuevoUsername", "NuevaPassWord", "NuevaPassWord", NullPointerException.class
 
+			}, {//Negative test: diferente password
+				"Nuevo Nombre", "Apellido", "ES12345678X", "", "NuevoUsername", "NuevaPassWord", "NuevaPassWord3", IllegalArgumentException.class
+
 			},
 
 		};
@@ -111,6 +114,9 @@ public class DealerServiceTest extends AbstractTest {
 				"Nuevo Nombre", "Apellido", "ES12345678X", "prueba@email.com", "NuevoUsername2", "NuevaPassWord", "NuevaPassWord", super.getEntityId("dealer1"), null
 			}, {
 				//Negative test: Nombre blanco
+				"Antonio", "Apellido", "ES12345678X", "prueba2@email.com", "NuevoUsername13", "NuevaPassWord", "NuevaPassWord22", super.getEntityId("dealer2"), IllegalArgumentException.class
+
+			}, {//Negative test: email vacio
 				"Antonio", "Apellido", "ES12345678X", "prueba2@email.com", "NuevoUsername13", "NuevaPassWord", "NuevaPassWord22", super.getEntityId("dealer2"), IllegalArgumentException.class
 
 			},
